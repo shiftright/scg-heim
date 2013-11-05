@@ -1,0 +1,54 @@
+﻿@model ShiftRight.Heim.Models.SigninModel
+
+@{
+    ViewBag.Title = "Sign in";
+	Layout = "~/Views/Shared/_SigninLayout.cshtml";
+}
+
+
+<section class="signin-form">
+
+	<hgroup class="title">
+		<img src="/Images/logo_large.png" alt="Logo" />
+		<h1>Design+Sale Programme</h1>
+	</hgroup>
+
+@using (Html.BeginForm(new { ReturnUrl = ViewBag.ReturnUrl })) {
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend></legend>
+        <ol>
+            <li>
+                @*@Html.LabelFor(m => m.UserName)*@
+                @Html.TextBoxFor(m => m.UserName, new { placeholder = "Username" })
+                @Html.ValidationMessageFor(m => m.UserName)
+            </li>
+            <li>
+                @*@Html.LabelFor(m => m.Password)*@
+                @Html.PasswordFor(m => m.Password, new { placeholder = "Password" })
+                @Html.ValidationMessageFor(m => m.Password)
+            </li>
+
+            <li class="forgotpassword">
+                @Html.ActionLink("Forgot password?", "ForgotPassword", "Account")
+            </li>
+        </ol>
+        <input type="submit" value="Sign in" />
+    </fieldset>
+
+@*    <p>
+        @Html.ActionLink("Register", "Register") if you don't have an account.
+    </p>*@
+}
+</section>
+
+@*<section class="social" id="socialLoginForm">
+    <h2>Use another service to log in.</h2>
+    @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
+</section>*@
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

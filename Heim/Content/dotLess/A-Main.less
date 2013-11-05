@@ -1,0 +1,214 @@
+﻿@primary_color: #ea292a;
+@primary_font: gnuolanefree, Arial;
+@text_color: #666666;
+@text_font: quarklight, Arial, Sans-Serif;
+@text_size: 18px;
+@input_font: gnuolanefree, Arial, Sans-Serif;
+@input_size: 12px;
+
+@link_color: #666;
+@link_font: gnuolanefree, Arial, Sans-Serif;
+
+@error_color: #ea292a;
+@error_background: white;
+@error_border: 1px solid red;
+
+/* Mixins */
+.input_border_radius{
+	 border-radius: 3px;
+}
+
+.button_shadow {
+	box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+@font-face {
+    font-family: 'gnuolanefree';
+    src: url('/Content/fonts/gnuolane_free-webfont.eot');
+    src: url('/Content/fonts/gnuolane_free-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/Content/fonts/gnuolane_free-webfont.woff') format('woff'),
+         url('/Content/fonts/gnuolane_free-webfont.ttf') format('truetype'),
+         url('/Content/fonts/gnuolane_free-webfont.svg#gnuolanefree') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'quarklight';
+    src: url('/Content/fonts/quark-light.eot');
+    src: url('/Content/fonts/quark-light.eot?#iefix') format('embedded-opentype'),
+         url('/Content/fonts/quark-light.woff') format('woff'),
+         url('/Content/fonts/quark-light.ttf') format('truetype'),
+         url('/Content/fonts/quark-light.svg#quarklight') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'quarkbold';
+    src: url('/Content/fonts/quark-bold.eot');
+    src: url('/Content/fonts/quark-bold.eot?#iefix') format('embedded-opentype'),
+         url('/Content/fonts/quark-bold.woff') format('woff'),
+         url('/Content/fonts/quark-bold.ttf') format('truetype'),
+         url('/Content/fonts/quark-bold.svg#quarkbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    color: @link_color;
+    outline: none;
+    padding-left: 3px;
+    padding-right: 3px;
+    text-decoration: none;
+	font-family: @link_font;
+	letter-spacing: 0.8px;
+
+    &:link, &:visited,
+    &:active, &:hover {
+		color: @link_color;
+    }
+
+
+    &:hover {
+        /*background-color: #c7d1d6;*/
+		text-decoration: underline;
+    }
+}
+
+body {
+	color: @text_color;
+	font-size: @text_size;
+	font-family: @text_font;
+}
+
+header {
+	border-bottom: 3px solid #ea292a;
+	margin-bottom: 15px;
+
+	h1 {
+		display: block;
+		text-transform: uppercase;
+		font-size: 32px;
+		font-family: @primary_font;
+		color: @primary_color;
+	}
+}
+
+h1, h2 {
+	font-family: @primary_font;
+}
+
+h1 {
+	letter-spacing: 1.8px;
+}
+
+.content-wrapper {
+	position: relative;
+}
+
+nav {
+	position: absolute;
+	width: 480px;
+	height: 64px;
+	top: 0;
+	left: 50%;
+	margin-left: -480 / 2px;
+	margin-right: auto;
+
+	background-color: red;
+	text-align: center;
+
+	.menu {
+		li {
+			display: inline-block;
+
+			a {
+				text-indent: -99999px;
+				display: block;
+				width: 64px;
+				height: 64px;
+			}
+		}
+	}
+}
+
+#header-lower {
+	margin-top: 24px;
+
+	h1 {
+		line-height: 52px; 
+	}
+}
+
+input,
+label,
+textarea{
+	font-size: 16px;
+	letter-spacing: 0.9px;
+	font-weight: normal;
+
+	font-family: @input_font;
+	color: @text_color;
+}
+
+textarea,
+input[type=text],
+input[type=password]{
+	border: none;
+	min-height: 40px;
+	width: 318px;
+	text-align: center;
+	background-color: #f0f0f0;
+	margin: 10px 0;
+	text-transform: lowercase;
+
+}
+
+input[type=submit],
+input[type=button]{
+
+	border: 3px solid #771516;
+	min-height: 54px;
+	line-height: 14px;
+	padding: 18px 22px;
+	outline: none;
+	color: white;
+	text-transform: uppercase;
+	cursor: pointer;
+	font-weight: normal;
+	font-size: 18px;
+	letter-spacing: 0.9px;
+
+	background-color: @primary_color;
+	font-family: @input_font;
+
+	.button_shadow;
+
+	&:active{
+		box-shadow: none;
+	}
+}
+
+.field-validation-error {
+	position: absolute;
+	display: block;
+	padding: 10px;
+	z-index: 1;
+	background-color: @error_background;
+	border: @error_border;
+	color: @error_color;
+
+	.button_shadow;
+}
+
+
+form {
+	.validation-summary-errors {
+		color: @error_color;
+	}
+
+	.input-validation-error {
+		box-shadow: inset 0 0 5px red;
+	}
+}

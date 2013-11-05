@@ -2,3 +2,70 @@
 @grid_height: @grid_width * 0.75;
 @grid_border: 2px solid #666666;
 @grid_gap: 18px;
+
+@primary_color: #ea292a;
+@primary_font: gnuolanefree, Arial;
+
+@text_color: #333333;
+@text_font: quarklight, Arial, Sans-Serif;
+@text_size: 18px;
+
+.project-grid {
+
+	.list {
+		font-size: 1px;
+		letter-spacing: 13px;
+		line-height: 13px;
+	}
+
+	.project {
+		letter-spacing: normal;
+		line-height: normal;
+		font-size: initial;
+		display: inline-block;
+		margin-bottom: 30px;
+
+		a {
+			font-size: 0;
+			letter-spacing: 0;
+			display: inline-block;
+			padding: 0;
+			margin: 0;
+
+			&:hover {
+				text-decoration: none;
+			}
+		}
+
+		img.preview {
+			width: 320px;
+			height: 240px;
+			border: 2px solid #808080;
+		}
+
+		.data-item {
+			display: block;
+			font-family: @primary_font;
+
+			&.name {
+				font-size: 24px;
+				line-height: 30px;
+				letter-spacing: 1.8px;
+				margin-top: 16px;
+				color: @primary_color;
+			}
+
+			&.plan-name {
+				font-size: 24px;
+				line-height: 30px;
+				letter-spacing: 1.2px;
+				color: @text_color;
+			}
+
+			&.land-area, &.usage-area {
+				font-family: @text_font;
+				font-size: @text_size;
+			}
+		}
+	}
+}

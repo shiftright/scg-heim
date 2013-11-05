@@ -1,0 +1,35 @@
+﻿@model ShiftRight.Heim.Models.ProjectViewModel
+
+@{
+}
+
+@section actions{
+	@Html.ActionLink("New project", "Create")
+}
+
+<section name="recent-projects" class="project-grid">
+	<ul class="list">
+		@foreach(var item in Model.Projects){
+		<li class="project" data-id="@item.ID">
+			<a href="#project-@item.ID">
+				<img class="preview" src="@item.PreviewImage" alt="@item.Name" />
+			
+				<span class="data-item name">
+					<span class="data">@item.Name</span>
+				</span>
+				<span class="data-item plan-name">
+					<span class="data">@item.Plan.Name</span>
+				</span>
+				<span class="data-item usage-area">
+					<span class="label">Usage area</span>
+					<span class="data">@item.Plan.Area.Usage sqmm.</span>
+				</span>
+				<span class="data-item land-area">
+					<span class="label">Land area</span>
+					<span class="data">@item.Plan.Area.Land sqmm.</span>
+				</span>
+			</a>
+		</li>
+		}
+	</ul>
+</section>

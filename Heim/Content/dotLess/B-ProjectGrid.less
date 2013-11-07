@@ -46,6 +46,11 @@
 		.data-item {
 			display: block;
 			font-family: @primary_font;
+			clear: both;
+
+			.data {
+				float: right;
+			}
 
 			&.name {
 				font-size: 24px;
@@ -66,6 +71,14 @@
 				font-family: @text_font;
 				font-size: @text_size;
 			}
+		}
+	}
+}
+
+.select-house-plan {
+	.data-item {
+		&.plan-name {
+			margin-top: 16px;
 		}
 	}
 }

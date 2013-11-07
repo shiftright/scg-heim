@@ -1,0 +1,77 @@
+﻿@model ShiftRight.Heim.Models.CustomizeProjectViewModel
+@{
+	ViewBag.BodyCssClass = "customize-new-project";
+}
+
+@section actions{
+	<a href="#create-project" class="new-project" >Create project</a>
+}
+
+<section name="project-infos">
+	<div class="preview">
+		<img src="@Model.PreviewImage" alt="@Model.Name" />
+	</div>
+	
+	<div class="attributes">
+		<table>
+			@foreach(var attr in Model.Attributes){
+				<tr>
+					<td class="label">@attr.Name</td>
+					<td class="value">@attr.Value</td>
+					<td class="unit">@attr.Unit</td>
+				</tr>
+			}
+		</table>
+	</div>
+	<div class="break"></div>
+</section>
+
+<section name="floors">
+	@foreach(var floor in Model.Plan.Floors){
+		<div class="floor" data-floor="@floor.FloorNumber">
+			<h2>@floor.Name</h2>
+			<div class="plan-preview">
+				<img src="@floor.PlanPreviewImage" alt="Plan of @floor.Name" />
+			</div>
+
+			<ul class="floor-plan-variants list">
+				@foreach(var opt in floor.Variants){
+					<li class="floor-variant" data-option="@opt.ID">
+						<span class="name">@opt.Name</span>
+						<a href="#@opt.ID">
+							<img src="@opt.PlanPreviewImage" alt="Plan option @opt.Name" />
+						</a>
+					</li>
+				}
+			</ul>
+			<div class="break"></div>
+		</div>
+	}
+</section>
+
+<section name="create-project" class="dialog modal">
+	<script type="text/template" name="create-project-dialog">
+		<fieldset class="project-infos">
+
+			<input type="hidden" name="planId" value="{{# planId }}" />
+
+			<label for="projectName">Project name</label>
+			<input type="text" name="projectName" value="{{# planName }}" />
+		</fieldset>
+		<div class="summary">
+			<div class="preview">
+				<img src="{{= previewImageUrl }}" alt="{{# planName }}" />
+			</div>
+			
+			<ul class="floor-plan-variants list">
+				{{ _.each(floors, function(v){ }}
+				<li class="floor">
+					<span class="name">{{# v.floorName }} - {{# v.name }}</span>
+					<img src="{{= v.previewImageUrl }}" alt="{{# v.name }}" />
+				</li>
+				{{ }); }}
+			</ul>
+		<div class="break"></div>
+		</div>
+	</script>
+</section>

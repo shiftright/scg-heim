@@ -1,0 +1,50 @@
+﻿@model ShiftRight.Heim.Models.NewProjectViewModel
+@{
+	ViewBag.BodyCssClass = "select-house-plan";
+}
+
+@*@section menu{
+	<ul class="menu steps">
+		<li class="selected">
+			<a class="step-home" href="#home" title="Home">Home</a>
+		</li>
+		<li>
+			<a class="step-furniture" href="#furniture" title="Furnitures">Furnitures</a>
+		</li>
+		<li>
+			<a class="step-painting" href="#painting" title="Painting">Painting</a>
+		</li>
+	</ul>
+}*@
+
+@section actions{
+	<form class="search" action=".">
+		<input type="hidden" name="section" value="plan" />
+		<input type="text" name="search" value="" placeholder="Search here" />
+		<input type="submit" name="submit" value="Search" />
+	</form>
+}
+
+<section name="plans" class="project-grid">
+	<ul class="list">
+		@foreach(var item in Model.Plans){
+		<li class="project" data-id="@item.ID">
+			<a href="/Project/Customize?plan.id=@item.ID">
+				<img class="preview" src="@item.PreviewImage" alt="@item.Name" />
+			
+				<span class="data-item plan-name">
+					<span class="label">@item.Name</span>
+				</span>
+				<span class="data-item usage-area">
+					<span class="label">Usage area</span>
+					<span class="data">@item.Area.Usage sqm.</span>
+				</span>
+				<span class="data-item land-area">
+					<span class="label">Land area</span>
+					<span class="data">@item.Area.Land sqm.</span>
+				</span>
+			</a>
+		</li>
+		}
+	</ul>
+</section>

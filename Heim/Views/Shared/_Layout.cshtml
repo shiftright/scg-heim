@@ -6,26 +6,17 @@
         <link href="~/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
         @System.Web.Optimization.Styles.Render("~/Content/css")
+        @System.Web.Optimization.Styles.Render("~/Content/themes/base/css")
         @System.Web.Optimization.Styles.Render("~/Content/main")
         @System.Web.Optimization.Scripts.Render("~/bundles/modernizr")
     </head>
-    <body>
+    <body class="@ViewBag.BodyCssClass">
 		<div id="main-wrapper">
 			<header>
 				<div class="content-wrapper">
 
 					<nav>
-						<ul class="menu steps">
-							<li class="selected">
-								<a class="step-home" href="#home" title="Home">Home</a>
-							</li>
-							<li>
-								<a class="step-furniture" href="#furniture" title="Furnitures">Furnitures</a>
-							</li>
-							<li>
-								<a class="step-painting" href="#painting" title="Painting">Painting</a>
-							</li>
-						</ul>
+						@RenderSection("menu", required: false)
 					</nav>
 
 					<div id="header-upper">
@@ -66,14 +57,34 @@
 			<footer>
 				<div class="content-wrapper">
 					<div class="float-left">
-						@*<p>&copy; @DateTime.Now.Year - My ASP.NET MVC Application</p>*@
+						@*<p>&copy; @DateTime.Now.Year</p>*@
 					</div>
 				</div>
 			</footer>
 
+			@System.Web.Optimization.Scripts.Render("~/bundles/underscore")
 			@System.Web.Optimization.Scripts.Render("~/bundles/jquery")
+			@System.Web.Optimization.Scripts.Render("~/bundles/jqueryui")
 			@RenderSection("scripts", required: false)
-			
+
+@{
+			var controllerName = Request.RequestContext.RouteData.Values["controller"];
+			string path = "";
+			string dirName = "";
+
+			var view = ViewContext.View as System.Web.Mvc.RazorView;
+			if(view != null) {
+
+				string name = Path.GetFileNameWithoutExtension(view.ViewPath).ToLower();
+
+				dirName = Path.GetDirectoryName(view.ViewPath);
+				path = "~/bundles/scripts/pages/" + controllerName + "." + name;
+				path = path.ToLower();
+			}
+}
 		</div>
+		@if(System.Web.Optimization.BundleTable.Bundles.Any(a => a.Path.ToLower() == path)) {
+			@System.Web.Optimization.Scripts.Render(path);
+		}
 	</body>
 </html>

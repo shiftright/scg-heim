@@ -1,10 +1,10 @@
-﻿@model ShiftRight.Heim.Models.ProjectViewModel
+﻿@model ShiftRight.Heim.Models.ProjectHomeViewModel
 
 @{
 }
 
 @section actions{
-	@Html.ActionLink("New project", "Create")
+	<a href="/Project/New" class="new-project" >New project</a>
 }
 
 <section name="recent-projects" class="project-grid">
@@ -15,18 +15,18 @@
 				<img class="preview" src="@item.PreviewImage" alt="@item.Name" />
 			
 				<span class="data-item name">
-					<span class="data">@item.Name</span>
+					<span class="label">@item.Name</span>
 				</span>
 				<span class="data-item plan-name">
-					<span class="data">@item.Plan.Name</span>
+					<span class="label">@item.Plan.Name</span>
 				</span>
 				<span class="data-item usage-area">
 					<span class="label">Usage area</span>
-					<span class="data">@item.Plan.Area.Usage sqmm.</span>
+					<span class="data">@item.Plan.Area.Usage sqm.</span>
 				</span>
 				<span class="data-item land-area">
 					<span class="label">Land area</span>
-					<span class="data">@item.Plan.Area.Land sqmm.</span>
+					<span class="data">@item.Plan.Area.Land sqm.</span>
 				</span>
 			</a>
 		</li>

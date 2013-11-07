@@ -1,19 +1,31 @@
-﻿using System.Web;
+﻿using System.IO;
+using System.Web;
 using System.Web.Optimization;
 using ShiftRight.Heim.Bundles;
+using System.Linq;
 
 namespace ShiftRight {
 	public class BundleConfig {
 		// For more information on Bundling, visit http://go.microsoft.com/fwlink/?LinkId=254725
 		public static void RegisterBundles(BundleCollection bundles) {
-
+						
 			// Use the development version of Modernizr to develop with and learn from. Then, when you're
 			// ready for production, use the build tool at http://modernizr.com to pick only the tests you need.
 			bundles.Add(new ScriptBundle("~/bundles/modernizr").Include("~/Scripts/modernizr-*"));
 
+			bundles.Add(new ScriptBundle("~/bundles/underscore").Include("~/Scripts/underscore.js", "~/Scripts/underscore.config.js"));
 			bundles.Add(new ScriptBundle("~/bundles/jquery").Include("~/Scripts/jquery-{version}.js"));
+			bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui-{version}.js"));
+			bundles.Add(new ScriptBundle("~/bundles/scripts").IncludeDirectory("~/Scripts/Pages", "*.js"));
 
-			//bundles.Add(new ScriptBundle("~/bundles/jqueryui").Include("~/Scripts/jquery-ui-{version}.js"));
+			string scriptRoot = HttpContext.Current.Server.MapPath("~/Scripts/Pages");
+			var files = Directory.EnumerateFiles(scriptRoot, "*.js");
+			foreach(var file in files) {
+				string nameNoEx = Path.GetFileNameWithoutExtension(file);
+				string name = Path.GetFileName(file);
+
+				bundles.Add(new ScriptBundle("~/bundles/scripts/pages/" + nameNoEx).Include("~/Scripts/Pages/" + name));
+			}
 
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.unobtrusive*",

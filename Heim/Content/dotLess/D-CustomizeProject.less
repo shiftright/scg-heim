@@ -1,0 +1,182 @@
+﻿@text_color_highlight: #ef525b;
+@title_font: gnuolanefree, Arial;
+
+.customize-new-project {
+	.preview {
+		float: left;
+		width: 554px;
+		height: 384px;
+	}
+
+	.attributes {
+		float: left;
+		height: 384px;
+		overflow-y: auto;
+		width: 420px;
+		padding-left: 25px;
+
+
+		table {
+			width: 100%;
+
+			tr {
+
+				&:nth-child(odd) {
+					background-color: #f1f1f1;
+				}
+
+				td {
+					line-height: 44px;
+					font-size: 20px;
+
+					&.label {
+						padding-left: 15px;
+					}
+
+					&.value {
+						color: @text_color_highlight;
+					}
+				}
+			}
+		}
+	}
+
+	section[name=floors] {
+		border-top: 3px solid #666666;
+		margin-top: 40px;
+
+		h2 {
+			height: 48px;
+			line-height: 48px;
+			font-size: 24px;
+			letter-spacing: 1.2px;
+			color: #353535;
+			margin-bottom: 10px;
+		}
+
+		.floor {
+			border-bottom: 2px solid #aaaaaa;
+			padding-bottom: 40px;
+
+			&:last-child {
+				border-bottom: none;
+				padding-bottom: 0;
+			}
+
+			.plan-preview {
+				border: 2px solid #666666;
+				width: 745px;
+				height: 585px;
+				float: left;
+
+				img {
+					width: 745px;
+					height: 585px;
+				}
+			}
+		}
+	}
+
+	.floor-plan-variants {
+		float: left;
+		padding-right: 5px;
+		margin-top: -18px;
+		width: 240px;
+		height: 585px;
+		text-align: right;
+		overflow-y: auto;
+
+		li {
+			margin-bottom: 10px;
+
+			.name {
+				font-family: @title_font;
+			}
+
+			img {
+				width: 217px;
+				border: 3px solid white;
+			}
+
+			&:hover {
+				img {
+					border-color: #e9f0ae;
+				}
+			}
+
+			&.selected {
+				img {
+					border-color: #d4e050;
+				}
+			}
+		}
+	}
+
+	section[name=create-project].dialog {
+
+		label[for=projectName] {
+			font-size: 22px;
+			letter-spacing: 1.2px;
+			text-transform: uppercase;
+			width: 138px;
+			display: inline-block;
+		}
+
+		input[type=text] {
+			font-size: 18px;
+			text-transform: none;
+			width: 620px;
+			text-align: left;
+			padding: 5px 10px;
+			line-height: 24px;
+			min-height: initial;
+			height: 24px;
+			border: 1px solid #666666;
+			outline: none;
+		}
+
+		.summary {
+			margin-top: 10px;
+
+			.preview {
+				width: 320px;
+				height: 240px;
+
+				img {
+					width: 320px;
+					height: 240px;
+				}
+			}
+
+			.floor-plan-variants {
+				margin-top: 0;
+				width: auto;
+				height: auto;
+				text-align: left;
+				margin-left: 20px;
+				padding-right: 2px;
+				max-width: 450px;
+
+				.name {
+					color: #666666;
+				}
+
+				.floor {
+					display: inline-block;
+					width: 220px;
+				}
+
+				img {
+					border: 2px solid #aaaaaa;
+					margin-top: 15px;
+				}
+
+				&:hover {
+					img {
+						border: 2px solid #aaaaaa;
+					}
+				}
+			}
+		}
+	}
+}

@@ -291,8 +291,12 @@
     <Content Include="Content\fonts\quark-light.ttf" />
     <Content Include="Content\fonts\quark-light.woff" />
     <Content Include="Content\dotLess\0-Fix.less" />
+    <Content Include="Content\dotLess\D-CustomizeProject.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_login.png" />
+    <Content Include="Images\icon_new_project.png" />
+    <Content Include="Images\icon_search.png" />
+    <Content Include="Images\icon_select_house_plan.png" />
     <Content Include="Images\logo_large.png" />
     <Content Include="Images\signin_logo.png" />
     <Content Include="Images\site_logo.png" />
@@ -311,8 +315,12 @@
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Pages\project.customize.js" />
+    <Content Include="Scripts\underscore.config.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
+    <Content Include="UserData\project_preview_1.jpg" />
+    <Content Include="UserData\scg_th01_04floorplan-1.jpg" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>
@@ -347,11 +355,12 @@
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Shared\_UserActionsPartial.cshtml" />
     <Content Include="Views\Shared\_SigninLayout.cshtml" />
+    <Content Include="Views\Project\New.cshtml" />
+    <Content Include="Views\Project\Customize.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Scripts\Engine\" />
-    <Folder Include="UserData\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

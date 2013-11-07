@@ -42,14 +42,14 @@ namespace ShiftRight.Heim.Controllers {
 		}
 
 		//
-		// POST: /Account/LogOff
+		// POST: /Account/Signout
 
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Signout() {
 			WebSecurity.Logout();
 
-			return RedirectToAction("Index", "Home");
+			return Redirect(FormsAuthentication.DefaultUrl);
 		}
 
 		//

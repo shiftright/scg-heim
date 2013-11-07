@@ -55,6 +55,24 @@
     font-style: normal;
 }
 
+/* Fix Chrome ugly rendering */
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+    @font-face {
+        font-family: 'gnuolanefree';
+        src: url('/Content/fonts/gnuolane_free-webfont.svg') format('svg');
+    }
+	
+	@font-face {
+		font-family: 'quarklight';
+		src: url('/Content/fonts/quark-light.svg') format('svg');
+	}
+
+	@font-face {
+		font-family: 'quarkbold';
+		src: url('/Content/fonts/quark-bold.svg') format('svg');
+	}
+}
+
 a {
     color: @link_color;
     outline: none;
@@ -77,6 +95,17 @@ a {
 }
 
 body {
+
+	&.select-house-plan {
+		header {
+
+			h1 {
+				background-image: url("/Images/icon_select_house_plan.png");
+				padding-left: 64px;
+			}
+		}
+	}
+
 	color: @text_color;
 	font-size: @text_size;
 	font-family: @text_font;
@@ -84,12 +113,16 @@ body {
 
 header {
 	border-bottom: 3px solid #ea292a;
-	margin-bottom: 15px;
+	margin-bottom: 45px;
 
 	h1 {
 		display: block;
 		text-transform: uppercase;
 		font-size: 32px;
+		
+		background-repeat: no-repeat;
+		background-position: left center;
+
 		font-family: @primary_font;
 		color: @primary_color;
 	}
@@ -116,7 +149,6 @@ nav {
 	margin-left: -480 / 2px;
 	margin-right: auto;
 
-	background-color: red;
 	text-align: center;
 
 	.menu {
@@ -137,7 +169,7 @@ nav {
 	margin-top: 24px;
 
 	h1 {
-		line-height: 52px; 
+		line-height: 62px;
 	}
 }
 
@@ -202,7 +234,6 @@ input[type=button]{
 	.button_shadow;
 }
 
-
 form {
 	.validation-summary-errors {
 		color: @error_color;
@@ -211,4 +242,71 @@ form {
 	.input-validation-error {
 		box-shadow: inset 0 0 5px red;
 	}
+}
+
+.user-actions {
+	/*position: relative;*/
+	position: absolute;
+	right: 0;
+	bottom: 0;
+
+	a {
+		display: inline-block;
+		height: 52px;
+		line-height: 52px;
+		font-size: 20px;
+		letter-spacing: 1.2px;
+		text-transform: uppercase;
+		padding-right: 44px;
+		background-position: right center;
+		background-repeat: no-repeat;
+		font-family: @link_font;
+	}
+
+	.new-project {
+		background-image: url("/Images/icon_new_project.png");
+	}
+}
+
+.search {
+	width: 218px;
+	border-bottom: 2px solid #aaaaaa;
+	padding-left: 10px;
+	margin-bottom: 5px;
+
+	input {
+		display: inline-block;
+		vertical-align: middle;
+	}
+
+		input[type=text] {
+			font-size: 16px;
+			text-transform: uppercase;
+			text-align: left;
+			background-color: white;
+			width: 180px;
+			height: 32px;
+			min-height: 32px;
+			line-height: 32px;
+			padding: 0;
+			margin: 0;
+
+			outline: none;
+		}
+
+		input[type=submit] {
+			text-indent: -9999px;
+			border: none;
+			background-color: transparent;
+			background-image: url("/Images/icon_search.png");
+			background-repeat: no-repeat;
+			box-shadow: none;
+			width: 32px;
+			height: 33px;
+			min-height: 32px;
+			outline: none;
+			padding: 0;
+			font-size: 0;
+			line-height: 0;
+		}
 }

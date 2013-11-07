@@ -321,6 +321,8 @@
     <Content Include="Scripts\underscore.min.js" />
     <Content Include="UserData\project_preview_1.jpg" />
     <Content Include="UserData\scg_th01_04floorplan-1.jpg" />
+    <Content Include="UserData\scg_th01_04floorplan-1.png" />
+    <Content Include="UserData\scg_th01_04floorplan-2.png" />
     <Content Include="Web.config">
       <SubType>Designer</SubType>
     </Content>

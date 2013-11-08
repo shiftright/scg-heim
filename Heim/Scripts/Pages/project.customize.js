@@ -1,14 +1,22 @@
 ﻿jQuery(document).ready(function () {
 
 	(function ($) {
+		$('.floor-variant[data-option]').click(function () {
+			var variant = $(this);
+
+			variant.closest('ul').find('.floor-variant[data-option]').removeClass('selected');
+			variant.addClass('selected');
+
+			variant.closest('.floor').find('.plan-preview img').attr('src', variant.find('img').attr('src'));
+		});
 
 		$('a.new-project').click(function (event) {
 
 			var project = {
 				name: "SMART S1",
-				floors: [
-						{
-						},
+				floors: [{
+
+					},
 				]
 			};
 
@@ -42,16 +50,32 @@
 					vmProject
 				);
 
-			$('section[name=create-project]').html(html).dialog({
-				width: 880,
-				height: 600,
-				modal: true,
+			var height = (vmProject.floors.length > 2)? 675 : 490;
 
+			$('section[name=create-project]').html(html).dialog({
+				width: 795,
+				height: height,
+				modal: true,
+				resizable: false,
+				open: function () {
+					var input_name = $('input[type=text][name=projectName]');
+					input_name.removeClass('input-validation-error');
+				},
 				title: "Create project",
 				buttons: {
-					'Create and go to next step': function(){
-						alert('created');
-						$(this).dialog('close');
+					'Create and go to next step': function () {
+
+						var input_name = $('input[type=text][name=projectName]');
+						input_name.removeClass('input-validation-error');
+
+						if ($.trim(input_name.val()) === '') {
+							input_name.addClass('input-validation-error').focus();
+
+						} else {
+
+
+							$(this).dialog('close');
+						}
 					}
 				}
 			});

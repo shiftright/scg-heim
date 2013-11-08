@@ -293,6 +293,8 @@
     <Content Include="Content\dotLess\0-Fix.less" />
     <Content Include="Content\dotLess\D-CustomizeProject.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
+    <Content Include="Images\icon_close.png" />
+    <Content Include="Images\icon_close_hit.png" />
     <Content Include="Images\icon_login.png" />
     <Content Include="Images\icon_new_project.png" />
     <Content Include="Images\icon_search.png" />

@@ -36,11 +36,9 @@
 
 			<ul class="floor-plan-variants list">
 				@foreach(var opt in floor.Variants){
-					<li class="floor-variant" data-option="@opt.ID">
+					<li class='floor-variant @(opt.IsDefault? "selected": "")' data-option="@opt.ID">
 						<span class="name">@opt.Name</span>
-						<a href="#@opt.ID">
-							<img src="@opt.PlanPreviewImage" alt="Plan option @opt.Name" />
-						</a>
+						<img src="@opt.PlanPreviewImage" alt="Plan option @opt.Name" />
 					</li>
 				}
 			</ul>
@@ -50,28 +48,31 @@
 </section>
 
 <section name="create-project" class="dialog modal">
+
 	<script type="text/template" name="create-project-dialog">
-		<fieldset class="project-infos">
+		<form action="." method="post" name="create-project">
+			<fieldset class="project-infos">
 
-			<input type="hidden" name="planId" value="{{# planId }}" />
+				<input type="hidden" name="planId" value="{{# planId }}" />
 
-			<label for="projectName">Project name</label>
-			<input type="text" name="projectName" value="{{# planName }}" />
-		</fieldset>
-		<div class="summary">
-			<div class="preview">
-				<img src="{{= previewImageUrl }}" alt="{{# planName }}" />
-			</div>
+				<label for="projectName">Project name</label>
+				<input type="text" name="projectName" value="{{# planName }}" />
+			</fieldset>
+			<div class="summary">
+				<div class="preview">
+					<img src="{{= previewImageUrl }}" alt="{{# planName }}" />
+				</div>
 			
-			<ul class="floor-plan-variants list">
-				{{ _.each(floors, function(v){ }}
-				<li class="floor">
-					<span class="name">{{# v.floorName }} - {{# v.name }}</span>
-					<img src="{{= v.previewImageUrl }}" alt="{{# v.name }}" />
-				</li>
-				{{ }); }}
-			</ul>
-		<div class="break"></div>
-		</div>
+				<ul class="floor-plan-variants list">
+					{{ _.each(floors, function(v){ }}
+					<li class="floor">
+						<span class="name">{{# v.floorName }} - {{# v.name }}</span>
+						<img src="{{= v.previewImageUrl }}" alt="{{# v.name }}" />
+					</li>
+					{{ }); }}
+				</ul>
+			<div class="break"></div>
+			</div>
+		</form>
 	</script>
 </section>

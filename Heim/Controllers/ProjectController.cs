@@ -221,6 +221,7 @@ namespace ShiftRight.Heim.Controllers {
 									ID = 11,
 									Name = "Variant A",
 									FloorNumber = 1,
+									IsDefault = true,
 									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
 								},
 
@@ -257,6 +258,7 @@ namespace ShiftRight.Heim.Controllers {
 									ID = 21,
 									Name = "Variant A",
 									FloorNumber = 2,
+									IsDefault = true,
 									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
 								},
 
@@ -279,6 +281,7 @@ namespace ShiftRight.Heim.Controllers {
 									ID = 31,
 									Name = "Variant A",
 									FloorNumber = 3,
+									IsDefault = true,
 									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
 								},
 

@@ -36,6 +36,8 @@ namespace ShiftRight.Heim.Models {
 		public IList<FloorViewModel> Variants { get; set; }
 
 		public string PlanPreviewImage { get; set; }
+
+		public bool IsDefault { get; set; }
 	}
 
 	public class PlanViewModel {

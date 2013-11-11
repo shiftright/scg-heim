@@ -20,10 +20,10 @@ namespace ShiftRight.Heim.Filters {
 
 		private class SimpleMembershipInitializer {
 			public SimpleMembershipInitializer() {
-				Database.SetInitializer<HeimDbContext>(null);
+				Database.SetInitializer<HeimContext>(null);
 
 				try {
-					using(var context = new HeimDbContext()) {
+					using(var context = new HeimContext()) {
 						if(!context.Database.Exists()) {
 							// Create the SimpleMembership database without Entity Framework migration schema
 							((IObjectContextAdapter)context).ObjectContext.CreateDatabase();

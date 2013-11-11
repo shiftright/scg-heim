@@ -221,7 +221,7 @@ namespace ShiftRight.Heim.Controllers {
 
 			if(ModelState.IsValid) {
 				// Insert a new user into the database
-				using(HeimDbContext db = new HeimDbContext()) {
+				using(HeimContext db = new HeimContext()) {
 					UserProfile user = db.UserProfiles.FirstOrDefault(u => u.Username.ToLower() == model.UserName.ToLower());
 					// Check if user already exists
 					if(user == null) {

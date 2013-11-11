@@ -7,19 +7,39 @@ using ShiftRight.Heim.Models;
 
 namespace ShiftRight.Heim.Controllers {
 
+	public class ProjectIndexViewModel {
+		public IEnumerable<ProjectViewModel> Projects { get; set; }
+	}
+
 	public class ProjectsController : Controller {
 
 
 		[Authorize]
 		public ActionResult Index() {
-			return Home();
+
+			using(var dtx = new HeimContext()) {
+
+				var query = from p in dtx.Projects
+							orderby p.Created descending
+							select new ProjectViewModel {
+								ID = p.ID,
+								Created = p.Created,
+								Name = p.Name,
+								Owner = p.Owner
+							};
+
+				return View(new ProjectIndexViewModel {
+					Projects = query.ToList()
+				});
+			}
+
 		}
 
 		[Authorize]
 		public ActionResult Home() {
 			ViewBag.Title = "Recent projects";
 
-			return View("Home",
+			return View(
 				new ProjectHomeViewModel {
 					Projects = new ProjectViewModel[]{
 						new ProjectViewModel{
@@ -152,7 +172,7 @@ namespace ShiftRight.Heim.Controllers {
 
 			if(project.Plan != null) {
 
-				using(var dtx = new HeimDbContext()) {
+				using(var dtx = new HeimContext()) {
 
 
 					//HousePlan plan = dtx.Plans.Find(project.Plan.ID);

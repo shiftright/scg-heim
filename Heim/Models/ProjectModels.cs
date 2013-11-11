@@ -143,6 +143,8 @@ namespace ShiftRight.Heim.Models {
 
 		public DateTimeOffset Created { get; set; }
 		public PlanViewModel Plan { get; set; }
+
+		public UserProfile Owner { get; set; }
 	}
 
 	public class FloorViewModel {

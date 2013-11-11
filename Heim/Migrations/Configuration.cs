@@ -5,14 +5,14 @@ namespace ShiftRight.Heim.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<ShiftRight.Heim.Models.HeimDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<ShiftRight.Heim.Models.HeimContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(ShiftRight.Heim.Models.HeimDbContext context)
+        protected override void Seed(ShiftRight.Heim.Models.HeimContext context)
         {
             //  This method will be called after migrating to the latest version.
 

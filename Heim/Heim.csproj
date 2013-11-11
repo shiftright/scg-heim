@@ -216,10 +216,13 @@
     <Compile Include="Migrations\201311110808346_Added_Email.Designer.cs">
       <DependentUpon>201311110808346_Added_Email.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311111002422_Renamed_DTA.cs" />
+    <Compile Include="Migrations\201311111002422_Renamed_DTA.Designer.cs">
+      <DependentUpon>201311111002422_Renamed_DTA.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\HeimContext.cs" />
-    <Compile Include="Models\HeimDbContext.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -384,6 +387,12 @@
     <Content Include="Views\UserProfiles\Details.cshtml" />
     <Content Include="Views\UserProfiles\Index.cshtml" />
     <Content Include="Views\UserProfiles\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Projects\Create.cshtml" />
+    <Content Include="Views\Projects\Edit.cshtml" />
+    <Content Include="Views\Projects\Delete.cshtml" />
+    <Content Include="Views\Projects\Details.cshtml" />
+    <Content Include="Views\Projects\Index.cshtml" />
+    <Content Include="Views\Projects\_CreateOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -410,6 +419,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311110808346_Added_Email.resx">
       <DependentUpon>201311110808346_Added_Email.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311111002422_Renamed_DTA.resx">
+      <DependentUpon>201311111002422_Renamed_DTA.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

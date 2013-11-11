@@ -1,0 +1,45 @@
+@model ShiftRight.Heim.Controllers.ProjectIndexViewModel
+@{
+    ViewBag.Title = "Projects";
+}
+
+@section actions{
+    @Html.ActionLink("Create New", "Create")
+}
+
+<table class="datagrid">
+    <tr>
+        <th class="col-actions">&nbsp;</th>
+        <th class="col-data">
+            Name
+        </th>
+        <th class="col-data">
+            Created
+        </th>
+
+        <th class="col-data">
+            Owner
+        </th>
+    </tr>
+
+@foreach (var item in Model.Projects) {
+    <tr>
+        <td class="col-actions">
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+        </td>
+        <td>
+            @Html.ActionLink(item.Name.Default("-").ToString(), "Details", new { id=item.ID })
+        </td>
+        <td>
+            @Html.ActionLink(item.Created.ToString(), "Details", new { id=item.ID })
+        </td>
+        <td>
+            @item.Owner.Username
+        </td>
+    </tr>
+}
+
+</table>
+
+

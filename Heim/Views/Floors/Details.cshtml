@@ -1,0 +1,28 @@
+@model ShiftRight.Heim.Models.Floor
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section actions{
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+}
+
+<fieldset>
+    <div class="display-label">FloorNumber</div>
+    <div class="display-field">@Model.FloorNumber</div>
+
+	<div class="break"></div>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+	<div class="break"></div>
+
+    <div class="display-label">Data</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Data).ToString()</div>
+</fieldset>
+
+
+

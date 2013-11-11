@@ -9,19 +9,17 @@ using ShiftRight.Web.Attributes;
 using ShiftRight.Web.Attributes.Validation;
 
 namespace ShiftRight.Heim.Models {
-	public class UsersContext : DbContext {
-		public UsersContext()
-			: base("DefaultConnection") {
-		}
-
-		public DbSet<UserProfile> UserProfiles { get; set; }
-	}
 
 	[Table("Users")]
 	public class UserProfile {
 		[Key, Identity]
 		public int ID { get; set; }
-		public string UserName { get; set; }
+
+		[Required]
+		public string Username { get; set; }
+
+		[Required, EmailAddress]
+		public string Email { get; set; }
 	}
 
 	public class RegisterExternalLoginModel {

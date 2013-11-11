@@ -1,0 +1,22 @@
+@model ShiftRight.Heim.Models.UserProfile
+
+@{
+    ViewBag.Title = "Details";
+}
+
+@section actions{
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+}
+
+<fieldset>
+    <div class="display-label">Username</div>
+    <div class="display-field">@Model.Username</div>
+	
+	<div class="break"></div>
+
+    <div class="display-label">Email</div>
+    <div class="display-field">@Model.Email.Default("-")</div>
+</fieldset>
+
+

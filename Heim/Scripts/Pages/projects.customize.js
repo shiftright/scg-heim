@@ -44,7 +44,7 @@
 					}
 				]
 			};
-			
+						
 			var html = _.template(
 					_.findTemplate('create-project-dialog'),
 					vmProject

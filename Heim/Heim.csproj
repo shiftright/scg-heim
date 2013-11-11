@@ -201,12 +201,25 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bundles\LessBundle.cs" />
     <Compile Include="Controllers\AccountController.cs" />
-    <Compile Include="Controllers\ProjectController.cs" />
+    <Compile Include="Controllers\FloorsController.cs" />
+    <Compile Include="Controllers\ProjectsController.cs" />
+    <Compile Include="Controllers\UserProfilesController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311080931100_Initial.cs" />
+    <Compile Include="Migrations\201311080931100_Initial.Designer.cs">
+      <DependentUpon>201311080931100_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311110808346_Added_Email.cs" />
+    <Compile Include="Migrations\201311110808346_Added_Email.Designer.cs">
+      <DependentUpon>201311110808346_Added_Email.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\HeimContext.cs" />
+    <Compile Include="Models\HeimDbContext.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -317,7 +330,7 @@
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
-    <Content Include="Scripts\Pages\project.customize.js" />
+    <Content Include="Scripts\Pages\projects.customize.js" />
     <Content Include="Scripts\underscore.config.js" />
     <Content Include="Scripts\underscore.js" />
     <Content Include="Scripts\underscore.min.js" />
@@ -347,9 +360,7 @@
     <Content Include="Views\Account\Register.cshtml" />
     <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
     <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Views\Project\About.cshtml" />
-    <Content Include="Views\Project\Contact.cshtml" />
-    <Content Include="Views\Project\Home.cshtml" />
+    <Content Include="Views\Projects\Home.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_SigninPartial.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
@@ -359,8 +370,20 @@
     <Content Include="Scripts\underscore.min.map" />
     <Content Include="Views\Shared\_UserActionsPartial.cshtml" />
     <Content Include="Views\Shared\_SigninLayout.cshtml" />
-    <Content Include="Views\Project\New.cshtml" />
-    <Content Include="Views\Project\Customize.cshtml" />
+    <Content Include="Views\Projects\New.cshtml" />
+    <Content Include="Views\Projects\Customize.cshtml" />
+    <Content Include="Views\Floors\Create.cshtml" />
+    <Content Include="Views\Floors\Edit.cshtml" />
+    <Content Include="Views\Floors\Delete.cshtml" />
+    <Content Include="Views\Floors\Details.cshtml" />
+    <Content Include="Views\Floors\Index.cshtml" />
+    <Content Include="Views\Floors\_CreateOrEdit.cshtml" />
+    <Content Include="Views\UserProfiles\Create.cshtml" />
+    <Content Include="Views\UserProfiles\Edit.cshtml" />
+    <Content Include="Views\UserProfiles\Delete.cshtml" />
+    <Content Include="Views\UserProfiles\Details.cshtml" />
+    <Content Include="Views\UserProfiles\Index.cshtml" />
+    <Content Include="Views\UserProfiles\_CreateOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -380,6 +403,14 @@
       <Project>{dfc87878-17c3-434d-bf7f-d1ffbfa44aa5}</Project>
       <Name>SRLibrary.Web</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201311080931100_Initial.resx">
+      <DependentUpon>201311080931100_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311110808346_Added_Email.resx">
+      <DependentUpon>201311110808346_Added_Email.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

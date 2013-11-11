@@ -7,20 +7,26 @@ using ShiftRight.Heim.Models;
 
 namespace ShiftRight.Heim.Controllers {
 
-	public class ProjectController : Controller {
+	public class ProjectsController : Controller {
+
+
+		[Authorize]
+		public ActionResult Index() {
+			return Home();
+		}
 
 		[Authorize]
 		public ActionResult Home() {
 			ViewBag.Title = "Recent projects";
 
-			return View(
+			return View("Home",
 				new ProjectHomeViewModel {
-					Projects = new Project[]{
-						new Project{
+					Projects = new ProjectViewModel[]{
+						new ProjectViewModel{
 							ID = 1,
 							Name = "Rivendell 1",
 							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new HousePlan{
+							Plan = new PlanViewModel{
 								ID = 1,
 								Name = "SMART S1",
 								Area = new Area{
@@ -31,11 +37,11 @@ namespace ShiftRight.Heim.Controllers {
 							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
 						},
 						
-						new Project{
+						new ProjectViewModel{
 							ID = 2,
 							Name = "Rivendell 2",
 							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new HousePlan{
+							Plan = new PlanViewModel{
 								ID = 2,
 								Name = "SMART S2",
 								Area = new Area{
@@ -46,11 +52,11 @@ namespace ShiftRight.Heim.Controllers {
 							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
 						},
 						
-						new Project{
+						new ProjectViewModel{
 							ID = 3,
 							Name = "Rivendell 3",
 							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new HousePlan{
+							Plan = new PlanViewModel{
 								ID = 3,
 								Name = "SMART S3",
 								Area = new Area{
@@ -61,11 +67,11 @@ namespace ShiftRight.Heim.Controllers {
 							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
 						},
 
-						new Project{
+						new ProjectViewModel{
 							ID = 4,
 							Name = "Rivendell 4",
 							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new HousePlan{
+							Plan = new PlanViewModel{
 								ID = 4,
 								Name = "SMART S4",
 								Area = new Area{
@@ -85,8 +91,8 @@ namespace ShiftRight.Heim.Controllers {
 			ViewBag.Title = "Select house plan";
 			var vm = new NewProjectViewModel {
 				Search = search,
-				Plans = new HousePlan[]{
-					new HousePlan{
+				Plans = new PlanViewModel[]{
+					new PlanViewModel{
 						ID = 1,
 						Name = "SMART S1",
 						PreviewImage = "/UserData/project_preview_1.jpg",
@@ -96,7 +102,7 @@ namespace ShiftRight.Heim.Controllers {
 						}
 					},
 					
-					new HousePlan{
+					new PlanViewModel{
 						ID = 2,
 						Name = "SMART S3",
 						PreviewImage = "/UserData/project_preview_1.jpg",
@@ -106,7 +112,7 @@ namespace ShiftRight.Heim.Controllers {
 						}
 					},
 					
-					new HousePlan{
+					new PlanViewModel{
 						ID = 3,
 						Name = "SMART S3",
 						PreviewImage = "/UserData/project_preview_1.jpg",
@@ -116,7 +122,7 @@ namespace ShiftRight.Heim.Controllers {
 						}
 					},
 					
-					new HousePlan{
+					new PlanViewModel{
 						ID = 4,
 						Name = "SMART S4",
 						PreviewImage = "/UserData/project_preview_1.jpg",
@@ -126,7 +132,7 @@ namespace ShiftRight.Heim.Controllers {
 						}
 					},
 					
-					new HousePlan{
+					new PlanViewModel{
 						ID = 5,
 						Name = "SMART S5",
 						PreviewImage = "/UserData/project_preview_1.jpg",
@@ -146,7 +152,7 @@ namespace ShiftRight.Heim.Controllers {
 
 			if(project.Plan != null) {
 
-				using(var dtx = new ProjectContext()) {
+				using(var dtx = new HeimDbContext()) {
 
 
 					//HousePlan plan = dtx.Plans.Find(project.Plan.ID);
@@ -157,7 +163,6 @@ namespace ShiftRight.Heim.Controllers {
 					//} else {
 #if DEBUG
 					project.Plan.Name = "SMART S" + project.Plan.ID;
-					project.PreviewImage = "/UserData/scg_th01_04floorplan-1.jpg";
 					ViewBag.Title = project.Plan.Name;
 #endif
 					//}
@@ -168,7 +173,7 @@ namespace ShiftRight.Heim.Controllers {
 			return View(new CustomizeProjectViewModel {
 				ID = project.ID,
 				Name = project.Name,
-				PreviewImage = project.PreviewImage,
+				PreviewImage = "/UserData/scg_th01_04floorplan-1.jpg",
 
 				#region Attributes
 
@@ -207,7 +212,7 @@ namespace ShiftRight.Heim.Controllers {
 				Plan = new PlanViewModel {
 					ID = project.Plan.ID,
 					Name = project.Plan.Name,
-					PreviewImage = project.Plan.PreviewImage,
+					PreviewImage = "/UserData/scg_th01_04floorplan-1.jpg",
 
 					Floors = new FloorViewModel[]{
 						new FloorViewModel{

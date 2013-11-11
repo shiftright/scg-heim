@@ -1,0 +1,45 @@
+@model IEnumerable<ShiftRight.Heim.Models.Floor>
+
+@{
+    ViewBag.Title = "Floors";
+}
+
+@section actions{
+	@Html.ActionLink("Create New", "Create")
+}
+
+<table class="datagrid">
+    <tr>
+        <th class="col-actions">&nbsp;</th>
+        <th class="col-data">
+            FloorNumber
+        </th>
+        <th class="col-data">
+            Name
+        </th>
+        <th class="col-data">
+            Data
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="col-actions">
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+        <td>
+			@Html.ActionLink(item.FloorNumber.ToString(), "Details", new { id=item.ID })
+        </td>
+        <td>
+			@Html.ActionLink(item.Name.Default("-").ToString(), "Details", new { id=item.ID })
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Data).ToString()
+        </td>
+    </tr>
+}
+
+</table>
+
+

@@ -1,0 +1,38 @@
+@model IEnumerable<ShiftRight.Heim.Models.UserProfile>
+
+@{
+    ViewBag.Title = "User accounts";
+}
+
+@section actions{
+	@Html.ActionLink("Create New", "Create")
+}
+<table class="datagrid">
+    <tr>
+        <th class="col-actions">&nbsp;</th>
+        <th class="col-data">
+            Username
+        </th>
+        <th class="col-data">
+            Email
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="col-actions">
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+        </td>
+        <td>
+            @Html.ActionLink(item.Username.Default("-").ToString(), "Details", new { id=item.ID })
+        </td>
+        <td>
+            @Html.ActionLink(item.Email.Default("-"), "Details", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>
+
+

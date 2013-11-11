@@ -72,7 +72,7 @@ namespace ShiftRight.Heim.Controllers {
 				try {
 					WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
 					WebSecurity.Login(model.UserName, model.Password);
-					return RedirectToAction("Index", "Home");
+					return Redirect(FormsAuthentication.DefaultUrl);
 				} catch(MembershipCreateUserException e) {
 					ModelState.AddModelError("", ErrorCodeToString(e.StatusCode));
 				}
@@ -221,12 +221,12 @@ namespace ShiftRight.Heim.Controllers {
 
 			if(ModelState.IsValid) {
 				// Insert a new user into the database
-				using(UsersContext db = new UsersContext()) {
-					UserProfile user = db.UserProfiles.FirstOrDefault(u => u.UserName.ToLower() == model.UserName.ToLower());
+				using(HeimDbContext db = new HeimDbContext()) {
+					UserProfile user = db.UserProfiles.FirstOrDefault(u => u.Username.ToLower() == model.UserName.ToLower());
 					// Check if user already exists
 					if(user == null) {
 						// Insert name into the profile table
-						db.UserProfiles.Add(new UserProfile { UserName = model.UserName });
+						db.UserProfiles.Add(new UserProfile { Username = model.UserName });
 						db.SaveChanges();
 
 						OAuthWebSecurity.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
@@ -282,7 +282,7 @@ namespace ShiftRight.Heim.Controllers {
 			if(Url.IsLocalUrl(returnUrl)) {
 				return Redirect(returnUrl);
 			} else {
-				return RedirectToAction("Index", "Home");
+				return Redirect(FormsAuthentication.DefaultUrl);
 			}
 		}
 

@@ -1,0 +1,21 @@
+@model ShiftRight.Heim.Models.UserProfile
+
+@{
+    ViewBag.Title = "Create";
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+@section actions{
+    @Html.ActionLink("Back to List", "Index")
+}

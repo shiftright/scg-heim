@@ -1,0 +1,22 @@
+@model ShiftRight.Heim.Models.UserProfile
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+@section actions{
+    @Html.ActionLink("Back to List", "Index")
+}
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+    <fieldset>
+
+        @Html.HiddenFor(model => model.ID)
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

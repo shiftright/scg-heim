@@ -109,62 +109,34 @@ namespace ShiftRight.Heim.Controllers {
 		public ActionResult New(string search) {
 
 			ViewBag.Title = "Select house plan";
-			var vm = new NewProjectViewModel {
-				Search = search,
-				Plans = new PlanViewModel[]{
-					new PlanViewModel{
-						ID = 1,
-						Name = "SMART S1",
-						PreviewImage = "/UserData/project_preview_1.jpg",
-						Area = new Area{
-							Land = 100,
-							Usage = 50
-						}
-					},
-					
-					new PlanViewModel{
-						ID = 2,
-						Name = "SMART S3",
-						PreviewImage = "/UserData/project_preview_1.jpg",
-						Area = new Area{
-							Land = 100,
-							Usage = 50
-						}
-					},
-					
-					new PlanViewModel{
-						ID = 3,
-						Name = "SMART S3",
-						PreviewImage = "/UserData/project_preview_1.jpg",
-						Area = new Area{
-							Land = 100,
-							Usage = 50
-						}
-					},
-					
-					new PlanViewModel{
-						ID = 4,
-						Name = "SMART S4",
-						PreviewImage = "/UserData/project_preview_1.jpg",
-						Area = new Area{
-							Land = 100,
-							Usage = 50
-						}
-					},
-					
-					new PlanViewModel{
-						ID = 5,
-						Name = "SMART S5",
-						PreviewImage = "/UserData/project_preview_1.jpg",
-						Area = new Area{
-							Land = 100,
-							Usage = 50
-						}
-					}
-				}
-			};
 
-			return View(vm);
+			using(var dtx = new HeimContext()) {
+
+				if(!String.IsNullOrWhiteSpace(search)) {
+					search = search.Trim().ToLower();
+				} else {
+					search = null;
+				}
+
+				var query = from item in dtx.Plans
+							where (search == null || item.Name.ToLower().Contains(search)) && item.Floors.Count() > 0
+							orderby item.Name
+							select new PlanViewModel {
+								ID = item.ID,
+								Name = item.Name,
+								PreviewImage = item.PreviewImageFilePath,
+								Area = item.Area
+							};
+
+				NewProjectViewModel vm = new NewProjectViewModel {
+					Search = search,
+					Plans = query.ToList()
+				};
+
+				return View(vm);
+
+			}
+
 		}
 
 		[Authorize]
@@ -174,157 +146,86 @@ namespace ShiftRight.Heim.Controllers {
 
 				using(var dtx = new HeimContext()) {
 
+					var plan = dtx.Plans.Include("Floors").Include("Floors.Variants").Single(p => p.ID == project.Plan.ID);
 
-					//HousePlan plan = dtx.Plans.Find(project.Plan.ID);
-
-					//if(plan != null) {
-					//	project.Plan = plan;
-					//	ViewBag.Title = project.Plan.Name;
-					//} else {
-#if DEBUG
-					project.Plan.Name = "SMART S" + project.Plan.ID;
+					project.Name = project.Plan.Name;
 					ViewBag.Title = project.Plan.Name;
-#endif
-					//}
-				}
 
-			}
-			
-			return View(new CustomizeProjectViewModel {
-				ID = project.ID,
-				Name = project.Name,
-				PreviewImage = "/UserData/scg_th01_04floorplan-1.jpg",
+					var vm = new CustomizeProjectViewModel {
+						ID = project.ID,
+						Name = project.Name,
+						PreviewImage = plan.PreviewImageFilePath,
 
-				#region Attributes
-
-				Attributes = new ShiftRight.Heim.Models.Attribute[]{
-					new ShiftRight.Heim.Models.Attribute{
-						ID = 1,
-						Name = "ช่วงราคา",
-						Value = "5,000,000",
-						Unit = "บาท"
-					},
-					
-					new ShiftRight.Heim.Models.Attribute{
-						ID = 2,
-						Name = "พื้นที่ใช้สอย",
-						Value = "220",
-						Unit = "ตารางเมตร"
-					},
-					
-					new ShiftRight.Heim.Models.Attribute{
-						ID = 3,
-						Name = "ที่ดิน",
-						Value = "13.5 x 16",
-						Unit = "ตารางเมตร"
-					},
-					
-					new ShiftRight.Heim.Models.Attribute{
-						ID = 4,
-						Name = "ห้องนอน",
-						Value = "2-4",
-						Unit = "ห้อง"
-					}
-				},
-
-				#endregion
-
-				Plan = new PlanViewModel {
-					ID = project.Plan.ID,
-					Name = project.Plan.Name,
-					PreviewImage = "/UserData/scg_th01_04floorplan-1.jpg",
-
-					Floors = new FloorViewModel[]{
-						new FloorViewModel{
-							ID = 1,
-							FloorNumber = 1,
-							PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png",
-
-							Variants = new FloorVariantViewModel[]{
-								new FloorVariantViewModel{
-									ID = 11,
-									Name = "Variant A",
-									FloorNumber = 1,
-									IsDefault = true,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
-								},
-
-								new FloorVariantViewModel{
-									ID = 12,
-									Name = " Variant B",
-									FloorNumber = 1,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-2.png"
-								},
-
-								new FloorVariantViewModel{
-									ID = 13,
-									Name = " Variant C",
-									FloorNumber = 1,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
-								},
-
-								new FloorVariantViewModel{
-									ID = 14,
-									Name = " Variant D",
-									FloorNumber = 1,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
-								}
-							},
+						Plan = new PlanViewModel {
+							ID = project.Plan.ID,
+							Name = project.Plan.Name,
+							PreviewImage = plan.PreviewImageFilePath,
+							Floors = plan.Floors.Select(fl =>
+								new FloorViewModel {
+									ID = fl.ID,
+									FloorNumber = fl.FloorNumber,
+									Variants = fl.Variants.Select(vr =>
+										new FloorVariantViewModel {
+											ID = vr.ID,
+											Name = vr.Name,
+											IsDefault = false,
+											PlanPreviewImageFilePath = vr.PlanPreviewImageFilePath
+										}).ToList()
+								}).ToList(),
 						},
 
-						new FloorViewModel{
-							ID = 2,
-							FloorNumber = 2,
-							PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png",
-							Variants = new FloorVariantViewModel[]{
-								new FloorVariantViewModel{
-									ID = 21,
-									Name = "Variant A",
-									FloorNumber = 2,
-									IsDefault = true,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
-								},
+						#region Attributes
 
-								new FloorVariantViewModel{
-									ID = 22,
-									Name = "Variant B",
-									FloorNumber = 2,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-2.png"
-								}
+						Attributes = new ShiftRight.Heim.Models.Attribute[]{
+							new ShiftRight.Heim.Models.Attribute{
+								ID = 1,
+								Name = "ช่วงราคา",
+								Value = "5,000,000",
+								Unit = "บาท"
 							},
-						},
-
-						new FloorViewModel{
-							ID = 3,
-							FloorNumber = 3,
-							PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png",
-							Variants = new FloorVariantViewModel[]{
-								new FloorVariantViewModel{
-									ID = 31,
-									Name = "Variant A",
-									FloorNumber = 3,
-									IsDefault = true,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
-								},
-
-								new FloorVariantViewModel{
-									ID = 32,
-									Name = "Variant B",
-									FloorNumber = 3,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-2.png"
-								},
-
-								new FloorVariantViewModel{
-									ID = 33,
-									Name = "Variant C",
-									FloorNumber = 3,
-									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
-								}
+					
+							new ShiftRight.Heim.Models.Attribute{
+								ID = 2,
+								Name = "พื้นที่ใช้สอย",
+								Value = "220",
+								Unit = "ตารางเมตร"
 							},
+					
+							new ShiftRight.Heim.Models.Attribute{
+								ID = 3,
+								Name = "ที่ดิน",
+								Value = "13.5 x 16",
+								Unit = "ตารางเมตร"
+							},
+					
+							new ShiftRight.Heim.Models.Attribute{
+								ID = 4,
+								Name = "ห้องนอน",
+								Value = "2-4",
+								Unit = "ห้อง"
+							}
+						}
+
+						#endregion
+					};
+
+					foreach(var item in vm.Plan.Floors) {
+						if(item.Variants.Count() > 0){
+
+							foreach(var vr in item.Variants) {
+								vr.IsDefault = true;
+								item.PlanPreviewImage = vr.PlanPreviewImageFilePath;
+
+								break;
+							}
 						}
 					}
-				}
-			});
+
+					return View(vm);
+
+				}// end using
+			}
+				return View();
 		}
 	}
 

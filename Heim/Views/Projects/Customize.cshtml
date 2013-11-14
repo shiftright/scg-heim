@@ -9,7 +9,7 @@
 
 <section name="project-infos">
 	<div class="preview">
-		<img src="@Model.PreviewImage" alt="@Model.Name" />
+		<img src="@Href(Model.PreviewImage)" alt="@Model.Name" />
 	</div>
 	
 	<div class="attributes">
@@ -31,14 +31,14 @@
 		<div class="floor" data-floor="@floor.FloorNumber">
 			<h2>@floor.Name</h2>
 			<div class="plan-preview">
-				<img src="@floor.PlanPreviewImage" alt="Plan of @floor.Name" />
+				<img src="@Href(floor.PlanPreviewImage)" alt="Plan of @floor.Name" />
 			</div>
 
 			<ul class="floor-plan-variants list">
 				@foreach(var opt in floor.Variants){
 					<li class='floor-variant @(opt.IsDefault? "selected": "")' data-option="@opt.ID">
 						<span class="name">@opt.Name</span>
-						<img src="@opt.PlanPreviewImage" alt="Plan option @opt.Name" />
+						<img src="@Href(opt.PlanPreviewImageFilePath)" alt="Plan option @opt.Name" />
 					</li>
 				}
 			</ul>

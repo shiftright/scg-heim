@@ -30,7 +30,7 @@
 		@foreach(var item in Model.Plans){
 		<li class="project" data-id="@item.ID">
 			<a href="/Projects/Customize?plan.id=@item.ID">
-				<img class="preview" src="@item.PreviewImage" alt="@item.Name" />
+				<img class="preview" src="@Href(item.PreviewImage)" alt="@item.Name" />
 			
 				<span class="data-item plan-name">
 					<span class="label">@item.Name</span>

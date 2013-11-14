@@ -1,28 +1,34 @@
-@model ShiftRight.Heim.Models.Floor
+@model ShiftRight.Heim.Models.FloorViewModel
 
 @{
-    ViewBag.Title = "Delete";
+    ViewBag.Title = "Delete Floor " + Model.FloorNumber;
 }
 
-<h2>Delete</h2>
+@section actions{
+	@Html.ActionLink("Back to " + Model.Plan.Name, "Edit", "Plans", new { id = Model.Plan.ID }, null)
+}
 
 <h3>Are you sure you want to delete this?</h3>
-<fieldset>
-    <legend>Floor</legend>
 
-    <div class="display-label">FloorNumber</div>
+<fieldset>
+
+	<div class="display-label">Plan</div>
+	<div class="display-field">@Model.Plan.Name</div>
+
+	<div class="break"></div>
+
+    <div class="display-label">Floor</div>
     <div class="display-field">@Model.FloorNumber</div>
 
-    <div class="display-label">Name</div>
-    <div class="display-field">@Model.Name</div>
+    @*<div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>*@
 
-    <div class="display-label">Data</div>
-    <div class="display-field">@Html.DisplayTextFor(_ => Model.Data).ToString()</div>
+    @*<div class="display-label">Data</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Data).ToString()</div>*@
 </fieldset>
 @using (Html.BeginForm()) {
     <p>
-        <input type="submit" value="Delete" /> |
-        @Html.ActionLink("Back to List", "Index")
+        <input type="submit" value="Delete" />
     </p>
 }
 

@@ -194,6 +194,7 @@ textarea,
 input[type=text],
 input[type=email],
 input[type=number],
+input[type=file],
 input[type=password]{
 	border: none;
 	min-height: 40px;
@@ -201,7 +202,6 @@ input[type=password]{
 	text-align: left;
 	background-color: #f0f0f0;
 	margin: 10px 0;
-	text-transform: lowercase;
 	padding-left: 10px;
 	padding-right: 10px;
 }
@@ -263,6 +263,15 @@ form {
 		font-size: 120%;
 		margin: 20px 0;
 		border-bottom: 1px solid #FFDED8;
+		position: relative;
+
+		.user-actions a{
+			line-height: normal;
+			display: inline;
+			padding: initial;
+			text-transform: none;
+			color: #ea292a;
+		}
 	}
 }
 
@@ -279,13 +288,13 @@ form {
 		font-size: 20px;
 		letter-spacing: 1.2px;
 		text-transform: uppercase;
-		padding-right: 44px;
 		background-position: right center;
 		background-repeat: no-repeat;
 		font-family: @link_font;
 	}
 
 	.new-project {
+		padding-right: 44px;
 		background-image: url("/Images/icon_new_project.png");
 	}
 }
@@ -412,6 +421,10 @@ form {
 	border: none;
 }
 
+a[href*=Delete] {
+	color: red;
+}
+
 .datagrid {
 	width: 100%;
 
@@ -432,10 +445,6 @@ form {
 		border-right: 1px solid #aaaaaa;
 	}
 
-
-	a[href*=Delete] {
-		color: red;
-	}
 
 	.col-data {
 		min-width: 120px;
@@ -460,6 +469,15 @@ form {
 fieldset {
 	margin: 1em 0;
 
+	.editor-label,
+	.editor-field,
+	.display-label,
+	.display-field {
+		font-size: 16px;
+		letter-spacing: 0.9px;
+		font-family: @text_font;
+	}
+
 	.display-label,
 	.display-field {
 		line-height: 28px;
@@ -468,11 +486,19 @@ fieldset {
 	}
 
 	.display-label {
-		font-family: @text_font_bold;
+		font-family: @primary_font;
 	}
 
-	.display-label {
+	.editor-label {
 		clear: right;
+	}
+
+	.preview {
+
+		img {
+			max-height: 240px;
+			max-width: 240px;
+		}
 	}
 
 	.field-validation-error {
@@ -486,6 +512,16 @@ fieldset {
 
 	.input-validation-error {
 		box-shadow: none;
+	}
+
+	.main {
+		float: left;
+		width: 50%;
+	}
+
+	.aside {
+		float: right;
+		width: 50%;
 	}
 }
 
@@ -506,4 +542,8 @@ fieldset {
 	background-color: #ffffd2;
 
 	padding: 1.5em;
+}
+
+.aside a[href*=Delete] {
+	float: right;
 }

@@ -2,12 +2,15 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.Entity.SqlServer;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShiftRight.Heim.Models;
 
 namespace ShiftRight.Heim.Controllers {
+
+	[Authorize]
 	public class FloorsController : Controller {
 		private HeimContext context = new HeimContext();
 
@@ -33,26 +36,66 @@ namespace ShiftRight.Heim.Controllers {
 			return View();
 		}
 
-		//
-		// POST: /Floors/Create
-
 		[HttpPost]
 		public ActionResult Create(Floor floor) {
+
 			if(ModelState.IsValid) {
 				context.Floors.Add(floor);
 				context.SaveChanges();
-				return RedirectToAction("Index");
+
+				return RedirectToAction("Edit", new { id = floor.ID });
 			}
 
 			return View(floor);
+		}
+
+		public ActionResult CreateBlank(int planId) {
+
+			using(var dtx = new HeimContext()) {
+
+				int? floorNumber = dtx.Floors.Where(f => f.PlanID == planId).Max(f => (int?)f.FloorNumber);
+
+				var floor = new Floor {
+					PlanID = planId,
+					FloorNumber = floorNumber.HasValue? + floorNumber.Value + 1: 1
+				};
+
+				dtx.Floors.Add(floor);
+				dtx.SaveChanges();
+
+				return RedirectToAction("Edit", new { id = floor.ID });
+			}
+
 		}
 
 		//
 		// GET: /Floors/Edit/5
 
 		public ActionResult Edit(int id) {
-			Floor floor = context.Floors.Single(x => x.ID == id);
-			return View(floor);
+
+			using(var dtx = new HeimContext()) {
+
+				var query = from floor in dtx.Floors
+							where floor.ID == id
+							select new FloorViewModel {
+								ID = floor.ID,
+								FloorNumber = floor.FloorNumber,
+								Plan = new PlanViewModel{
+									ID = floor.PlanID,
+									Name = floor.Plan.Name
+								},
+								Variants = floor.Variants.Select(v => new FloorVariantViewModel {
+									ID = v.ID,
+									FloorNumber = v.Floor.FloorNumber,
+									Name = v.Name,
+									Created = v.Created,
+									Updated = v.Updated
+								})
+							};
+
+				var f = query.Single();
+				return View(f);
+			}
 		}
 
 		//
@@ -72,8 +115,22 @@ namespace ShiftRight.Heim.Controllers {
 		// GET: /Floors/Delete/5
 
 		public ActionResult Delete(int id) {
-			Floor floor = context.Floors.Single(x => x.ID == id);
-			return View(floor);
+
+			using(var dtx = new HeimContext()) {
+
+				var query = from fl in dtx.Floors
+							where fl.ID == id
+							select new FloorViewModel {
+								ID = fl.ID,
+								FloorNumber = fl.FloorNumber,
+								Plan = new PlanViewModel {
+									ID = fl.PlanID,
+									Name = fl.Plan.Name
+								}
+							};
+
+				return View(query.Single());
+			}
 		}
 
 		//
@@ -84,7 +141,7 @@ namespace ShiftRight.Heim.Controllers {
 			Floor floor = context.Floors.Single(x => x.ID == id);
 			context.Floors.Remove(floor);
 			context.SaveChanges();
-			return RedirectToAction("Index");
+			return RedirectToAction("Edit", "Plans", new { id = floor.PlanID });
 		}
 
 		protected override void Dispose(bool disposing) {

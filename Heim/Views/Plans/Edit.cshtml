@@ -1,0 +1,29 @@
+@model ShiftRight.Heim.Models.PlanViewModel
+
+@{
+    ViewBag.Title = "Edit plan - " + Model.Name;
+}
+
+@section actions{
+    @Html.ActionLink("Back to List", "Index")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+@using(Html.BeginForm("Edit", "Plans", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+
+        @Html.HiddenFor(model => model.ID)
+		@Html.Partial("_CreateOrEdit", Model)
+
+		<div class="break"></div>
+
+        <p>
+            <input type="submit" value="Save" />
+        </p>
+    </fieldset>
+}

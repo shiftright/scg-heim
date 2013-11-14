@@ -1,0 +1,65 @@
+﻿@model ShiftRight.Heim.Models.FloorVariantViewModel
+
+@{
+    ViewBag.Title = "Edit " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section scripts{
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+@section actions{
+	@Html.ActionLink("Back to Floor " + Model.FloorNumber, "Edit", "Floors", new { id = Model.FloorID }, null)
+}
+
+@using(Html.BeginForm("Edit", "Variants", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+	@Html.ValidationSummary(true)
+	<fieldset>
+		@Html.HiddenFor(model => model.ID)
+		@Html.HiddenFor(model => model.FloorID)
+		@Html.HiddenFor(model => model.PlanID)
+		@Html.HiddenFor(model => model.FloorNumber)
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Name)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</div>
+
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.ModelFile)
+		</div>
+		<div class="editor-field">
+
+			@if(!String.IsNullOrEmpty(Model.ModelFilePath)) {
+				<div>
+					<a href="@Href(Model.ModelFilePath)">@Model.ModelFileSize KB</a>
+				</div>
+			}
+			<input type="file" name="ModelFile" id="ModelFile"  />
+			@Html.ValidationMessageFor(model => model.ModelFile)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.PlanImageFile)
+		</div>
+		<div class="editor-field">
+			<div>
+				<img src="@Href(Model.PlanPreviewImageFilePath)" alt="Preview" />
+			</div>
+			<input type="file" name="PlanImageFile" id="PlanImageFile" accept="image/*" />
+			@Html.ValidationMessageFor(model => model.PlanImageFile)
+		</div>
+
+		<p>
+
+			<input type="submit" value="Save" />
+			
+			@Html.ActionLink("Delete", "Delete", new { id = Model.ID }, new { onclick = "javascript: return confirm('Sure?')" })
+		</p>
+	</fieldset>
+}

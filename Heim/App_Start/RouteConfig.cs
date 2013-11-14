@@ -13,7 +13,7 @@ namespace ShiftRight {
 			routes.MapRoute(
 				name: "Projects",
 				url: "Projects",
-				defaults: new { controller = "Projects", action = "Home"}
+				defaults: new { controller = "Projects", action = "Home" }
 			);
 
 			routes.MapRoute(

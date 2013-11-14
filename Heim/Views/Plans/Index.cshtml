@@ -1,0 +1,57 @@
+@model IEnumerable<ShiftRight.Heim.Models.Plan>
+
+@{
+    ViewBag.Title = "Plans";
+}
+
+@section actions{
+    @Html.ActionLink("Create New", "Create")
+}
+
+<table class="datagrid">
+    <tr>
+        <th class="col-actions">&nbsp;</th>
+        <th class="col-data">
+            Name
+        </th>
+        <th class="col-data">
+            Area
+        </th>
+        <th class="col-data">
+            Floors
+        </th>
+@*        <th class="col-data">
+            Data
+        </th>
+        <th class="col-data">
+            IsTemplate
+        </th>*@
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td class="col-actions">
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+        </td>
+        <td>
+			@Html.ActionLink(item.Name, "Details", new { id=item.ID })
+        </td>
+        <td>
+			@Html.DisplayTextFor(_ => item.Area).ToString()
+        </td>
+        <td>
+			@(item.Floors == null ? "None" : item.Floors.Count.ToString())
+        </td>
+@*        <td>
+			@Html.DisplayTextFor(_ => item.Data).ToString()
+        </td>
+        <td>
+			@item.IsTemplate
+        </td>*@
+    </tr>
+}
+
+</table>
+
+

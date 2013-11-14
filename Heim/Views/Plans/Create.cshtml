@@ -1,0 +1,24 @@
+@model ShiftRight.Heim.Controllers.PlanCreateViewModel
+@{
+    ViewBag.Title = "Create new plan";
+}
+
+@section actions{
+    @Html.ActionLink("Back to List", "Index")
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<form action="/Plans/Create" enctype="multipart/form-data" method="post">
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+		@Html.Partial("_CreateOrEdit", Model)
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+</form>

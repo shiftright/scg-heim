@@ -238,37 +238,36 @@ namespace ShiftRight.Heim.Controllers {
 						new FloorViewModel{
 							ID = 1,
 							FloorNumber = 1,
-							Name = "1st Floor",
 							PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png",
 
-							Variants = new FloorViewModel[]{
-								new FloorViewModel{
+							Variants = new FloorVariantViewModel[]{
+								new FloorVariantViewModel{
 									ID = 11,
 									Name = "Variant A",
 									FloorNumber = 1,
 									IsDefault = true,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
 								},
 
-								new FloorViewModel{
+								new FloorVariantViewModel{
 									ID = 12,
 									Name = " Variant B",
 									FloorNumber = 1,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-2.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-2.png"
 								},
 
-								new FloorViewModel{
+								new FloorVariantViewModel{
 									ID = 13,
 									Name = " Variant C",
 									FloorNumber = 1,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
 								},
 
-								new FloorViewModel{
+								new FloorVariantViewModel{
 									ID = 14,
 									Name = " Variant D",
 									FloorNumber = 1,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
 								}
 							},
 						},
@@ -276,22 +275,21 @@ namespace ShiftRight.Heim.Controllers {
 						new FloorViewModel{
 							ID = 2,
 							FloorNumber = 2,
-							Name = "2nd Floor",
 							PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png",
-							Variants = new FloorViewModel[]{
-								new FloorViewModel{
+							Variants = new FloorVariantViewModel[]{
+								new FloorVariantViewModel{
 									ID = 21,
 									Name = "Variant A",
 									FloorNumber = 2,
 									IsDefault = true,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
 								},
 
-								new FloorViewModel{
+								new FloorVariantViewModel{
 									ID = 22,
 									Name = "Variant B",
 									FloorNumber = 2,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-2.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-2.png"
 								}
 							},
 						},
@@ -299,29 +297,28 @@ namespace ShiftRight.Heim.Controllers {
 						new FloorViewModel{
 							ID = 3,
 							FloorNumber = 3,
-							Name = "3rd Floor",
 							PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png",
-							Variants = new FloorViewModel[]{
-								new FloorViewModel{
+							Variants = new FloorVariantViewModel[]{
+								new FloorVariantViewModel{
 									ID = 31,
 									Name = "Variant A",
 									FloorNumber = 3,
 									IsDefault = true,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
 								},
 
-								new FloorViewModel{
+								new FloorVariantViewModel{
 									ID = 32,
 									Name = "Variant B",
 									FloorNumber = 3,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-2.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-2.png"
 								},
 
-								new FloorViewModel{
+								new FloorVariantViewModel{
 									ID = 33,
 									Name = "Variant C",
 									FloorNumber = 3,
-									PlanPreviewImage = "/UserData/scg_th01_04floorplan-1.png"
+									PlanPreviewImageFilePath = "/UserData/scg_th01_04floorplan-1.png"
 								}
 							},
 						}

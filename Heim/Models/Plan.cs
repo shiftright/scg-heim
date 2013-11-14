@@ -1,0 +1,41 @@
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
+using ShiftRight.Web.Attributes;
+
+namespace ShiftRight.Heim.Models {
+
+
+	public class Plan : IPreviewable {
+
+		[Key, Identity]
+		public int ID { get; set; }
+
+		[Required]
+		public string Name { get; set; }
+		public Area Area { get; set; }
+		public HashSet<Floor> Floors { get; set; }
+
+		public byte[] Data { get; set; }
+		public bool IsTemplate { get; set; }
+
+		[DataType("DATETIMEOFFSET(2)")]
+		public DateTimeOffset Updated { get; set; }
+
+		[DataType("DATETIMEOFFSET(2)")]
+		public DateTimeOffset Created { get; set; }
+		public string PreviewImageFilePath { get; set; }
+		
+		public Plan() {
+			Data = new byte[] { };
+			IsTemplate = false;
+		}
+
+		public Uri GetPreview() {
+			return new Uri("/Resources/Plans/Preview/1_" + Updated.UtcTicks + ".jpg", UriKind.Relative);
+		}
+
+	}
+}

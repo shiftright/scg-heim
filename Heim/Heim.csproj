@@ -201,7 +201,9 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bundles\LessBundle.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\VariantsController.cs" />
     <Compile Include="Controllers\FloorsController.cs" />
+    <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UserProfilesController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
@@ -220,9 +222,34 @@
     <Compile Include="Migrations\201311111002422_Renamed_DTA.Designer.cs">
       <DependentUpon>201311111002422_Renamed_DTA.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311111245599_Added_Plan_Preview.cs" />
+    <Compile Include="Migrations\201311111245599_Added_Plan_Preview.Designer.cs">
+      <DependentUpon>201311111245599_Added_Plan_Preview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311121141143_Added_Floor_Variants.cs" />
+    <Compile Include="Migrations\201311121141143_Added_Floor_Variants.Designer.cs">
+      <DependentUpon>201311121141143_Added_Floor_Variants.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311121149075_Removed_FloorName.cs" />
+    <Compile Include="Migrations\201311121149075_Removed_FloorName.Designer.cs">
+      <DependentUpon>201311121149075_Removed_FloorName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.cs" />
+    <Compile Include="Migrations\201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.Designer.cs">
+      <DependentUpon>201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311140426339_Added_Variant_FilePath.cs" />
+    <Compile Include="Migrations\201311140426339_Added_Variant_FilePath.Designer.cs">
+      <DependentUpon>201311140426339_Added_Variant_FilePath.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201311140801009_Added_Plan_PreviewImageFilePath.cs" />
+    <Compile Include="Migrations\201311140801009_Added_Plan_PreviewImageFilePath.Designer.cs">
+      <DependentUpon>201311140801009_Added_Plan_PreviewImageFilePath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\HeimContext.cs" />
+    <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -379,8 +406,6 @@
     <Content Include="Views\Floors\Edit.cshtml" />
     <Content Include="Views\Floors\Delete.cshtml" />
     <Content Include="Views\Floors\Details.cshtml" />
-    <Content Include="Views\Floors\Index.cshtml" />
-    <Content Include="Views\Floors\_CreateOrEdit.cshtml" />
     <Content Include="Views\UserProfiles\Create.cshtml" />
     <Content Include="Views\UserProfiles\Edit.cshtml" />
     <Content Include="Views\UserProfiles\Delete.cshtml" />
@@ -393,6 +418,16 @@
     <Content Include="Views\Projects\Details.cshtml" />
     <Content Include="Views\Projects\Index.cshtml" />
     <Content Include="Views\Projects\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Plans\Create.cshtml" />
+    <Content Include="Views\Plans\Edit.cshtml" />
+    <Content Include="Views\Plans\Delete.cshtml" />
+    <Content Include="Views\Plans\Details.cshtml" />
+    <Content Include="Views\Plans\Index.cshtml" />
+    <Content Include="Views\Plans\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Plans\EditorTemplates\FloorViewModel.cshtml" />
+    <Content Include="Views\Plans\DisplayTemplates\FloorViewModel.cshtml" />
+    <Content Include="Views\Floors\EditorTemplates\FloorVariantViewModel.cshtml" />
+    <Content Include="Views\Variants\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -422,6 +457,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311111002422_Renamed_DTA.resx">
       <DependentUpon>201311111002422_Renamed_DTA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311111245599_Added_Plan_Preview.resx">
+      <DependentUpon>201311111245599_Added_Plan_Preview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311121141143_Added_Floor_Variants.resx">
+      <DependentUpon>201311121141143_Added_Floor_Variants.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311121149075_Removed_FloorName.resx">
+      <DependentUpon>201311121149075_Removed_FloorName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.resx">
+      <DependentUpon>201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311140426339_Added_Variant_FilePath.resx">
+      <DependentUpon>201311140426339_Added_Variant_FilePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311140801009_Added_Plan_PreviewImageFilePath.resx">
+      <DependentUpon>201311140801009_Added_Plan_PreviewImageFilePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

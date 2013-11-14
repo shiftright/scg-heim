@@ -70,11 +70,20 @@
     <Compile Include="Attributes\LocalizedDisplayNameAttribute.cs" />
     <Compile Include="Attributes\Validation\PasswordAttribute.cs" />
     <Compile Include="Attributes\RolesAttribute.cs" />
+    <Compile Include="Attributes\Validation\WebImageFileAttribute.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WebFileStorage.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SRLibrary.Common\SRLibrary.Common.csproj">
+      <Project>{85f53d9d-7fc0-44f9-a1ef-b692abf498ef}</Project>
+      <Name>SRLibrary.Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

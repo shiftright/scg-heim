@@ -1,22 +1,54 @@
-@model ShiftRight.Heim.Models.Floor
+@model ShiftRight.Heim.Models.FloorViewModel
 
 @{
-    ViewBag.Title = "Edit Floor " + Model.ID;
+    ViewBag.Title = "Edit Floor " + Model.FloorNumber;
 }
 
 @section actions{
-    @Html.ActionLink("Back to List", "Index")
+	@Html.ActionLink("Back to " + Model.Plan.Name, "Edit", "Plans", new { id = Model.Plan.ID }, null)
+    @*| @Html.ActionLink("Back to List", "Index")*@
+}
+
+@section scripts{
+	@Scripts.Render("~/bundles/jqueryval")
 }
 
 @using (Html.BeginForm()) {
     @Html.ValidationSummary(true)
     <fieldset>
         @Html.HiddenFor(model => model.ID)
-		@Html.Partial("_CreateOrEdit", Model)
 
-        <p>
-            <input type="submit" value="Save" />
-        </p>
+		<div class="display-label">Plan</div>
+		<div class="display-field">@Model.Plan.Name</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.FloorNumber)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(model => model.FloorNumber)
+			@Html.ValidationMessageFor(model => model.FloorNumber)
+		</div>
+
+		<p>
+			<input type="submit" value="Save" />
+		</p>
+
+		<div class="variants">
+			<h3>
+				Variants
+				<span class="user-actions">
+					@Html.ActionLink("Add", "CreateBlank", "Variants", new { floorId = Model.ID }, null)
+				</span>
+			</h3>
+
+			<ul class="list">
+				@foreach(var item in Model.Variants) {
+					<li data-id="@item.ID">
+						@Html.ActionLink(item.Name, "Edit", "Variants", new { id = item.ID }, null)
+					</li>
+				}
+			</ul>
+
+		</div>
     </fieldset>
 }
-

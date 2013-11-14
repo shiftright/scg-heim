@@ -22,6 +22,7 @@ namespace ShiftRight.Heim.Models
 		}
 
 		public DbSet<ShiftRight.Heim.Models.Floor> Floors { get; set; }
+		public DbSet<FloorVariant> FloorVariants { get; set; }
 		public DbSet<Project> Projects { get; set; }
 		public DbSet<Plan> Plans { get; set; }
 		public DbSet<UserProfile> UserProfiles { get; set; }

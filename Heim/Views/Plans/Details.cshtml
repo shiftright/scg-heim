@@ -1,0 +1,32 @@
+@model ShiftRight.Heim.Models.Plan
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>Plan</legend>
+
+    <div class="display-label">Name</div>
+    <div class="display-field">@Model.Name</div>
+
+    <div class="display-label">Area</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Area).ToString()</div>
+
+    <div class="display-label">Floors</div>
+    <div class="display-field">@(Model.Floors == null ? "None" : Model.Floors.Count.ToString())</div>
+
+    <div class="display-label">Data</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Data).ToString()</div>
+
+    <div class="display-label">IsTemplate</div>
+    <div class="display-field">@Model.IsTemplate</div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
+
+

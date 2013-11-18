@@ -140,43 +140,43 @@ namespace ShiftRight.Heim.Controllers {
 		}
 
 		[Authorize]
-		public ActionResult Customize(Project project) {
+		public ActionResult Customize(int planId) {
+			
+			using(var dtx = new HeimContext()) {
 
-			if(project.Plan != null) {
+				var plan = dtx.Plans.Include("Floors").Include("Floors.Variants").Single(p => p.ID == planId);
 
-				using(var dtx = new HeimContext()) {
+				if(plan == null) {
+					return RedirectToAction("New");
+				}
 
-					var plan = dtx.Plans.Include("Floors").Include("Floors.Variants").Single(p => p.ID == project.Plan.ID);
+				ViewBag.Title = plan.Name;
 
-					project.Name = project.Plan.Name;
-					ViewBag.Title = project.Plan.Name;
+				var vm = new CustomizeProjectViewModel {
+					Name = plan.Name,
+					PreviewImage = plan.PreviewImageFilePath,
 
-					var vm = new CustomizeProjectViewModel {
-						ID = project.ID,
-						Name = project.Name,
+					Plan = new PlanViewModel {
+						ID = plan.ID,
+						Name = plan.Name,
 						PreviewImage = plan.PreviewImageFilePath,
+						Floors = plan.Floors.Select(fl =>
+							new FloorViewModel {
+								ID = fl.ID,
+								FloorNumber = fl.FloorNumber,
+								Variants = fl.Variants.Select(vr =>
+									new FloorVariantViewModel {
+										ID = vr.ID,
+										Name = vr.Name,
+										IsDefault = false,
+										PlanPreviewImageFilePath = vr.PlanPreviewImageFilePath
+									}).ToList()
+							}).ToList(),
+					},
 
-						Plan = new PlanViewModel {
-							ID = project.Plan.ID,
-							Name = project.Plan.Name,
-							PreviewImage = plan.PreviewImageFilePath,
-							Floors = plan.Floors.Select(fl =>
-								new FloorViewModel {
-									ID = fl.ID,
-									FloorNumber = fl.FloorNumber,
-									Variants = fl.Variants.Select(vr =>
-										new FloorVariantViewModel {
-											ID = vr.ID,
-											Name = vr.Name,
-											IsDefault = false,
-											PlanPreviewImageFilePath = vr.PlanPreviewImageFilePath
-										}).ToList()
-								}).ToList(),
-						},
+					#region Attributes
 
-						#region Attributes
-
-						Attributes = new ShiftRight.Heim.Models.Attribute[]{
+					Attributes = new ShiftRight.Heim.Models.Attribute[]{
 							new ShiftRight.Heim.Models.Attribute{
 								ID = 1,
 								Name = "ช่วงราคา",
@@ -206,26 +206,48 @@ namespace ShiftRight.Heim.Controllers {
 							}
 						}
 
-						#endregion
-					};
+					#endregion
+				};
 
-					foreach(var item in vm.Plan.Floors) {
-						if(item.Variants.Count() > 0){
+				foreach(var item in vm.Plan.Floors) {
+					if(item.Variants.Count() > 0) {
 
-							foreach(var vr in item.Variants) {
-								vr.IsDefault = true;
-								item.PlanPreviewImage = vr.PlanPreviewImageFilePath;
+						foreach(var vr in item.Variants) {
+							vr.IsDefault = true;
+							item.PlanPreviewImage = vr.PlanPreviewImageFilePath;
 
-								break;
-							}
+							break;
 						}
 					}
+				}
 
-					return View(vm);
+				return View(vm);
 
-				}// end using
+			}// end using
+		}
+
+		[Authorize, HttpPost]
+		public ActionResult SaveCustomize(Project project) {
+
+			using(var dtx = new HeimContext()) {
+
+				var user = dtx.UserProfiles.Single(u => u.Username == User.Identity.Name);
+
+				project.ID = 0;
+				project.OwnerID = user.ID;
+				project.Created = DateTimeOffset.UtcNow;
+				project.Updated = DateTimeOffset.UtcNow;
+				project.IsDeleted = false;
+				project.Name = project.Name.Trim();
+
+				//project.Floors
+				//project.Data = ;
+
+				dtx.Projects.Add(project);
+				dtx.SaveChanges();
+				
+				return Json(project);
 			}
-				return View();
 		}
 	}
 

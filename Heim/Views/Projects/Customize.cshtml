@@ -7,7 +7,15 @@
 	<a href="#create-project" class="new-project" >Create project</a>
 }
 
-<section name="project-infos">
+<script type="text/javascript">
+	var _model = @Html.Raw(Json.Encode(new {
+				planId = Model.Plan.ID,
+				previewImageUrl = Href(Model.PreviewImage),
+				name = Model.Plan.Name
+			}))
+</script>
+
+<div id="project-infos">
 	<div class="preview">
 		<img src="@Href(Model.PreviewImage)" alt="@Model.Name" />
 	</div>
@@ -24,9 +32,9 @@
 		</table>
 	</div>
 	<div class="break"></div>
-</section>
+</div>
 
-<section name="floors">
+<div id="floors">
 	@foreach(var floor in Model.Plan.Floors){
 		<div class="floor" data-floor="@floor.FloorNumber">
 			<h2>@floor.Name</h2>
@@ -36,7 +44,7 @@
 
 			<ul class="floor-plan-variants list">
 				@foreach(var opt in floor.Variants){
-					<li class='floor-variant @(opt.IsDefault? "selected": "")' data-option="@opt.ID">
+					<li class='floor-variant @(opt.IsDefault? "selected": "")' data-id="@opt.ID">
 						<span class="name">@opt.Name</span>
 						<img src="@Href(opt.PlanPreviewImageFilePath)" alt="Plan option @opt.Name" />
 					</li>
@@ -45,28 +53,28 @@
 			<div class="break"></div>
 		</div>
 	}
-</section>
+</div>
 
-<section name="create-project" class="dialog modal">
+<div id="create-project" class="dialog modal">
 
 	<script type="text/template" name="create-project-dialog">
 		<form action="." method="post" name="create-project">
 			<fieldset class="project-infos">
 
-				<input type="hidden" name="planId" value="{{# planId }}" />
+				<input type="hidden" name="planId" value="{{# planTemplateId }}" />
 
 				<label for="projectName">Project name</label>
-				<input type="text" name="projectName" value="{{# planName }}" />
+				<input type="text" name="projectName" value="{{# name }}" />
 			</fieldset>
 			<div class="summary">
 				<div class="preview">
-					<img src="{{= previewImageUrl }}" alt="{{# planName }}" />
+					<img src="{{= previewImageUrl }}" alt="{{# name }}" />
 				</div>
 			
 				<ul class="floor-plan-variants list">
 					{{ _.each(floors, function(v){ }}
 					<li class="floor">
-						<span class="name">{{# v.floorName }} - {{# v.name }}</span>
+						<span class="name">Floor {{# v.floor }} - {{# v.name }}</span>
 						<img src="{{= v.previewImageUrl }}" alt="{{# v.name }}" />
 					</li>
 					{{ }); }}
@@ -75,4 +83,4 @@
 			</div>
 		</form>
 	</script>
-</section>
+</div>

@@ -16,9 +16,10 @@ namespace ShiftRight.Heim.Models {
 		[Required]
 		public string Name { get; set; }
 		public Area Area { get; set; }
-		public HashSet<Floor> Floors { get; set; }
+		public HashSet<FloorTemplate> Floors { get; set; }
+		public HashSet<Attribute> Attributes { get; set; }
 
-		public byte[] Data { get; set; }
+		public string Data { get; set; }
 		public bool IsTemplate { get; set; }
 
 		[DataType("DATETIMEOFFSET(2)")]
@@ -29,7 +30,7 @@ namespace ShiftRight.Heim.Models {
 		public string PreviewImageFilePath { get; set; }
 		
 		public Plan() {
-			Data = new byte[] { };
+			//Data = new byte[] { };
 			IsTemplate = false;
 		}
 

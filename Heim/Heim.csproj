@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ShiftRight.Heim</RootNamespace>
     <AssemblyName>ShiftRight.Heim</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -21,6 +21,7 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
     <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -98,16 +99,19 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Net.Http.Extensions">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.15\lib\net45\System.Net.Http.Extensions.dll</HintPath>
+    <Reference Include="System.Net.Http.Extensions, Version=2.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net45\System.Net.Http.Extensions.dll</HintPath>
     </Reference>
     <Reference Include="System.Net.Http.Formatting, Version=5.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.0.0\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
-    <Reference Include="System.Net.Http.Primitives">
-      <HintPath>..\packages\Microsoft.Net.Http.2.2.15\lib\net45\System.Net.Http.Primitives.dll</HintPath>
+    <Reference Include="System.Net.Http.Primitives, Version=4.2.18.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Microsoft.Net.Http.2.2.18\lib\net45\System.Net.Http.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="System.Spatial, Version=5.6.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
@@ -117,8 +121,7 @@
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.Helpers.dll</HintPath>
@@ -162,9 +165,7 @@
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.0.0\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Abstractions" />
     <Reference Include="System.Web.Routing" />
     <Reference Include="System.Xml" />
@@ -180,6 +181,7 @@
     </Reference>
     <Reference Include="System.Net.Http.WebRequest">
     </Reference>
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WebGrease, Version=1.5.2.14234, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
@@ -201,6 +203,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bundles\LessBundle.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DesignController.cs" />
     <Compile Include="Controllers\VariantsController.cs" />
     <Compile Include="Controllers\FloorsController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
@@ -210,41 +213,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201311080931100_Initial.cs" />
-    <Compile Include="Migrations\201311080931100_Initial.Designer.cs">
-      <DependentUpon>201311080931100_Initial.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311110808346_Added_Email.cs" />
-    <Compile Include="Migrations\201311110808346_Added_Email.Designer.cs">
-      <DependentUpon>201311110808346_Added_Email.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311111002422_Renamed_DTA.cs" />
-    <Compile Include="Migrations\201311111002422_Renamed_DTA.Designer.cs">
-      <DependentUpon>201311111002422_Renamed_DTA.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311111245599_Added_Plan_Preview.cs" />
-    <Compile Include="Migrations\201311111245599_Added_Plan_Preview.Designer.cs">
-      <DependentUpon>201311111245599_Added_Plan_Preview.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311121141143_Added_Floor_Variants.cs" />
-    <Compile Include="Migrations\201311121141143_Added_Floor_Variants.Designer.cs">
-      <DependentUpon>201311121141143_Added_Floor_Variants.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311121149075_Removed_FloorName.cs" />
-    <Compile Include="Migrations\201311121149075_Removed_FloorName.Designer.cs">
-      <DependentUpon>201311121149075_Removed_FloorName.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.cs" />
-    <Compile Include="Migrations\201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.Designer.cs">
-      <DependentUpon>201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311140426339_Added_Variant_FilePath.cs" />
-    <Compile Include="Migrations\201311140426339_Added_Variant_FilePath.Designer.cs">
-      <DependentUpon>201311140426339_Added_Variant_FilePath.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201311140801009_Added_Plan_PreviewImageFilePath.cs" />
-    <Compile Include="Migrations\201311140801009_Added_Plan_PreviewImageFilePath.Designer.cs">
-      <DependentUpon>201311140801009_Added_Plan_PreviewImageFilePath.cs</DependentUpon>
+    <Compile Include="Migrations\201311150919377_Initials.cs" />
+    <Compile Include="Migrations\201311150919377_Initials.Designer.cs">
+      <DependentUpon>201311150919377_Initials.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
@@ -423,11 +394,12 @@
     <Content Include="Views\Plans\Delete.cshtml" />
     <Content Include="Views\Plans\Details.cshtml" />
     <Content Include="Views\Plans\Index.cshtml" />
-    <Content Include="Views\Plans\_CreateOrEdit.cshtml" />
     <Content Include="Views\Plans\EditorTemplates\FloorViewModel.cshtml" />
     <Content Include="Views\Plans\DisplayTemplates\FloorViewModel.cshtml" />
     <Content Include="Views\Floors\EditorTemplates\FloorVariantViewModel.cshtml" />
     <Content Include="Views\Variants\Edit.cshtml" />
+    <Content Include="Views\Plans\_CreateOrEdit.cshtml" />
+    <Content Include="Views\Design\Exterior.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -449,32 +421,8 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201311080931100_Initial.resx">
-      <DependentUpon>201311080931100_Initial.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311110808346_Added_Email.resx">
-      <DependentUpon>201311110808346_Added_Email.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311111002422_Renamed_DTA.resx">
-      <DependentUpon>201311111002422_Renamed_DTA.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311111245599_Added_Plan_Preview.resx">
-      <DependentUpon>201311111245599_Added_Plan_Preview.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311121141143_Added_Floor_Variants.resx">
-      <DependentUpon>201311121141143_Added_Floor_Variants.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311121149075_Removed_FloorName.resx">
-      <DependentUpon>201311121149075_Removed_FloorName.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.resx">
-      <DependentUpon>201311131014131_Added_FloorVariant_Name_And_Removed_FloorNumber.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311140426339_Added_Variant_FilePath.resx">
-      <DependentUpon>201311140426339_Added_Variant_FilePath.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201311140801009_Added_Plan_PreviewImageFilePath.resx">
-      <DependentUpon>201311140801009_Added_Plan_PreviewImageFilePath.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201311150919377_Initials.resx">
+      <DependentUpon>201311150919377_Initials.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
@@ -505,10 +453,10 @@
       </FlavorProperties>
     </VisualStudio>
   </ProjectExtensions>
-  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" />
+  <Import Project="..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets" Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" />
   <Target Name="EnsureBclBuildImported" BeforeTargets="BeforeBuild" Condition="'$(BclBuildImported)' == ''">
-    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
-    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.10\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
+    <Error Condition="!Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=317567." HelpKeyword="BCLBUILD2001" />
+    <Error Condition="Exists('..\packages\Microsoft.Bcl.Build.1.0.13\tools\Microsoft.Bcl.Build.targets')" Text="The build restored NuGet packages. Build the project again to include these packages in the build. For more information, see http://go.microsoft.com/fwlink/?LinkID=317568." HelpKeyword="BCLBUILD2002" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

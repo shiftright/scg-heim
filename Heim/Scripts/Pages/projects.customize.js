@@ -1,10 +1,10 @@
 ﻿jQuery(document).ready(function () {
 
 	(function ($) {
-		$('.floor-variant[data-option]').click(function () {
+		$('.floor-variant[data-id]').click(function () {
 			var variant = $(this);
 
-			variant.closest('ul').find('.floor-variant[data-option]').removeClass('selected');
+			variant.closest('ul').find('.floor-variant[data-id]').removeClass('selected');
 			variant.addClass('selected');
 
 			variant.closest('.floor').find('.plan-preview img').attr('src', variant.find('img').attr('src'));
@@ -12,47 +12,37 @@
 
 		$('a.new-project').click(function (event) {
 
-			var project = {
-				name: "SMART S1",
-				floors: [{
+			var selectedVariants = [];
 
-					},
-				]
-			};
+			$('#floors .floor-variant.selected').each(function () {
+				var item = $(this);
+
+				selectedVariants.push({
+					ID: item.attr('data-id'),
+					floor: item.closest('.floor').attr('data-floor'),
+					name: item.find('.name').text(),
+					previewImageUrl: item.find('img').attr('src'),
+					FloorNumber: 1
+				});
+			});
 
 			var vmProject = {
-				planId: 1111,
-				previewImageUrl: '/UserData/scg_th01_04floorplan-1.jpg',
-				planName: 'SMART S1',
-				floors: [
-					{
-						name: 'Option 2',
-						floorName: '1F',
-						previewImageUrl: '/UserData/scg_th01_04floorplan-1.png'
-					},
-
-					{
-						name: 'Option 1',
-						floorName: '2F',
-						previewImageUrl: '/UserData/scg_th01_04floorplan-2.png'
-					},
-
-					{
-						name: 'Option 3',
-						floorName: '3F',
-						previewImageUrl: '/UserData/scg_th01_04floorplan-1.png'
-					}
-				]
+				name: _model.name,
+				planTemplateId: _model.planId,
+				previewImageUrl: _model.previewImageUrl,
+				floors: selectedVariants
 			};
-						
+
 			var html = _.template(
 					_.findTemplate('create-project-dialog'),
 					vmProject
 				);
 
-			var height = (vmProject.floors.length > 2)? 675 : 490;
+			var height = (vmProject.floors.length > 2) ? 675 : 490;
 
-			$('section[name=create-project]').html(html).dialog({
+			var isPosting = false;
+
+			$('#create-project').html(html).dialog({
 				width: 795,
 				height: height,
 				modal: true,
@@ -65,16 +55,35 @@
 				buttons: {
 					'Create and go to next step': function () {
 
-						var input_name = $('input[type=text][name=projectName]');
-						input_name.removeClass('input-validation-error');
+						if (!isPosting) {
+							isPosting = true;
 
-						if ($.trim(input_name.val()) === '') {
-							input_name.addClass('input-validation-error').focus();
+							var input_name = $('input[type=text][name=projectName]');
+							input_name.removeClass('input-validation-error');
 
+							if ($.trim(input_name.val()) === '') {
+								input_name.addClass('input-validation-error').focus();
+
+							} else {
+
+								$('.ui-dialog .ui-button-text').html('Creating ' + vmProject.name);
+
+								vmProject.name = input_name.val();
+
+								var dlg = $(this);
+
+								$.post("/Projects/SaveCustomize", vmProject).success(function (v) {
+									document.location = "/Design/Exterior/" + v.ID;
+								}).error(function (err) {
+
+									$('.ui-dialog .ui-button-text').html('Opps! Error.');
+
+								}).done(function () {
+									isPosting = false;
+								});
+							}
 						} else {
-
-
-							$(this).dialog('close');
+							///
 						}
 					}
 				}

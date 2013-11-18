@@ -21,7 +21,7 @@ namespace ShiftRight.Heim.Models
 			: base("DefaultConnection") {
 		}
 
-		public DbSet<ShiftRight.Heim.Models.Floor> Floors { get; set; }
+		public DbSet<ShiftRight.Heim.Models.FloorTemplate> Floors { get; set; }
 		public DbSet<FloorVariant> FloorVariants { get; set; }
 		public DbSet<Project> Projects { get; set; }
 		public DbSet<Plan> Plans { get; set; }

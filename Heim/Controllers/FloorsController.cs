@@ -25,7 +25,7 @@ namespace ShiftRight.Heim.Controllers {
 		// GET: /Floors/Details/5
 
 		public ViewResult Details(int id) {
-			Floor floor = context.Floors.Single(x => x.ID == id);
+			FloorTemplate floor = context.Floors.Single(x => x.ID == id);
 			return View(floor);
 		}
 
@@ -37,7 +37,7 @@ namespace ShiftRight.Heim.Controllers {
 		}
 
 		[HttpPost]
-		public ActionResult Create(Floor floor) {
+		public ActionResult Create(FloorTemplate floor) {
 
 			if(ModelState.IsValid) {
 				context.Floors.Add(floor);
@@ -55,7 +55,7 @@ namespace ShiftRight.Heim.Controllers {
 
 				int? floorNumber = dtx.Floors.Where(f => f.PlanID == planId).Max(f => (int?)f.FloorNumber);
 
-				var floor = new Floor {
+				var floor = new FloorTemplate {
 					PlanID = planId,
 					FloorNumber = floorNumber.HasValue? + floorNumber.Value + 1: 1
 				};
@@ -102,7 +102,7 @@ namespace ShiftRight.Heim.Controllers {
 		// POST: /Floors/Edit/5
 
 		[HttpPost]
-		public ActionResult Edit(Floor floor) {
+		public ActionResult Edit(FloorTemplate floor) {
 			if(ModelState.IsValid) {
 				context.Entry(floor).State = EntityState.Modified;
 				context.SaveChanges();
@@ -138,7 +138,7 @@ namespace ShiftRight.Heim.Controllers {
 
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id) {
-			Floor floor = context.Floors.Single(x => x.ID == id);
+			FloorTemplate floor = context.Floors.Single(x => x.ID == id);
 			context.Floors.Remove(floor);
 			context.SaveChanges();
 			return RedirectToAction("Edit", "Plans", new { id = floor.PlanID });

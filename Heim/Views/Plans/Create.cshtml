@@ -1,6 +1,12 @@
-@model ShiftRight.Heim.Controllers.PlanCreateViewModel
+@model ShiftRight.Heim.Models.PlanViewModel
+
 @{
-    ViewBag.Title = "Create new plan";
+	ViewBag.Title = "Create new plan";
+	string mode = "create";
+	var view = ViewContext.View as System.Web.Mvc.RazorView;
+	if(view != null) {
+		mode = Path.GetFileNameWithoutExtension(view.ViewPath).ToLower();
+	}
 }
 
 @section actions{
@@ -11,14 +17,15 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-<form action="/Plans/Create" enctype="multipart/form-data" method="post">
+@using(Html.BeginForm("Create", "Plans", FormMethod.Post, new { enctype = "multipart/form-data" })){
+	
     @Html.ValidationSummary(true)
 
     <fieldset>
-		@Html.Partial("_CreateOrEdit", Model)
 
+		@Html.Partial("_CreateOrEdit", Model)
         <p>
             <input type="submit" value="Create" />
         </p>
     </fieldset>
-</form>
+}

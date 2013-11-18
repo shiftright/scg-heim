@@ -6,6 +6,11 @@
 		float: left;
 		width: 554px;
 		height: 384px;
+
+		img {
+			max-width: 554px;
+			max-height: 384px;
+		}
 	}
 
 	.attributes {
@@ -41,7 +46,7 @@
 		}
 	}
 
-	section[name=floors] {
+	#floors {
 		border-top: 3px solid #666666;
 		margin-top: 40px;
 
@@ -114,7 +119,7 @@
 		}
 	}
 
-	section[name=create-project].dialog {
+	#create-project.dialog {
 
 		label[for=projectName] {
 			font-size: 22px;
@@ -178,11 +183,13 @@
 				img {
 					border: 2px solid #aaaaaa;
 					margin-top: 15px;
+					max-height: 175px;
 				}
 
 				&:hover {
 					img {
 						border: 2px solid #aaaaaa;
+						cursor: default;
 					}
 				}
 			}

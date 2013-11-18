@@ -7,13 +7,13 @@ namespace ShiftRight.Heim.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.0.1-21010")]
-    public sealed partial class Added_FloorVariant_Name_And_Removed_FloorNumber : IMigrationMetadata
+    public sealed partial class Initials : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(Added_FloorVariant_Name_And_Removed_FloorNumber));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(Initials));
         
         string IMigrationMetadata.Id
         {
-            get { return "201311131014131_Added_FloorVariant_Name"; }
+            get { return "201311150919377_Initials"; }
         }
         
         string IMigrationMetadata.Source

@@ -70,7 +70,9 @@ namespace ShiftRight.Heim.Controllers {
 			if(ModelState.IsValid) {
 				// Attempt to register the user
 				try {
-					WebSecurity.CreateUserAndAccount(model.UserName, model.Password);
+					WebSecurity.CreateUserAndAccount(model.UserName, model.Password, new {
+						Email = model.Email
+					});
 					WebSecurity.Login(model.UserName, model.Password);
 					return Redirect(FormsAuthentication.DefaultUrl);
 				} catch(MembershipCreateUserException e) {

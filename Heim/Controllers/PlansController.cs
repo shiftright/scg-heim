@@ -19,32 +19,16 @@ using ShiftRight.Common.Extensions;
 namespace ShiftRight.Heim.Controllers {
 
 	public class PlansController : Controller {
-		private HeimContext context = new HeimContext();
 
-		//
-		// GET: /Plans/
+		private HeimContext context = new HeimContext();
 
 		public ViewResult Index() {
 			return View(context.Plans.Include(plan => plan.Floors).ToList());
 		}
 
-		//
-		// GET: /Plans/Details/5
-
-		//public ViewResult Details(int id) {
-		//	Plan plan = context.Plans.Single(x => x.ID == id);
-		//	return View(plan);
-		//}
-
-		//
-		// GET: /Plans/Create
-
 		public ActionResult Create() {
 			return View();
 		}
-
-		//
-		// POST: /Plans/Create
 
 		[HttpPost]
 		public ActionResult Create(PlanViewModel plan) {
@@ -59,12 +43,14 @@ namespace ShiftRight.Heim.Controllers {
 				context.Plans.Add(newPlan);
 				context.SaveChanges();
 
+				plan.ID = newPlan.ID;
+
 				if(plan.PreviewImageFile != null) {
 
 					string root = ConfigurationManager.AppSettings["UserDataRoot"];
-					root = Path.Combine(root, "plans", plan.ID.ToString());
+					root = Path.Combine(root, "plans", newPlan.ID.ToString());
 
-					IStorage storage = this.GetStorage(root);
+					IStorage storage = this.GetStorage(Server.MapPath(root));
 					storage.EnsureRootExist();
 
 					// Preview
@@ -87,9 +73,6 @@ namespace ShiftRight.Heim.Controllers {
 			return View(plan);
 		}
 
-		//
-		// GET: /Plans/Edit/5
-
 		public ActionResult Edit(int id) {
 
 			using(var dtx =  new HeimContext()) {
@@ -111,9 +94,6 @@ namespace ShiftRight.Heim.Controllers {
 			}
 
 		}
-
-		//
-		// POST: /Plans/Edit/5
 
 		[HttpPost]
 		public ActionResult Edit(PlanViewModel plan) {

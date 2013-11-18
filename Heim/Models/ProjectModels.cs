@@ -34,13 +34,46 @@ namespace ShiftRight.Heim.Models {
 		[Key, Identity]
 		public int ID { get; set; }
 
+		public int PlanID { get; set; }
+
 		[Required]
 		public string Name { get; set; }
+
 		[Required]
 		public string Value { get; set; }
+
 		[Required]
 		public string Unit { get; set; }
+
+		[ForeignKey("PlanID")]
+		public Plan Plan { get; set; }
 	}
+
+	//public class AttributeValue {
+	//	[Key, Column(Order = 1)]
+	//	public int PlanID { get; set; }
+
+	//	[Key, Column(Order = 2)]
+	//	public int AttributeID { get; set; }
+
+	//	public int AttributeUnitID { get; set;}
+
+	//	public string Value { get; set; }
+
+	//	[ForeignKey("PlanID")]
+	//	public Plan Plan { get; set; }
+
+	//	[ForeignKey("AttributeUnitID")]
+	//	public AttributeUnit Unit { get; set; }
+	//}
+
+	//public class AttributeUnit {
+	//	[Key, Identity]
+	//	public int ID { get; set; }
+
+	//	[Required]
+	//	public string Name { get; set; }
+	//}
 
 	public class FloorVariant{
 
@@ -66,33 +99,35 @@ namespace ShiftRight.Heim.Models {
 		public DateTimeOffset Updated { get; set; }
 
 		[ForeignKey("FloorID")]
-		public Floor Floor { get; set; }
+		public FloorTemplate Floor { get; set; }
 
 	}
 
+	[Table("Floors")]
 	public class Floor{
-
-		[Key]
+		[Key, Identity]
 		public int ID { get; set; }
-
-		[Required]
-		public int PlanID { get; set; }
 
 		[Required]
 		public int FloorNumber { get; set; }
 
+		public string Data { get; set; }
+	}
+	
+	public class FloorTemplate: Floor{
+
+		[Required]
+		public int PlanID { get; set; }
+
 		//[Required]
 		//public string Name { get; set; }
-
-		public byte[] Data { get; set; }
 
 		[ForeignKey("PlanID")]
 		public Plan Plan { get; set; }
 
 		public HashSet<FloorVariant> Variants { get; set; }
 
-		public Floor() {
-			Data = new byte[] { };
+		public FloorTemplate() {
 			Variants = new HashSet<FloorVariant>();
 		}
 		
@@ -108,21 +143,22 @@ namespace ShiftRight.Heim.Models {
 
 		[Required]
 		public int OwnerID { get; set; }
-		
-		public Plan Plan { get; set; }
-
-		[ForeignKey("OwnerID")]
-		public UserProfile Owner { get; set; }
-		public DateTimeOffset Created { get; set; }
-		public DateTimeOffset Updated { get; set; }
-
+		public string Data { get; set; }
 		public bool IsDeleted { get; set; }
 
-		public Uri GetPreview() {
-			if(Plan != null) {
-				return Plan.GetPreview();
-			}
+		public int PlanTemplateID { get; set; }
+		public DateTimeOffset Created { get; set; }
+		public DateTimeOffset Updated { get; set; }
+		
+		[ForeignKey("OwnerID")]
+		public UserProfile Owner { get; set; }
 
+		[ForeignKey("PlanTemplateID")]
+		public Plan PlanTemplate { get; set; }
+
+		public IEnumerable<Floor> Floors { get; set; }
+
+		public Uri GetPreview() {
 			return null;
 		}
 	}
@@ -211,6 +247,7 @@ namespace ShiftRight.Heim.Models {
 	}
 
 	public class PlanViewModel {
+
 		public int ID { get; set; }
 
 		public string PreviewImage { get; set; }
@@ -218,7 +255,7 @@ namespace ShiftRight.Heim.Models {
 		[Required]
 		public string Name { get; set; }
 
-		[WebImageFile]
+		//[WebImageFile]
 		[DisplayName("Preview image file")]
 		public HttpPostedFileBase PreviewImageFile { get; set; }
 

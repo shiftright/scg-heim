@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using ShiftRight.Heim.Models;
+using ShiftRight.Heim.Extensions;
 
 namespace ShiftRight.Heim.Controllers {
 
@@ -37,75 +38,37 @@ namespace ShiftRight.Heim.Controllers {
 
 		[Authorize]
 		public ActionResult Home() {
-			ViewBag.Title = "Recent projects";
 
-			return View(
-				new ProjectHomeViewModel {
-					Projects = new ProjectViewModel[]{
-						new ProjectViewModel{
-							ID = 1,
-							Name = "Rivendell 1",
-							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new PlanViewModel{
-								ID = 1,
-								Name = "SMART S1",
-								Area = new Area{
-									Land = 400,
-									Usage = 120
-								}
-							},
-							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
-						},
-						
-						new ProjectViewModel{
-							ID = 2,
-							Name = "Rivendell 2",
-							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new PlanViewModel{
-								ID = 2,
-								Name = "SMART S2",
-								Area = new Area{
-									Land = 400,
-									Usage = 120
-								}
-							},
-							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
-						},
-						
-						new ProjectViewModel{
-							ID = 3,
-							Name = "Rivendell 3",
-							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new PlanViewModel{
-								ID = 3,
-								Name = "SMART S3",
-								Area = new Area{
-									Land = 400,
-									Usage = 120
-								}
-							},
-							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
-						},
+			using(var dtx  = new HeimContext()) {
 
-						new ProjectViewModel{
-							ID = 4,
-							Name = "Rivendell 4",
-							PreviewImage = "/UserData/project_preview_1.jpg",
-							Plan = new PlanViewModel{
-								ID = 4,
-								Name = "SMART S4",
-								Area = new Area{
-									Land = 400,
-									Usage = 120
+				var user = this.GetCurrentUser();
+
+				var query = from project in dtx.Projects
+							where project.OwnerID == user.ID
+							orderby project.Updated descending
+							select new ProjectViewModel {
+								ID = project.ID,
+								Created = project.Created,
+								Name = project.Name,
+								//PreviewImage = project.
+								Plan = new PlanViewModel {
+									Area = project.PlanTemplate.Area,
+									Name = project.PlanTemplate.Name,
+									PreviewImage = project.PlanTemplate.PreviewImageFilePath
 								}
-							},
-							Created = DateTimeOffset.Parse("2013-12-17T21:22:30Z")
-						}
-					}
+							};
+
+				var list = query.ToList();
+				list.ForEach(x => x.PreviewImage = x.Plan.PreviewImage);
+
+				return View(
+					new ProjectHomeViewModel {
+						Projects = list
 				});
+			}
 		}
 
-		[Authorize, HttpGet]
+		[Authorize]
 		public ActionResult New(string search) {
 
 			ViewBag.Title = "Select house plan";

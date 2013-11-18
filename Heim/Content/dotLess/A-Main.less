@@ -154,7 +154,6 @@ nav {
 	left: 50%;
 	margin-left: -480 / 2px;
 	margin-right: auto;
-
 	text-align: center;
 
 	.menu {
@@ -166,6 +165,38 @@ nav {
 				display: block;
 				width: 64px;
 				height: 64px;
+				background-repeat: no-repeat;
+				background-position: center;
+
+				&.step-exterior {
+					background-image: url('/Images/nav_exterior.png');
+				}
+				&.step-furniture {
+					background-image: url('/Images/nav_furniture.png');
+				}
+				&.step-painting {
+					background-image: url('/Images/nav_painting.png');
+				}
+				&.step-electricity {
+					background-image: url('/Images/nav_electricity.png');
+				}
+			}
+
+			&.selected {
+				a {
+					&.step-exterior {
+						background-image: url('/Images/nav_exterior_hit.png');
+					}
+					&.step-furniture {
+						background-image: url('/Images/nav_furniture_hit.png');
+					}
+					&.step-painting {
+						background-image: url('/Images/nav_painting_hit.png');
+					}
+					&.step-electricity {
+						background-image: url('/Images/nav_electricity_hit.png');
+					}
+				}
 			}
 		}
 	}
@@ -312,7 +343,6 @@ form {
 
 		input[type=text] {
 			font-size: 16px;
-			text-transform: uppercase;
 			text-align: left;
 			background-color: white;
 			width: 180px;

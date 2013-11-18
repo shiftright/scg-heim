@@ -209,6 +209,7 @@
     <Compile Include="Controllers\PlansController.cs" />
     <Compile Include="Controllers\ProjectsController.cs" />
     <Compile Include="Controllers\UserProfilesController.cs" />
+    <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -314,6 +315,18 @@
     <Content Include="Images\icon_search.png" />
     <Content Include="Images\icon_select_house_plan.png" />
     <Content Include="Images\logo_large.png" />
+    <Content Include="Images\nav_cost.png" />
+    <Content Include="Images\nav_cost_hit.png" />
+    <Content Include="Images\nav_electricity.png" />
+    <Content Include="Images\nav_electricity_hit.png" />
+    <Content Include="Images\nav_exterior.png" />
+    <Content Include="Images\nav_exterior_hit.png" />
+    <Content Include="Images\nav_furniture.png" />
+    <Content Include="Images\nav_furniture_hit.png" />
+    <Content Include="Images\nav_painting.png" />
+    <Content Include="Images\nav_painting_hit.png" />
+    <Content Include="Images\nav_printview.png" />
+    <Content Include="Images\nav_printview_hit.png" />
     <Content Include="Images\signin_logo.png" />
     <Content Include="Images\site_logo.png" />
     <Content Include="Scripts\jquery-2.0.3.js" />
@@ -400,6 +413,9 @@
     <Content Include="Views\Variants\Edit.cshtml" />
     <Content Include="Views\Plans\_CreateOrEdit.cshtml" />
     <Content Include="Views\Design\Exterior.cshtml" />
+    <Content Include="Views\Design\Furniture.cshtml" />
+    <Content Include="Views\Design\Painting.cshtml" />
+    <Content Include="Views\Design\Electricity.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -3,33 +3,20 @@
 	ViewBag.BodyCssClass = "select-house-plan";
 }
 
-@*@section menu{
-	<ul class="menu steps">
-		<li class="selected">
-			<a class="step-home" href="#home" title="Home">Home</a>
-		</li>
-		<li>
-			<a class="step-furniture" href="#furniture" title="Furnitures">Furnitures</a>
-		</li>
-		<li>
-			<a class="step-painting" href="#painting" title="Painting">Painting</a>
-		</li>
-	</ul>
-}*@
-
 @section actions{
-	<form class="search" action=".">
-		<input type="hidden" name="section" value="plan" />
-		<input type="text" name="search" value="" placeholder="Search here" />
+	<form class="search" action="New" method="get">
+		@*<input type="hidden" name="section" value="plan" />*@
+		<input type="text" name="search" value="@Model.Search" placeholder="SEARCH HERE" />
 		<input type="submit" name="submit" value="Search" />
 	</form>
 }
 
-<section name="plans" class="project-grid">
+<div id="plans" class="project-grid">
+	@if(Model.Plans.Count() > 0){
 	<ul class="list">
 		@foreach(var item in Model.Plans){
 		<li class="project" data-id="@item.ID">
-			<a href="/Projects/Customize?planid=@item.ID">
+			<a href="Customize?planid=@item.ID">
 				<img class="preview" src="@Href(item.PreviewImage)" alt="@item.Name" />
 			
 				<span class="data-item plan-name">
@@ -47,4 +34,7 @@
 		</li>
 		}
 	</ul>
-</section>
+	} else {
+		<p>No item matched for '@Model.Search'</p>
+	}
+</div>

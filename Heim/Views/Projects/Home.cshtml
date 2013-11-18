@@ -1,19 +1,23 @@
 ﻿@model ShiftRight.Heim.Models.ProjectHomeViewModel
 
 @{
+	ViewBag.Title = "Recent projects";
 }
 
 @section actions{
 	<a href="/Projects/New" class="new-project" >New project</a>
 }
 
-<section name="recent-projects" class="project-grid">
+<div id="recent-projects" class="project-grid">
+
+	@if(Model.Projects.Count() > 0){
 	<ul class="list">
 		@foreach(var item in Model.Projects){
 		<li class="project" data-id="@item.ID">
 			<a href="#project-@item.ID">
-				<img class="preview" src="@item.PreviewImage" alt="@item.Name" />
-			
+				<img class="preview" src="@Href(item.PreviewImage)" alt="@item.Name" />
+
+			</a>
 				<span class="data-item name">
 					<span class="label">@item.Name</span>
 				</span>
@@ -28,8 +32,10 @@
 					<span class="label">Land area</span>
 					<span class="data">@item.Plan.Area.Land sqm.</span>
 				</span>
-			</a>
 		</li>
 		}
 	</ul>
-</section>
+	}else{
+		<p>Your recent project list is empty, <a href="New">why not create one?</a></p>
+	}
+</div>

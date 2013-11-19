@@ -308,6 +308,7 @@
     <Content Include="Content\fonts\quark-light.woff" />
     <Content Include="Content\dotLess\0-Fix.less" />
     <Content Include="Content\dotLess\D-CustomizeProject.less" />
+    <Content Include="Content\dotLess\E-Designer.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_close.png" />
     <Content Include="Images\icon_close_hit.png" />
@@ -315,6 +316,8 @@
     <Content Include="Images\icon_new_project.png" />
     <Content Include="Images\icon_search.png" />
     <Content Include="Images\icon_select_house_plan.png" />
+    <Content Include="Images\icon_tick.png" />
+    <Content Include="Images\loading-large.gif" />
     <Content Include="Images\logo_large.png" />
     <Content Include="Images\nav_cost.png" />
     <Content Include="Images\nav_cost_hit.png" />

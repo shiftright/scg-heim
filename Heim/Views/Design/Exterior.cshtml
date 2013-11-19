@@ -1,17 +1,69 @@
-﻿
+﻿@model ShiftRight.Heim.Controllers.ExteriorViewModel
+
 @{
-    ViewBag.Title = "Exterior";
+    ViewBag.Title = "Exterior Design";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section menu{
 	<ul class="menu steps">
-		<li class="selected"><a class="step-exterior" href="Exterior" title="Exterior">Exterior</a></li>
-		<li><a class="step-furniture" href="Furniture" title="Furniture">Furniture</a></li>
-		<li><a class="step-painting" href="Painting" title="Painting">Painting</a></li>
-		<li><a class="step-electricity" href="Electricity" title="Electricity">Electricity</a></li>
+		<li class="selected"><a class="step-exterior" href="/Design/Exterior" title="Exterior">Exterior</a></li>
+		<li><a class="step-furniture" href="/Design/Furniture" title="Furniture">Furniture</a></li>
+		<li><a class="step-painting" href="/Design/Painting" title="Painting">Painting</a></li>
+		<li><a class="step-electricity" href="/Design/Electricity" title="Electricity">Electricity</a></li>
 	</ul>
 }
 
 @section actions{
+	<a href="#info" class="info">@Model.ProjectName</a>
 }
+
+<div class="design exterior">
+	<div class="main">
+
+		<div id="designer">
+			<p>Initializing awesomeness</p>
+		</div>
+	</div>
+
+	<div class="aside toolboxes">
+
+		<div class="toolbox tiles">
+			<span class="title">Roof tile</span>
+
+			<ul class="list">
+				<li class="selected" data-id="">A</li>
+				<li data-id="">B</li>
+				<li data-id="">C</li>
+				<li data-id="">D</li>
+				<li data-id="">E</li>
+			</ul>
+		</div>
+
+		<div class="toolbox tiles">
+			<span class="title">Roof tile: FL1</span>
+
+			<ul class="list">
+				<li class="selected" data-id="">A</li>
+			</ul>
+		</div>
+
+		<div class="toolbox tiles">
+			<span class="title">Roof tile: FL2</span>
+
+			<ul class="list">
+				<li class="selected" data-id="">A</li>
+			</ul>
+		</div>
+
+		<div class="toolbox tiles">
+			<span class="title">Roof tile: FL3</span>
+
+			<ul class="list">
+				<li class="selected" data-id="">A</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="break"></div>
+</div>

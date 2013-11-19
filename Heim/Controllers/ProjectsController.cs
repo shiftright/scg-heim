@@ -14,6 +14,15 @@ namespace ShiftRight.Heim.Controllers {
 
 	public class ProjectsController : Controller {
 
+		public Project CurrentProject {
+			get {
+				return Session["current_project"] as Project;
+			}
+
+			set {
+				Session["current_project"] = value;
+			}
+		}
 
 		[Authorize]
 		public ActionResult Index() {
@@ -182,6 +191,8 @@ namespace ShiftRight.Heim.Controllers {
 
 				dtx.Projects.Add(project);
 				dtx.SaveChanges();
+
+				CurrentProject = project;
 				
 				return Json(project);
 			}

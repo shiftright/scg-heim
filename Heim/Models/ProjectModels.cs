@@ -207,7 +207,7 @@ namespace ShiftRight.Heim.Models {
 
 		public string PreviewImage { get; set; }
 
-		public IEnumerable<Attribute> Attributes { get; set; }
+		public List<Attribute> Attributes { get; set; }
 	}
 
 	public class ProjectViewModel {
@@ -255,11 +255,13 @@ namespace ShiftRight.Heim.Models {
 		[Required]
 		public string Name { get; set; }
 
-		//[WebImageFile]
+		public Area Area { get; set; }
+
+		public IEnumerable<Attribute> Attributes { get; set; }
+
+		[WebImageFile]
 		[DisplayName("Preview image file")]
 		public HttpPostedFileBase PreviewImageFile { get; set; }
-
-		public Area Area { get; set; }
 
 		[DisplayName("Floors")]
 		public IEnumerable<FloorViewModel> Floors { get; set; }

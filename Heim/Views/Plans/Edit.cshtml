@@ -12,18 +12,33 @@
     @Scripts.Render("~/bundles/jqueryval")
 }
 
-@using(Html.BeginForm("Edit", "Plans", FormMethod.Post, new { enctype = "multipart/form-data" })) {
-    @Html.ValidationSummary(true)
+<fieldset>
+	@Html.Partial("_CreateOrEdit", Model)
+	
+	<div class="attributes aside">
+		<h3>Attributes</h3>
 
-    <fieldset>
+		<ul class="list">
+			@foreach(var item in Model.Attributes) {
+				<li class="editor-field">
+					@Html.ActionLink(item.Name, "Edit", "Attributes", new { ID = item.ID }, null)
+					@Html.ActionLink("Delete", "Delete", "Attributes", new { id = item.ID }, null)
+				</li>
+			}
 
-        @Html.HiddenFor(model => model.ID)
-		@Html.Partial("_CreateOrEdit", Model)
+			<li class="add">
+				<form action="/Plans/AddAttribute" method="post">
+					
+					<input type="hidden" name="PlanID" value="@Model.ID" />
+					<input type="text" name="name" value="" placeholder="Name" />
+					<input type="text" name="value" value="" placeholder="Value" />
+					<input type="text" name="unit" value="" placeholder="Unit" />
 
-		<div class="break"></div>
-
-        <p>
-            <input type="submit" value="Save" />
-        </p>
-    </fieldset>
-}
+					<input type="submit" name="AddAttribute" value="Add" />
+				</form>
+			</li>
+		</ul>
+	</div>
+	
+	<div class="break"></div>
+</fieldset>

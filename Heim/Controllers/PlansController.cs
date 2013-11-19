@@ -84,6 +84,7 @@ namespace ShiftRight.Heim.Controllers {
 								Name = plan.Name,
 								Area = plan.Area,
 								PreviewImage = plan.PreviewImageFilePath,
+								Attributes = plan.Attributes,
 								Floors = plan.Floors.Select(fl => new FloorViewModel {
 									ID = fl.ID,
 									FloorNumber = fl.FloorNumber
@@ -102,8 +103,6 @@ namespace ShiftRight.Heim.Controllers {
 				var planModel = dtx.Plans.Include("Floors").Single( s => s.ID == plan.ID );
 
 				if(ModelState.IsValid) {
-
-
 					planModel.Updated = DateTimeOffset.UtcNow;
 					planModel.Name = plan.Name.Trim();
 					
@@ -148,16 +147,10 @@ namespace ShiftRight.Heim.Controllers {
 			}
 		}
 
-		//
-		// GET: /Plans/Delete/5
-
 		public ActionResult Delete(int id) {
 			Plan plan = context.Plans.Single(x => x.ID == id);
 			return View(plan);
 		}
-
-		//
-		// POST: /Plans/Delete/5
 
 		[HttpPost, ActionName("Delete")]
 		public ActionResult DeleteConfirmed(int id) {
@@ -169,8 +162,19 @@ namespace ShiftRight.Heim.Controllers {
 
 		[HttpPost]
 		public ActionResult Variant(int planID, int id) {
-
 			return View();
+		}
+
+		public ActionResult AddAttribute(ShiftRight.Heim.Models.Attribute attr) {
+			using(var dtx = new HeimContext()) {
+
+				if(ModelState.IsValid) {
+					dtx.Attributes.Add(attr);
+					dtx.SaveChanges();
+				}
+
+				return RedirectToAction("Edit", new { id = attr.PlanID });
+			}
 		}
 
 		protected override void Dispose(bool disposing) {

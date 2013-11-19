@@ -203,6 +203,7 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Bundles\LessBundle.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AttributesController.cs" />
     <Compile Include="Controllers\DesignController.cs" />
     <Compile Include="Controllers\VariantsController.cs" />
     <Compile Include="Controllers\FloorsController.cs" />
@@ -416,6 +417,8 @@
     <Content Include="Views\Design\Furniture.cshtml" />
     <Content Include="Views\Design\Painting.cshtml" />
     <Content Include="Views\Design\Electricity.cshtml" />
+    <Content Include="Views\Attributes\Edit.cshtml" />
+    <Content Include="Views\Attributes\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

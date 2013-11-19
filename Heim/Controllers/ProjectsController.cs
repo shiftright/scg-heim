@@ -107,7 +107,7 @@ namespace ShiftRight.Heim.Controllers {
 			
 			using(var dtx = new HeimContext()) {
 
-				var plan = dtx.Plans.Include("Floors").Include("Floors.Variants").Single(p => p.ID == planId);
+				var plan = dtx.Plans.Include("Floors").Include("Attributes").Include("Floors.Variants").Single(p => p.ID == planId);
 
 				if(plan == null) {
 					return RedirectToAction("New");
@@ -137,39 +137,7 @@ namespace ShiftRight.Heim.Controllers {
 							}).ToList(),
 					},
 
-					#region Attributes
-
-					Attributes = new ShiftRight.Heim.Models.Attribute[]{
-							new ShiftRight.Heim.Models.Attribute{
-								ID = 1,
-								Name = "ช่วงราคา",
-								Value = "5,000,000",
-								Unit = "บาท"
-							},
-					
-							new ShiftRight.Heim.Models.Attribute{
-								ID = 2,
-								Name = "พื้นที่ใช้สอย",
-								Value = "220",
-								Unit = "ตารางเมตร"
-							},
-					
-							new ShiftRight.Heim.Models.Attribute{
-								ID = 3,
-								Name = "ที่ดิน",
-								Value = "13.5 x 16",
-								Unit = "ตารางเมตร"
-							},
-					
-							new ShiftRight.Heim.Models.Attribute{
-								ID = 4,
-								Name = "ห้องนอน",
-								Value = "2-4",
-								Unit = "ห้อง"
-							}
-						}
-
-					#endregion
+					Attributes = plan.Attributes.ToList()
 				};
 
 				foreach(var item in vm.Plan.Floors) {
@@ -183,6 +151,12 @@ namespace ShiftRight.Heim.Controllers {
 						}
 					}
 				}
+
+				//vm.Attributes.Add(new ShiftRight.Heim.Models.Attribute {
+				//	ID = 0,
+				//	Name = "พื้นที่ใช้สอย",
+				//	Unit = 
+				//});
 
 				return View(vm);
 

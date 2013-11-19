@@ -1,0 +1,51 @@
+﻿@model ShiftRight.Heim.Models.Attribute
+@{
+    ViewBag.Title = "Edit - " + Model.Name;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+@section actions{
+	@Html.ActionLink("Back to plan", "Edit", "Plans", new {id = Model.PlanID }, null)
+}
+
+@using(Html.BeginForm()) {
+	
+	<fieldset>
+		@Html.ValidationSummary(true)
+
+		@Html.HiddenFor(m => m.ID)
+		@Html.HiddenFor(m => m.PlanID)
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Name)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(m => m.Name)
+			@Html.ValidationMessageFor(model => model.Name)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Value)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(m => m.Value)
+			@Html.ValidationMessageFor(model => model.Value)
+		</div>
+
+		<div class="editor-label">
+			@Html.LabelFor(model => model.Unit)
+		</div>
+		<div class="editor-field">
+			@Html.EditorFor(m => m.Unit)
+			@Html.ValidationMessageFor(model => model.Unit)
+		</div>
+
+		<p>
+			<input type="submit" name="Save" value="Save" />
+		</p>
+	</fieldset>
+}

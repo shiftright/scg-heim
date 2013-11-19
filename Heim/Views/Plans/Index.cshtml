@@ -35,7 +35,7 @@
             @Html.ActionLink("Edit", "Edit", new { id=item.ID })
         </td>
         <td>
-			@Html.ActionLink(item.Name, "Details", new { id=item.ID })
+			@Html.ActionLink(item.Name, "Edit", new { id = item.ID })
         </td>
         <td>
 			@Html.DisplayTextFor(_ => item.Area).ToString()

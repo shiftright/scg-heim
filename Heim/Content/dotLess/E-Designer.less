@@ -1,0 +1,86 @@
+﻿@text_color_highlight: #ef525b;
+@title_font: gnuolanefree, Arial;
+
+.design {
+	height: 100%;
+
+	.main {
+		float: left;
+		width: 750px;
+
+		#designer {
+			border: 2px solid #666666;
+			height: 585px;
+			width: 745px;
+
+			p {
+				line-height: 585px;
+				text-align: center;
+				background-image: url('/Images/loading-large.gif');
+				background-repeat: no-repeat;
+				background-position: center 35%;
+			}
+		}
+	}
+
+	.aside {
+		float: right;
+		width: 240px;
+		max-height: 560px;
+		text-align: right;
+		overflow-y: auto;
+
+		.title {
+			font-family: @title_font;
+			text-transform: uppercase;
+			text-align: left;
+			display: block;
+		}
+
+		.toolbox {
+			text-align: left;
+			display: inline-block;
+
+			ul {
+				width: 182px;
+				min-height: 80px;
+				line-height: 80px;
+				padding: 18px;
+				padding-bottom: 0;
+				border: 2px solid #AAA;
+				margin-bottom: 28px;
+				letter-spacing: 10px;
+
+				li {
+					letter-spacing: normal;
+					line-height: normal;
+					display: inline-block;
+					position: relative;
+					width: 50px;
+					height: 80px;
+					vertical-align: top;
+					cursor: pointer;
+					background-color: gray;
+					margin-bottom: 18px;
+
+					&:hover {
+						background-color: #ef525b;
+					}
+
+					&.selected::after {
+						content: "";
+						display: block;
+						width: 24px;
+						height: 24px;
+						position: absolute;
+						left: 0;
+						bottom: 0;
+						background-image: url('/Images/icon_tick.png');
+						background-repeat: no-repeat;
+						background-position: bottom left;
+					}
+				}
+			}
+		}
+	}
+}

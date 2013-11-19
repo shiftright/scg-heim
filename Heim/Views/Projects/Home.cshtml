@@ -14,7 +14,7 @@
 	<ul class="list">
 		@foreach(var item in Model.Projects){
 		<li class="project" data-id="@item.ID">
-			<a href="#project-@item.ID">
+			<a href="/Design/Open/@item.ID">
 				<img class="preview" src="@Href(item.PreviewImage)" alt="@item.Name" />
 
 			</a>

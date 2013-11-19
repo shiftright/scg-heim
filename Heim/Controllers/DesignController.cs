@@ -27,8 +27,19 @@ namespace ShiftRight.Heim.Controllers {
 			}
 		}
 
-		public ActionResult Index() {
-			return RedirectToAction("Exterior");
+		public ActionResult Open(int id) {
+
+			using(var dtx = new HeimContext()) {
+
+				var project = dtx.Projects.SingleOrDefault(p => p.ID == id);
+
+				if(project != null) {
+					CurrentProject = project;
+					return RedirectToAction("Exterior");
+				} else {
+					return RedirectToAction("Home", "Projects", null);
+				}
+			}
 		}
 
 		public ActionResult Exterior() {
@@ -48,8 +59,8 @@ namespace ShiftRight.Heim.Controllers {
 
 				return View(vm);
 			}
-
 		}
+
 		public ActionResult Furniture() {
 			return View();
 		}

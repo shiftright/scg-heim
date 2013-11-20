@@ -156,7 +156,7 @@ namespace ShiftRight.Heim.Models {
 		[ForeignKey("PlanTemplateID")]
 		public Plan PlanTemplate { get; set; }
 
-		public IEnumerable<Floor> Floors { get; set; }
+		//public HashSet<Floor> Floors { get; set; }
 
 		public Uri GetPreview() {
 			return null;

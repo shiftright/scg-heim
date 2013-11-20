@@ -30,39 +30,48 @@
 
 		<div class="toolbox tiles">
 			<span class="title">Roof tile</span>
+			@{
+				var roofTiles = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.RoofTile).FirstOrDefault();
+			}
 
-			<ul class="list">
-				<li class="selected" data-id="">A</li>
-				<li data-id="">B</li>
-				<li data-id="">C</li>
-				<li data-id="">D</li>
-				<li data-id="">E</li>
-			</ul>
+			@if(roofTiles != null){
+				<ul class="list">
+					@foreach(var item in roofTiles) {
+						if(item.Selected) {
+							<li data-id="@item.ID" class="selected">
+								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
+							</li>
+						}else{
+							<li data-id="@item.ID">
+								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
+							</li>
+						}
+					}
+				</ul>
+			}
 		</div>
 
-		<div class="toolbox tiles">
-			<span class="title">Roof tile: FL1</span>
+		@foreach(var fl in Model.Floors) {
+			
+			<div class="toolbox tiles">
+				<span class="title">Roof tile: FL @fl.FloorNumber</span>
 
-			<ul class="list">
-				<li class="selected" data-id="">A</li>
-			</ul>
-		</div>
+				<ul class="list">
+					@foreach(var item in roofTiles) {
+						if(item.Selected) {
+							<li data-id="@item.ID" class="selected">
+								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
+							</li>
+						} else {
+							<li data-id="@item.ID">
+								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
+							</li>
+						}
+					}
+				</ul>
+			</div>
+		}
 
-		<div class="toolbox tiles">
-			<span class="title">Roof tile: FL2</span>
-
-			<ul class="list">
-				<li class="selected" data-id="">A</li>
-			</ul>
-		</div>
-
-		<div class="toolbox tiles">
-			<span class="title">Roof tile: FL3</span>
-
-			<ul class="list">
-				<li class="selected" data-id="">A</li>
-			</ul>
-		</div>
 	</div>
 
 	<div class="break"></div>

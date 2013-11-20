@@ -25,6 +25,9 @@ namespace ShiftRight.Heim.Controllers {
 		[NotMapped]
 		[DisplayName("Asset file")]
 		public HttpPostedFileBase AssetFile { get; set; }
+
+		[NotMapped]
+		public bool Selected { get; set; }
 	}
 
 	[Authorize]

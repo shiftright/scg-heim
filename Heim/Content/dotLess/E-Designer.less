@@ -53,18 +53,26 @@
 
 				li {
 					letter-spacing: normal;
-					line-height: normal;
+					/*line-height: normal;*/
 					display: inline-block;
 					position: relative;
 					width: 50px;
 					height: 80px;
 					vertical-align: top;
 					cursor: pointer;
-					background-color: gray;
+					/*background-color: gray;*/
 					margin-bottom: 18px;
 
+					img {
+						vertical-align: middle;
+						max-width: 50px;
+						max-height: 80px;
+					}
+
 					&:hover {
-						background-color: #ef525b;
+						img {
+							box-shadow: 0 0 10px #808080;
+						}
 					}
 
 					&.selected::after {

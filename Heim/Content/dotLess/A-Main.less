@@ -226,7 +226,8 @@ input[type=text],
 input[type=email],
 input[type=number],
 input[type=file],
-input[type=password]{
+input[type=password],
+select{
 	border: none;
 	min-height: 40px;
 	width: 318px;
@@ -235,6 +236,22 @@ input[type=password]{
 	margin: 10px 0;
 	padding-left: 10px;
 	padding-right: 10px;
+}
+
+textarea {
+	height: 5em;
+
+	&.code {
+		height: 20em;
+		padding: 5px;
+		font-family: 'Lucida Console';
+		font-size: 12px;
+	}
+}
+
+select {
+	padding-right: 0;
+	width: 338px;
 }
 
 	input[type=number] {
@@ -509,6 +526,11 @@ fieldset {
 		font-family: @text_font;
 	}
 
+	.download {
+		color: @primary_color;
+	}
+
+
 	.display-label,
 	.display-field {
 		line-height: 28px;
@@ -619,4 +641,9 @@ fieldset {
 			display: block;
 		}
 	}
+}
+
+.ui-tabs .ui-tabs-panel {
+	border: 1px solid #AAA;
+	padding: 2px;
 }

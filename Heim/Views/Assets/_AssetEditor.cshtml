@@ -1,0 +1,82 @@
+@model ShiftRight.Heim.Controllers.AssetViewModel
+
+@{
+}
+
+@* This partial view defines form fields that will appear when creating and editing entities *@
+
+<div class="main">
+
+	@Html.HiddenFor(model => model.ID)
+	
+	<div class="editor-label">
+		@Html.LabelFor(model => model.Name)
+	</div>
+	<div class="editor-field">
+		@Html.EditorFor(model => model.Name)
+		@Html.ValidationMessageFor(model => model.Name)
+	</div>
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.AssetType)
+	</div>
+	<div class="editor-field">
+		@Html.DropDownListFor(m => m.AssetType,
+			Enum.GetNames(typeof(ShiftRight.Heim.Models.AssetType)).Select(n => new SelectListItem {
+			   Selected = Model == null? false: n == Model.AssetType.ToString(),
+			   Text = n,
+			   Value = n
+		   }))
+		@Html.ValidationMessageFor(model => model.AssetType)
+	</div>
+	
+	<div class="break"></div>
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.AssetFile)
+		@if(Model != null && Model.AssetFilePath != null) {
+			<a class="download" href="@Href(Model.AssetFilePath)">[ Download ]</a>
+		}
+	</div>
+	<div class="editor-field">
+		@Html.HiddenFor(m => m.AssetFilePath)
+		<input type="file" name="AssetFile" />
+	</div>
+
+	<div class="break"></div>
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.PreviewImageFile)
+	</div>
+
+	<div class="editor-field">
+
+		@if(Model != null && Model.PreviewFilePath != null){
+			<div class="preview">
+				<img src="@Href(Model.PreviewFilePath)" alt="Preview" />
+			</div>
+		}
+		
+		@Html.HiddenFor(m => m.PreviewFilePath)
+		<input type="file" id="PreviewImageFile" name="PreviewImageFile" accept="image/*" />
+	</div>
+
+	<div class="break"></div>
+
+</div>
+
+<div class="aside">
+
+	<div class="editor-label">
+		@Html.LabelFor(model => model.Mapping)
+	</div>
+	<div class="editor-field">
+		@Html.TextAreaFor(model => model.Mapping, new { @class = "code" })
+		@Html.ValidationMessageFor(model => model.Mapping)
+	</div>
+</div>
+
+<div class="break"></div>
+<p>
+	<input type="submit" value="Save" />
+</p>

@@ -1,0 +1,22 @@
+﻿@model ShiftRight.Heim.Controllers.AssetViewModel
+
+@{
+	ViewBag.Title = "Edit - " + Model.Name;
+}
+
+@section actions{
+	@Html.ActionLink("Back to List", "Index")
+}
+
+@section Scripts {
+	@Scripts.Render("~/bundles/jqueryval")
+}
+
+@using(Html.BeginForm("Edit", "Assets", FormMethod.Post, new { enctype = "multipart/form-data" })) {
+
+	@Html.ValidationSummary(true)
+	
+	<fieldset>
+		@Html.Partial("_AssetEditor", Model)
+	</fieldset>
+}

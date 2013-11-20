@@ -27,5 +27,6 @@ namespace ShiftRight.Heim.Models
 		public DbSet<Plan> Plans { get; set; }
 		public DbSet<UserProfile> UserProfiles { get; set; }
 		public DbSet<Attribute> Attributes { get; set; }
+		public DbSet<Asset> Assets { get; set; }
 	}
 }

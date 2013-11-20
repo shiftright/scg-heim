@@ -1,0 +1,27 @@
+@model ShiftRight.Heim.Controllers.AssetViewModel
+
+@{
+    ViewBag.Title = "Delete - " + Model.Name;
+}
+
+@section actions{
+	@Html.ActionLink("Back to List", "Index")
+}
+
+<h3 class="warning">Are you sure you want to delete this asset?</h3>
+<fieldset>
+
+	<p>
+		<img src="@Href(Model.PreviewFilePath)" alt="Preview" />
+	</p>
+
+
+</fieldset>
+
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> 
+    </p>
+}
+
+

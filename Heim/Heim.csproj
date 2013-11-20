@@ -205,6 +205,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AttributesController.cs" />
     <Compile Include="Controllers\DesignController.cs" />
+    <Compile Include="Controllers\AssetsController.cs" />
     <Compile Include="Controllers\VariantsController.cs" />
     <Compile Include="Controllers\FloorsController.cs" />
     <Compile Include="Controllers\PlansController.cs" />
@@ -219,9 +220,14 @@
     <Compile Include="Migrations\201311150919377_Initials.Designer.cs">
       <DependentUpon>201311150919377_Initials.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201311200954163_Added_Assets.cs" />
+    <Compile Include="Migrations\201311200954163_Added_Assets.Designer.cs">
+      <DependentUpon>201311200954163_Added_Assets.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\HeimContext.cs" />
+    <Compile Include="Models\Asset.cs" />
     <Compile Include="Models\Plan.cs" />
     <Compile Include="Models\ProjectModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -422,6 +428,11 @@
     <Content Include="Views\Design\Electricity.cshtml" />
     <Content Include="Views\Attributes\Edit.cshtml" />
     <Content Include="Views\Attributes\Delete.cshtml" />
+    <Content Include="Views\Assets\Index.cshtml" />
+    <Content Include="Views\Assets\Create.cshtml" />
+    <Content Include="Views\Assets\_AssetEditor.cshtml" />
+    <Content Include="Views\Assets\Edit.cshtml" />
+    <Content Include="Views\Assets\Delete.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -445,6 +456,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201311150919377_Initials.resx">
       <DependentUpon>201311150919377_Initials.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201311200954163_Added_Assets.resx">
+      <DependentUpon>201311200954163_Added_Assets.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

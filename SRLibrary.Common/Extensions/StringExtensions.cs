@@ -29,6 +29,14 @@ namespace System {
 		}
 
 		///// <summary>
+		///// Convert 'ThisIsABook' to 'This is a book'
+		///// </summary>
+		///// <returns></returns>
+		//public static string Depascal() {
+
+		//}
+
+		///// <summary>
 		///// Replace invalid URL string with URL-safe name
 		///// </summary>
 		///// <param name="pathString"></param>

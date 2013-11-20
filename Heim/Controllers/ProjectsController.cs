@@ -12,6 +12,7 @@ namespace ShiftRight.Heim.Controllers {
 		public IEnumerable<ProjectViewModel> Projects { get; set; }
 	}
 
+	[Authorize]
 	public class ProjectsController : Controller {
 
 		public Project CurrentProject {
@@ -24,7 +25,6 @@ namespace ShiftRight.Heim.Controllers {
 			}
 		}
 
-		[Authorize]
 		public ActionResult Index() {
 
 			using(var dtx = new HeimContext()) {
@@ -45,7 +45,6 @@ namespace ShiftRight.Heim.Controllers {
 
 		}
 
-		[Authorize]
 		public ActionResult Home() {
 
 			using(var dtx  = new HeimContext()) {
@@ -77,7 +76,6 @@ namespace ShiftRight.Heim.Controllers {
 			}
 		}
 
-		[Authorize]
 		public ActionResult New(string search) {
 
 			ViewBag.Title = "Select house plan";
@@ -111,7 +109,6 @@ namespace ShiftRight.Heim.Controllers {
 
 		}
 
-		[Authorize]
 		public ActionResult Customize(int planId) {
 			
 			using(var dtx = new HeimContext()) {
@@ -172,7 +169,7 @@ namespace ShiftRight.Heim.Controllers {
 			}// end using
 		}
 
-		[Authorize, HttpPost]
+		[HttpPost]
 		public ActionResult SaveCustomize(Project project) {
 
 			using(var dtx = new HeimContext()) {
@@ -195,6 +192,28 @@ namespace ShiftRight.Heim.Controllers {
 				CurrentProject = project;
 				
 				return Json(project);
+			}
+		}
+
+		public ActionResult Delete(int id) {
+
+			using(var dtx = new HeimContext()) {
+				Project project = dtx.Projects.Single(x => x.ID == id);
+				return View(project);
+
+			}
+		}
+
+		[HttpPost, ActionName("Delete")]
+		public ActionResult DeleteConfirmed(int id) {
+
+			using(var dtx = new HeimContext()) {
+
+				Project project = dtx.Projects.Single(x => x.ID == id);
+				dtx.Projects.Remove(project);
+				dtx.SaveChanges();
+
+				return RedirectToAction("Index");
 			}
 		}
 	}

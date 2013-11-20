@@ -32,7 +32,7 @@
             @Html.ActionLink(item.Name.Default("-").ToString(), "Details", new { id=item.ID })
         </td>
         <td>
-            @Html.ActionLink(item.Created.ToString(), "Details", new { id=item.ID })
+            @Html.ActionLink(item.Created.ToLocalTime().ToString(), "Details", new { id=item.ID })
         </td>
         <td>
             @item.Owner.Username

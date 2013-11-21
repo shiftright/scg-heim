@@ -11,7 +11,9 @@ namespace ShiftRight.Heim.Models {
 	public enum AssetType {
 		Tile = 1,
 		RoofTile = 2,
-		Furniture = 3
+		Furniture = 3,
+		Wallpaper = 4,
+		Electricity = 5
 	}
 
 	public class Asset {

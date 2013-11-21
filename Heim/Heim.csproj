@@ -333,8 +333,8 @@
     <Content Include="Images\nav_exterior_hit.png" />
     <Content Include="Images\nav_furniture.png" />
     <Content Include="Images\nav_furniture_hit.png" />
-    <Content Include="Images\nav_painting.png" />
-    <Content Include="Images\nav_painting_hit.png" />
+    <Content Include="Images\nav_wallpaper.png" />
+    <Content Include="Images\nav_wallpaper_hit.png" />
     <Content Include="Images\nav_printview.png" />
     <Content Include="Images\nav_printview_hit.png" />
     <Content Include="Images\signin_logo.png" />
@@ -424,7 +424,7 @@
     <Content Include="Views\Plans\_CreateOrEdit.cshtml" />
     <Content Include="Views\Design\Exterior.cshtml" />
     <Content Include="Views\Design\Furniture.cshtml" />
-    <Content Include="Views\Design\Painting.cshtml" />
+    <Content Include="Views\Design\Wallpaper.cshtml" />
     <Content Include="Views\Design\Electricity.cshtml" />
     <Content Include="Views\Attributes\Edit.cshtml" />
     <Content Include="Views\Attributes\Delete.cshtml" />
@@ -433,6 +433,7 @@
     <Content Include="Views\Assets\_AssetEditor.cshtml" />
     <Content Include="Views\Assets\Edit.cshtml" />
     <Content Include="Views\Assets\Delete.cshtml" />
+    <Content Include="Views\Design\_Toolbox.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

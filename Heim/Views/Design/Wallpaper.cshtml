@@ -1,0 +1,58 @@
+﻿@model ShiftRight.Heim.Controllers.ExteriorViewModel
+
+@{
+	ViewBag.Title = "Wallpaper and tile";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section menu{
+	<ul class="menu steps">
+		<li><a class="step-exterior" href="/Design/Exterior" title="Exterior">Exterior</a></li>
+		<li><a class="step-furniture" href="/Design/Furniture" title="Furniture">Furniture</a></li>
+		<li class="selected"><a class="step-wallpaper" href="/Design/Wallpaper" title="Wallpaper">Wallpaper</a></li>
+		<li><a class="step-electricity" href="/Design/Electricity" title="Electricity">Electricity</a></li>
+	</ul>
+}
+
+@section actions{
+}
+
+<div class="design wallpaper">
+	<div class="main">
+
+		<div id="designer">
+			<p>One does not simply walk into Mordor...</p>
+		</div>
+	</div>
+
+	<div class="aside toolboxes">
+
+		<div class="toolbox wallpapers">
+			<span class="title">Wallpapers</span>
+			@{
+				var wallpapers = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.Wallpaper).FirstOrDefault();
+			}
+
+			@if(wallpapers != null) {
+				@Html.Partial("_Toolbox", wallpapers)
+			}else{
+				<ul></ul>
+			}
+		</div>
+
+		<div class="toolbox tiles">
+			<span class="title">Tiles</span>
+			@{
+				var tiles = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.Tile).FirstOrDefault();
+			}
+
+			@if(tiles != null) {
+				@Html.Partial("_Toolbox", tiles)
+			}else{
+				<ul></ul>
+			}
+		</div>
+	</div>
+
+	<div class="break"></div>
+</div>

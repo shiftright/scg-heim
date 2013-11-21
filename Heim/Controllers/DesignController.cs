@@ -93,13 +93,15 @@ namespace ShiftRight.Heim.Controllers {
 		}
 
 		public ActionResult Furniture() {
-			return View();
+			return Exterior();
 		}
-		public ActionResult Painting() {
-			return View();
+
+		public ActionResult Wallpaper() {
+			return Exterior();
 		}
+
 		public ActionResult Electricity() {
-			return View();
+			return Exterior();
 		}
 	}
 }

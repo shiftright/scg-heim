@@ -188,8 +188,6 @@ namespace ShiftRight.Heim.Controllers {
 
 				dtx.Projects.Add(project);
 				dtx.SaveChanges();
-
-				CurrentProject = project;
 				
 				return Json(project);
 			}

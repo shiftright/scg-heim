@@ -1,4 +1,5 @@
-﻿
+﻿@model ShiftRight.Heim.Controllers.ExteriorViewModel
+
 @{
 	ViewBag.Title = "Furniture";
     Layout = "~/Views/Shared/_Layout.cshtml";
@@ -8,10 +9,36 @@
 	<ul class="menu steps">
 		<li><a class="step-exterior" href="Exterior" title="/Design/Exterior">Exterior</a></li>
 		<li class="selected"><a class="step-furniture" href="/Design/Furniture" title="Furniture">Furniture</a></li>
-		<li><a class="step-painting" href="/Design/Painting" title="Painting">Painting</a></li>
+		<li><a class="step-wallpaper" href="/Design/Wallpaper" title="Wallpaper">Wallpaper</a></li>
 		<li><a class="step-electricity" href="/Design/Electricity" title="Electricity">Electricity</a></li>
 	</ul>
 }
 
 @section actions{
 }
+
+
+<div class="design furniture">
+	<div class="main">
+
+		<div id="designer">
+			<p>One does not simply walk into Mordor...</p>
+		</div>
+	</div>
+
+	<div class="aside toolboxes">
+
+		<div class="toolbox single furnitures">
+			<span class="title">Furnitures</span>
+			@{
+				var furnitures = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.Furniture).FirstOrDefault();
+			}
+
+			@if(furnitures != null) {
+				@Html.Partial("_Toolbox", furnitures)
+			}
+		</div>
+	</div>
+
+	<div class="break"></div>
+</div>

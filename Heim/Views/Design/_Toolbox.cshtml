@@ -1,0 +1,15 @@
+﻿@model IGrouping<ShiftRight.Heim.Models.AssetType, ShiftRight.Heim.Controllers.AssetViewModel>
+
+<ul class="list">
+	@foreach(var item in Model) {
+		if(item.Selected) {
+			<li data-id="@item.ID" class="selected">
+				<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
+			</li>
+		} else {
+			<li data-id="@item.ID">
+				<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
+			</li>
+		}
+	}
+</ul>

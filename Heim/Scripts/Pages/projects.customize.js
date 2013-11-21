@@ -73,7 +73,7 @@
 								var dlg = $(this);
 
 								$.post("/Projects/SaveCustomize", vmProject).success(function (v) {
-									document.location = "/Design/Exterior/" + v.ID;
+									document.location = "/Design/Open/" + v.ID;
 								}).error(function (err) {
 
 									$('.ui-dialog .ui-button-text').html('Opps! Error.');

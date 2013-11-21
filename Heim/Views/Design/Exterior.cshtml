@@ -9,7 +9,7 @@
 	<ul class="menu steps">
 		<li class="selected"><a class="step-exterior" href="/Design/Exterior" title="Exterior">Exterior</a></li>
 		<li><a class="step-furniture" href="/Design/Furniture" title="Furniture">Furniture</a></li>
-		<li><a class="step-painting" href="/Design/Painting" title="Painting">Painting</a></li>
+		<li><a class="step-wallpaper" href="/Design/Wallpaper" title="Wallpaper">Wallpaper</a></li>
 		<li><a class="step-electricity" href="/Design/Electricity" title="Electricity">Electricity</a></li>
 	</ul>
 }
@@ -35,19 +35,7 @@
 			}
 
 			@if(roofTiles != null){
-				<ul class="list">
-					@foreach(var item in roofTiles) {
-						if(item.Selected) {
-							<li data-id="@item.ID" class="selected">
-								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
-							</li>
-						}else{
-							<li data-id="@item.ID">
-								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
-							</li>
-						}
-					}
-				</ul>
+				@Html.Partial("_Toolbox", roofTiles)
 			}
 		</div>
 
@@ -55,20 +43,7 @@
 			
 			<div class="toolbox tiles">
 				<span class="title">Roof tile: FL @fl.FloorNumber</span>
-
-				<ul class="list">
-					@foreach(var item in roofTiles) {
-						if(item.Selected) {
-							<li data-id="@item.ID" class="selected">
-								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
-							</li>
-						} else {
-							<li data-id="@item.ID">
-								<img src="@Href(item.PreviewFilePath)" alt="@item.Name" />
-							</li>
-						}
-					}
-				</ul>
+				@Html.Partial("_Toolbox", roofTiles)
 			</div>
 		}
 

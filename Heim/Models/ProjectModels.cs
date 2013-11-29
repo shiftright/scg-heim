@@ -29,6 +29,7 @@ namespace ShiftRight.Heim.Models {
 		public float Land { get; set; }
 	}
 	
+
 	public class Attribute {
 
 		[Key, Identity]
@@ -49,40 +50,11 @@ namespace ShiftRight.Heim.Models {
 		public Plan Plan { get; set; }
 	}
 
-	//public class AttributeValue {
-	//	[Key, Column(Order = 1)]
-	//	public int PlanID { get; set; }
-
-	//	[Key, Column(Order = 2)]
-	//	public int AttributeID { get; set; }
-
-	//	public int AttributeUnitID { get; set;}
-
-	//	public string Value { get; set; }
-
-	//	[ForeignKey("PlanID")]
-	//	public Plan Plan { get; set; }
-
-	//	[ForeignKey("AttributeUnitID")]
-	//	public AttributeUnit Unit { get; set; }
-	//}
-
-	//public class AttributeUnit {
-	//	[Key, Identity]
-	//	public int ID { get; set; }
-
-	//	[Required]
-	//	public string Name { get; set; }
-	//}
-
 	public class FloorVariant{
 
 		[Key, Identity]
 		public int ID { get; set; }
-
-		//[Required]
-		//public int FloorNumber { get; set; }
-
+		
 		[Required]
 		public string Name { get; set; }
 
@@ -118,10 +90,7 @@ namespace ShiftRight.Heim.Models {
 
 		[Required]
 		public int PlanID { get; set; }
-
-		//[Required]
-		//public string Name { get; set; }
-
+		
 		[ForeignKey("PlanID")]
 		public Plan Plan { get; set; }
 
@@ -155,11 +124,9 @@ namespace ShiftRight.Heim.Models {
 
 		[ForeignKey("PlanTemplateID")]
 		public Plan PlanTemplate { get; set; }
-
-		//public HashSet<Floor> Floors { get; set; }
-
+		
 		public Uri GetPreview() {
-			return null;
+			throw new NotImplementedException();
 		}
 	}
 
@@ -219,6 +186,8 @@ namespace ShiftRight.Heim.Models {
 		public PlanViewModel Plan { get; set; }
 
 		public UserProfile Owner { get; set; }
+
+		public IEnumerable<FloorVariantViewModel> Floors { get; set; }
 	}
 
 	public class FloorViewModel {

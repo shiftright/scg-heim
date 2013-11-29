@@ -19,16 +19,15 @@
 
 				selectedVariants.push({
 					ID: item.attr('data-id'),
-					floor: item.closest('.floor').attr('data-floor'),
+					floorNumber: item.closest('.floor').attr('data-floor'),
 					name: item.find('.name').text(),
-					previewImageUrl: item.find('img').attr('src'),
-					FloorNumber: 1
+					previewImageUrl: item.find('img').attr('src')
 				});
 			});
 
 			var vmProject = {
 				name: _model.name,
-				planTemplateId: _model.planId,
+				plan: { ID: _model.planId },
 				previewImageUrl: _model.previewImageUrl,
 				floors: selectedVariants
 			};
@@ -72,15 +71,19 @@
 
 								var dlg = $(this);
 
-								$.post("/Projects/SaveCustomize", vmProject).success(function (v) {
+								$.ajax({
+									type: "POST",
+									url: "/Projects/SaveCustomize",
+									data: JSON.stringify(vmProject),
+									dataType: 'json',
+									contentType: 'application/json'
+								}).success(function (v) {
 									document.location = "/Design/Open/" + v.ID;
 								}).error(function (err) {
-
 									$('.ui-dialog .ui-button-text').html('Opps! Error.');
-
 								}).done(function () {
 									isPosting = false;
-								});
+								}, 'json');
 							}
 						} else {
 							///

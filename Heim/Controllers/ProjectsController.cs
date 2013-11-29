@@ -170,18 +170,38 @@ namespace ShiftRight.Heim.Controllers {
 		}
 
 		[HttpPost]
-		public ActionResult SaveCustomize(Project project) {
+		public ActionResult SaveCustomize(ProjectViewModel model) {
 
 			using(var dtx = new HeimContext()) {
 
 				var user = dtx.UserProfiles.Single(u => u.Username == User.Identity.Name);
+				var selectedVariants = model.Floors.Select(f => f.ID).ToArray();
+				var variants = dtx.FloorVariants
+					.Where(fv => selectedVariants.Contains(fv.ID))
+					.Select(fv => new {
+						fv.Floor.FloorNumber,
+						fv.ModelFilePath,
+						fv.Name,
+						fv.ID
+					}).ToList();
+
+				var project = new Project();
 
 				project.ID = 0;
 				project.OwnerID = user.ID;
 				project.Created = DateTimeOffset.UtcNow;
 				project.Updated = DateTimeOffset.UtcNow;
 				project.IsDeleted = false;
-				project.Name = project.Name.Trim();
+				project.PlanTemplateID = model.Plan.ID;
+				project.Name = model.Name.Trim();
+				project.Data = System.Web.Helpers.Json.Encode(new {
+					Floors = variants.Select(fv => new {
+						fv.FloorNumber,
+						ModelFilePath = String.IsNullOrEmpty(fv.ModelFilePath)? null: VirtualPathUtility.ToAbsolute(fv.ModelFilePath),
+						fv.Name,
+						fv.ID
+					}).ToArray()
+				});
 
 				//project.Floors
 				//project.Data = ;
@@ -198,7 +218,6 @@ namespace ShiftRight.Heim.Controllers {
 			using(var dtx = new HeimContext()) {
 				Project project = dtx.Projects.Single(x => x.ID == id);
 				return View(project);
-
 			}
 		}
 

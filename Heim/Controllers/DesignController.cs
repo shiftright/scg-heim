@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -19,6 +20,7 @@ namespace ShiftRight.Heim.Controllers {
 		public IEnumerable<Floor> Floors { get; set; }
 	}
 
+	[Authorize]
 	public class DesignController : Controller {
 		
 		public Project CurrentProject {
@@ -31,6 +33,29 @@ namespace ShiftRight.Heim.Controllers {
 			}
 		}
 
+		protected override void OnActionExecuting(ActionExecutingContext filterContext) {
+
+			if(CurrentProject == null && Request != null) {
+				var cookie = Request.Cookies["current_project_id"];
+				if(cookie != null) {
+
+					int id = int.Parse(cookie.Value);
+
+					using(var dtx = new HeimContext()) {
+
+						var project = dtx.Projects.Include("PlanTemplate.Floors").SingleOrDefault(p => p.ID == id);
+
+						if(project != null) {
+							CurrentProject = project;
+							Response.SetCookie(new HttpCookie("current_project_id", id.ToString()));
+						}
+					}
+				}
+			}
+
+			base.OnActionExecuting(filterContext);
+		}
+		
 		public ActionResult Open(int id) {
 
 			using(var dtx = new HeimContext()) {
@@ -39,9 +64,66 @@ namespace ShiftRight.Heim.Controllers {
 
 				if(project != null) {
 					CurrentProject = project;
+
+					Response.SetCookie(new HttpCookie("current_project_id", id.ToString()));
+
+					var cookie = Request.Cookies["current_project_id"];
+
+
 					return RedirectToAction("Exterior");
 				} else {
 					return RedirectToAction("Home", "Projects", null);
+				}
+			}
+		}
+
+		[HttpGet]
+		public ActionResult Json(int? projectId = null) {
+
+			Project cp = null;
+
+			if(projectId != null) {
+				using(var dtx = new HeimContext()) {
+					cp = dtx.Projects.Find(projectId);
+				}
+			} else {
+				cp = CurrentProject;
+			}
+
+			if(cp == null) {
+
+				Response.StatusCode = (int)HttpStatusCode.NotFound;
+				return Json(new {
+					Message = "Project not found"
+				}, JsonRequestBehavior.AllowGet);
+			}
+
+			var result = new {
+				cp.ID,
+				cp.Name,
+				cp.Created,
+				cp.Updated,
+				cp.Data
+			};
+
+			return Json(result, JsonRequestBehavior.AllowGet);
+		}
+
+		[HttpPost]
+		public ActionResult Save(Project project) {
+			using(var dtx = new HeimContext()) {
+
+				var p = dtx.Projects.Find(project.ID);
+				if(p != null) {
+					p.Name = project.Name;
+					p.Data = project.Data;
+					p.Updated = DateTimeOffset.UtcNow;
+
+					dtx.SaveChanges();
+
+					return Json(p);
+				} else {
+					throw new Exception("Project not found");
 				}
 			}
 		}

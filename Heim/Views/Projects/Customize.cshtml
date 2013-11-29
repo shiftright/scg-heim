@@ -41,7 +41,7 @@
 			<div class="plan-preview">
 				<img src="@Href(floor.PlanPreviewImage)" alt="Plan of @floor.Name" />
 			</div>
-
+			
 			<ul class="floor-plan-variants list">
 				@foreach(var opt in floor.Variants){
 					<li class='floor-variant @(opt.IsDefault? "selected": "")' data-id="@opt.ID">
@@ -61,7 +61,7 @@
 		<form action="." method="post" name="create-project">
 			<fieldset class="project-infos">
 
-				<input type="hidden" name="planId" value="{{# planTemplateId }}" />
+				<input type="hidden" name="planId" value="{{# plan.ID }}" />
 
 				<label for="projectName">Project name</label>
 				<input type="text" name="projectName" value="{{# name }}" />
@@ -74,7 +74,7 @@
 				<ul class="floor-plan-variants list">
 					{{ _.each(floors, function(v){ }}
 					<li class="floor">
-						<span class="name">Floor {{# v.floor }} - {{# v.name }}</span>
+						<span class="name">Floor {{# v.floorNumber }} - {{# v.name }}</span>
 						<img src="{{= v.previewImageUrl }}" alt="{{# v.name }}" />
 					</li>
 					{{ }); }}

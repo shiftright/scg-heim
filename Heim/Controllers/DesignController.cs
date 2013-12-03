@@ -1,4 +1,5 @@
 ﻿using ShiftRight.Heim.Models;
+using ShiftRight.Web;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -184,6 +185,70 @@ namespace ShiftRight.Heim.Controllers {
 
 		public ActionResult Electricity() {
 			return Exterior();
+		}
+
+		public ActionResult CostSummary() {
+
+			var dataTable = new GridViewModel();
+			dataTable.Title = "Cost summary";
+			dataTable.Columns = new string[] {
+				"งาน", "ค่าวัสดุ", "ค่าแรง", "รวม"
+			};
+
+			dataTable.Rows = new GridViewRow[]{
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					}
+				},
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					},
+
+					SubTable = new GridViewModel{
+						Rows = new GridViewRow[]{
+							new GridViewRow {
+								Items = new string[]{
+									"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+								}
+							},
+							new GridViewRow {
+								Items = new string[]{
+									"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+								}
+							}
+						}
+					}
+				},
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					}
+				},
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					}
+				},
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					}
+				},
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					}
+				},
+				new GridViewRow {
+					Items = new string[]{
+						"งานโครงสร้าง", "1,200,000", "600,000", "1,800,000"
+					}
+				}
+			};
+
+			return PartialView("_GridView", dataTable);
 		}
 	}
 }

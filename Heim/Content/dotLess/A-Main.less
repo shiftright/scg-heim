@@ -171,14 +171,25 @@ nav {
 				&.step-exterior {
 					background-image: url('/Images/nav_exterior.png');
 				}
+
 				&.step-furniture {
 					background-image: url('/Images/nav_furniture.png');
 				}
+
 				&.step-wallpaper {
 					background-image: url('/Images/nav_wallpaper.png');
 				}
+
 				&.step-electricity {
 					background-image: url('/Images/nav_electricity.png');
+				}
+
+				&.step-cost-summary {
+					background-image: url('/Images/nav_cost.png');
+				}
+
+				&.step-print {
+					background-image: url('/Images/nav_printview.png');
 				}
 			}
 
@@ -187,14 +198,28 @@ nav {
 					&.step-exterior {
 						background-image: url('/Images/nav_exterior_hit.png');
 					}
+
 					&.step-furniture {
 						background-image: url('/Images/nav_furniture_hit.png');
 					}
+
 					&.step-wallpaper {
 						background-image: url('/Images/nav_wallpaper_hit.png');
 					}
+
 					&.step-electricity {
 						background-image: url('/Images/nav_electricity_hit.png');
+					}
+				}
+			}
+
+			&:hover {
+				a {
+					&.step-cost-summary {
+						background-image: url('/Images/nav_cost_hit.png');
+					}
+					&.step-print {
+						background-image: url('/Images/nav_printview_hit.png');
 					}
 				}
 			}
@@ -609,6 +634,7 @@ fieldset {
 .user-menu {
 	position: relative;
 	z-index: 9999;
+	cursor: default;
 
 	a:hover {
 		text-decoration: none;

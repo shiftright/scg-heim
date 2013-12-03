@@ -1,0 +1,42 @@
+﻿@model ShiftRight.Web.GridViewModel
+
+<div class="container" >
+	<table class='gridview @(Model.Level > 1? "subtable": "") level-@Model.Level' >
+		@if(!String.IsNullOrEmpty(Model.Title)){
+		<caption>@Model.Title</caption>
+		}
+		
+		@if(Model.Columns != null){
+			<thead>
+				<tr>
+				@foreach(var item in Model.Columns) {
+					<th>@item</th>
+				}
+				</tr>
+			</thead>
+		}
+		@if(Model.Rows != null){
+			int rowIndex = 0;
+			
+			<tbody>
+			@foreach(var row in Model.Rows) {
+				<tr data-row="@rowIndex" class='@(row.SubTable != null && row.SubTable.Rows.Count() > 0? "has-subtable" : "")'>
+				@foreach(var item in row.Items) {
+					<td>@item</td>
+				}
+				</tr>
+				if(row.SubTable != null) {
+					row.SubTable.Level++;
+					<tr class="row-details" data-row="@rowIndex">
+						<td colspan="@row.Items.Count()">
+							@Html.Partial("_GridView", row.SubTable)
+						</td>
+					</tr>
+				}
+
+				rowIndex++;
+			}
+			</tbody>
+		}
+	</table>
+</div>

@@ -315,6 +315,7 @@
     <Content Include="Content\dotLess\0-Fix.less" />
     <Content Include="Content\dotLess\D-CustomizeProject.less" />
     <Content Include="Content\dotLess\E-Designer.less" />
+    <Content Include="Content\dotLess\F-DataGrid.less" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_close.png" />
     <Content Include="Images\icon_close_hit.png" />
@@ -344,6 +345,7 @@
     <Content Include="Scripts\jquery-2.0.3.min.map" />
     <Content Include="Scripts\jquery-ui-1.10.3.js" />
     <Content Include="Scripts\jquery-ui-1.10.3.min.js" />
+    <Content Include="Scripts\jquery.datagrid.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -354,6 +356,7 @@
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Pages\designer.js" />
     <Content Include="Scripts\Pages\projects.customize.js" />
     <Content Include="Scripts\underscore.config.js" />
     <Content Include="Scripts\underscore.js" />
@@ -434,6 +437,7 @@
     <Content Include="Views\Assets\Edit.cshtml" />
     <Content Include="Views\Assets\Delete.cshtml" />
     <Content Include="Views\Design\_Toolbox.cshtml" />
+    <Content Include="Views\Shared\_GridView.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

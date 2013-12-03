@@ -73,6 +73,7 @@
     <Compile Include="Attributes\Validation\WebImageFileAttribute.cs" />
     <Compile Include="Extensions\ControllerExtensions.cs" />
     <Compile Include="Extensions\HtmlExtensions.cs" />
+    <Compile Include="GridViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="WebFileStorage.cs" />
   </ItemGroup>

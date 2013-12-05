@@ -27,9 +27,9 @@ namespace ShiftRight {
 				bundles.Add(new ScriptBundle("~/bundles/scripts/pages/" + nameNoEx).Include("~/Scripts/Pages/" + name));
 			}
 
-			bundles.Add(new ScriptBundle("~/Scripts/Pages/Designer").Include(
-						"~/Scripts/Pages/designer.js"));
-
+			bundles.Add(new ScriptBundle("~/Scripts/Pages/Designer").Include("~/Scripts/Pages/designer.js"));
+			bundles.Add(new ScriptBundle("~/Scripts/Engine/Designer").Include("~/Scripts/Engine/sr.heim.designer.js"));
+			
 			bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
 						"~/Scripts/jquery.unobtrusive*",
 						"~/Scripts/jquery.validate*"));

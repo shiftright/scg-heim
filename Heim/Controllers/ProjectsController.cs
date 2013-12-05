@@ -180,9 +180,12 @@ namespace ShiftRight.Heim.Controllers {
 					.Where(fv => selectedVariants.Contains(fv.ID))
 					.Select(fv => new {
 						fv.Floor.FloorNumber,
+						ModelName = "fl_" + fv.Floor.FloorNumber,
 						fv.ModelFilePath,
 						fv.Name,
-						fv.ID
+						fv.ID,
+
+						Assets = new Asset[]{ }
 					}).ToList();
 
 				var project = new Project();

@@ -316,6 +316,7 @@
     <Content Include="Content\dotLess\D-CustomizeProject.less" />
     <Content Include="Content\dotLess\E-Designer.less" />
     <Content Include="Content\dotLess\F-DataGrid.less" />
+    <Content Include="Content\Demo.unity3d" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_close.png" />
     <Content Include="Images\icon_close_hit.png" />
@@ -340,6 +341,7 @@
     <Content Include="Images\nav_printview_hit.png" />
     <Content Include="Images\signin_logo.png" />
     <Content Include="Images\site_logo.png" />
+    <Content Include="Scripts\Engine\sr.heim.designer.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
@@ -441,7 +443,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Scripts\Engine\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config">

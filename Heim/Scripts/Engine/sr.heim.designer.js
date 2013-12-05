@@ -12,15 +12,22 @@
 	// designer instance
 	var _designer = null;
 
+	var _options = null;
+
 	SR.Heim.Designer = {
 		_model: {},
-		_url: 'http://localhost:5630/Content/Demo.unity3d',
+		_url: 'http://localhost:5630/Content/HouseLoader.unity3d',
+		_options: {
+			onUnityLoaded: null
+		},
 
 		init: function (selector, options) {
 
 			if (Unity === undefined) {
 				throw "UnityObject2 is missing";
 			}
+
+			_designer._options = $.extend(_designer._options, options);
 
 			_u = Unity({
 				params: { disableContextMenu: true },
@@ -30,12 +37,9 @@
 
 			_u.observeProgress(_designer.onUnityProgress);
 			_u.initPlugin($(selector).get(0), _designer._url);
+			_designer._bindToolBoxes();
 
 			return _designer;
-		},
-
-		onReady: function () {
-
 		},
 
 		onUnityProgress: function (progress) {
@@ -64,12 +68,30 @@
 			}
 		},
 
+		_bindToolBoxes: function () {
+			$('.toolbox li').click(function () {
+				var $this = $(this);
+				var cmd = 'Set' + $this.parent().attr('data-type');
+				var args = {
+					name: '',
+					file: $this.attr('data-asset')
+				}
+
+				_designer.sendMessage(cmd, args);
+			});
+		},
+
+		sendMessage: function (funcName, args) {
+			return _designer.sendObjectMessage("CommandInterface", funcName, args);
+		},
+
 		/// Send message to Unity
-		sendMessage: function (objectName, funcName, params) {
+		sendObjectMessage: function (objectName, funcName, args) {
 			if (_u) {
 				var uni = _u.getUnity();
 				if (uni) {
-					return uni.SendMessage(objectName, funcName, params);
+					console.log(objectName, funcName, args);
+					return uni.SendMessage(objectName, funcName, args);
 				} else {
 					throw "The game might not fully loaded yet";
 				}
@@ -80,17 +102,23 @@
 
 		/// Dispatch message from unity
 		message: function (messageName, params) {
+
+			console.log(messageName);
 			
 			switch (messageName.toLowerCase()) {
-				case 'ready': _designer.onReady(); break;
+				case 'ready': {
+					if(typeof _options.onUnityLoaded == 'function'){
+						_options.onUnityLoaded.apply(_designer);
+					}
+				}
 				case 'echo': console.log(params); break;
 
 				default: break;
 			}
 		},
 
-		loadModel: function (model) {
-			return _designer.sendMessage('CommandInterface', 'loadModel', model);
+		loadHouse: function (model) {
+			return _designer.sendMessage('LoadHouse', model);
 		},
 
 		setRoofTile: function (floorNumber, assetName) {
@@ -111,6 +139,7 @@
 	};
 
 	_designer = SR.Heim.Designer;
+	_options = _designer._options;
 	window.$d = _designer;
 
 })(jQuery, SR, UnityObject2);

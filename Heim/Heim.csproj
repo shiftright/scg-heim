@@ -316,7 +316,7 @@
     <Content Include="Content\dotLess\D-CustomizeProject.less" />
     <Content Include="Content\dotLess\E-Designer.less" />
     <Content Include="Content\dotLess\F-DataGrid.less" />
-    <Content Include="Content\Demo.unity3d" />
+    <Content Include="Content\HouseLoader.unity3d" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_close.png" />
     <Content Include="Images\icon_close_hit.png" />

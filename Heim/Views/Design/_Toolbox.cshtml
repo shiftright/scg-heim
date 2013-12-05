@@ -1,13 +1,13 @@
 ﻿@model IGrouping<ShiftRight.Heim.Models.AssetType, ShiftRight.Heim.Controllers.AssetViewModel>
 
-<ul class="list">
+<ul class="list" data-type="@Model.Key">
 	@foreach(var item in Model) {
-		if(item.Selected) {
-			<li data-id="@item.ID" class="selected">
-				<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
-			</li>
-		} else {
-			<li data-id="@item.ID">
+	if(item.Selected) {
+		<li data-id="@item.ID" class="selected" data-asset="@Href(item.AssetFilePath)">
+			<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
+		</li>
+	} else {
+			<li data-id="@item.ID" data-asset="@Href(item.AssetFilePath)">
 				<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
 			</li>
 		}

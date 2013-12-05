@@ -22,10 +22,14 @@
 			}
 			document.write('<script src="' + unityObjectUrl + '"><\/script>');
 	</script>
-	@Scripts.Render("~/Scripts/Engine/Designer");
+	@Scripts.Render("~/Scripts/Engine/Designer")
 
 	<script>
-		var designer = SR.Heim.Designer.init('#designer', {});
+		var designer = SR.Heim.Designer.init('#designer', {
+			onUnityLoaded: function () {
+				this.loadHouse();
+			}
+		});
 	</script>
 }
 
@@ -48,7 +52,7 @@
 
 	<div class="aside toolboxes">
 
-		<div class="toolbox tiles">
+		<div class="toolbox tiles" data-tools="tiles">
 			<span class="title">Roof tile</span>
 			@{
 				var roofTiles = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.RoofTile).FirstOrDefault();

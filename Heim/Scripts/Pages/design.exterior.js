@@ -2,7 +2,9 @@
 var DEBUG = true;
 
 var designer = SR.Heim.Designer.init('#designer', {
+	loader: $currentProject.ModelFilePath,
 	onUnityLoaded: function () {
+		//designer.loadAssetBundle();
 		designer.loadHouse();
 
 		$('.toolbox li').click(function () {

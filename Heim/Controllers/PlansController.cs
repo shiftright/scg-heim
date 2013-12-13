@@ -45,7 +45,7 @@ namespace ShiftRight.Heim.Controllers {
 
 				plan.ID = newPlan.ID;
 
-				if(plan.PreviewImageFile != null) {
+				if(plan.PreviewImageFile != null || plan.ModelFilePath != null) {
 
 					string root = ConfigurationManager.AppSettings["UserDataRoot"];
 					root = Path.Combine(root, "plans", newPlan.ID.ToString());
@@ -56,12 +56,24 @@ namespace ShiftRight.Heim.Controllers {
 					// Preview
 					string fileName = newPlan.Updated.UtcTicks.ToString();
 
-					string ext = plan.PreviewImageFile.InputStream.GetFileExtension();
-					ext = ext == null ? null : ext.ToLower();
+					if(plan.PreviewImageFile != null && plan.PreviewImageFile.ContentLength > 0 || plan.ModelFile != null && plan.ModelFile.ContentLength > 0) {
+						string ext = plan.PreviewImageFile.InputStream.GetFileExtension();
+						ext = ext == null ? null : ext.ToLower();
 
-					storage.Save(plan.PreviewImageFile.InputStream, fileName + ext);
+						storage.Save(plan.PreviewImageFile.InputStream, fileName + ext);
 
-					newPlan.PreviewImageFilePath = Path.Combine(root, fileName + ext);
+						newPlan.PreviewImageFilePath = Path.Combine(root, fileName + ext);
+					}
+
+					if(plan.ModelFile != null && plan.ModelFile.ContentLength > 0) {
+						string ext = plan.ModelFile.InputStream.GetFileExtension();
+						ext = ext == null ? null : ext.ToLower();
+
+						storage.Save(plan.ModelFile.InputStream, fileName + ext);
+
+						newPlan.ModelFilePath = Path.Combine(root, fileName + ext);
+					}
+
 					context.Entry<Plan>(newPlan).State = EntityState.Modified;
 					context.SaveChanges();
 				}
@@ -84,6 +96,7 @@ namespace ShiftRight.Heim.Controllers {
 								Name = plan.Name,
 								Area = plan.Area,
 								PreviewImage = plan.PreviewImageFilePath,
+								ModelFilePath = plan.ModelFilePath,
 								Attributes = plan.Attributes,
 								Floors = plan.Floors.Select(fl => new FloorViewModel {
 									ID = fl.ID,
@@ -110,25 +123,34 @@ namespace ShiftRight.Heim.Controllers {
 					string root = null;
 
 					// prepare storage
-					if(plan.PreviewImageFile != null) {
+					if(plan.PreviewImageFile != null && plan.PreviewImageFile.ContentLength > 0 || plan.ModelFile != null && plan.ModelFile.ContentLength > 0) {
 
+						string fileName = planModel.Updated.UtcTicks.ToString();
 						root = ConfigurationManager.AppSettings["UserDataRoot"];
 						root = Path.Combine(root, "plans", plan.ID.ToString());
 
 						storage = this.GetStorage(Server.MapPath(root));
 						storage.EnsureRootExist();
+
+						if(plan.PreviewImageFile != null && plan.PreviewImageFile.ContentLength > 0) {
+							string ext = plan.PreviewImageFile.InputStream.GetFileExtension();
+							ext = ext == null ? null : ext.ToLower();
+
+							storage.Save(plan.PreviewImageFile.InputStream, fileName + ext);
+
+							planModel.PreviewImageFilePath = Path.Combine(root, fileName + ext);
+						}
+
+						if(plan.ModelFile != null && plan.ModelFile.ContentLength > 0) {
+							string ext = plan.ModelFile.InputStream.GetFileExtension();
+							ext = ext == null ? null : ext.ToLower();
+
+							storage.Save(plan.ModelFile.InputStream, fileName + ext);
+
+							planModel.ModelFilePath = Path.Combine(root, fileName + ext);
+						}
 					}
 
-					string ext = "";
-
-					if(plan.PreviewImageFile != null) {
-						ext = plan.PreviewImageFile.InputStream.GetFileExtension();
-						ext = ext == null ? null : ext.ToLower();
-
-						planModel.PreviewImageFilePath = Path.Combine(root, planModel.Updated.Ticks.ToString() + ext);
-						plan.PreviewImage = planModel.PreviewImageFilePath;
-						storage.Save(plan.PreviewImageFile.InputStream, planModel.Updated.Ticks.ToString() + ext);
-					}
 
 					context.Entry<Plan>(planModel).State = EntityState.Modified;
 					context.SaveChanges();

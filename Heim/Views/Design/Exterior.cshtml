@@ -22,7 +22,12 @@
 			}
 			document.write('<script src="' + unityObjectUrl + '"><\/script>');
 	</script>
+
 	@Scripts.Render("~/Scripts/Engine/Designer")
+
+	<script type="text/javascript">
+		var $currentProject = @Html.Raw(Model.Project.Data)
+	</script>
 }
 
 @section actions{

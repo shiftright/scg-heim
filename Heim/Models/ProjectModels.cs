@@ -181,6 +181,7 @@ namespace ShiftRight.Heim.Models {
 		public int ID { get; set; }
 		public string Name { get; set; }
 		public string PreviewImage { get; set; }
+		public string ModelFile { get; set; }
 
 		public DateTimeOffset Created { get; set; }
 		public PlanViewModel Plan { get; set; }
@@ -220,6 +221,7 @@ namespace ShiftRight.Heim.Models {
 		public int ID { get; set; }
 
 		public string PreviewImage { get; set; }
+		public string ModelFilePath { get; set; }
 
 		[Required]
 		public string Name { get; set; }
@@ -231,6 +233,9 @@ namespace ShiftRight.Heim.Models {
 		[WebImageFile]
 		[DisplayName("Preview image file")]
 		public HttpPostedFileBase PreviewImageFile { get; set; }
+
+		[DisplayName("Model file")]
+		public HttpPostedFileBase ModelFile { get; set; }
 
 		[DisplayName("Floors")]
 		public IEnumerable<FloorViewModel> Floors { get; set; }

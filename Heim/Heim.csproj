@@ -224,6 +224,10 @@
     <Compile Include="Migrations\201311200954163_Added_Assets.Designer.cs">
       <DependentUpon>201311200954163_Added_Assets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201312131303240_Added_PlanModeilFilePath.cs" />
+    <Compile Include="Migrations\201312131303240_Added_PlanModeilFilePath.Designer.cs">
+      <DependentUpon>201312131303240_Added_PlanModeilFilePath.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\HeimContext.cs" />
@@ -357,8 +361,6 @@
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
-    <Content Include="Scripts\knockout-3.0.0.debug.js" />
-    <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\Pages\design.exterior.js" />
     <Content Include="Scripts\Pages\designer.js" />
@@ -468,6 +470,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201311200954163_Added_Assets.resx">
       <DependentUpon>201311200954163_Added_Assets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201312131303240_Added_PlanModeilFilePath.resx">
+      <DependentUpon>201312131303240_Added_PlanModeilFilePath.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

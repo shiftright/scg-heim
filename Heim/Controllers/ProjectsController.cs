@@ -189,6 +189,9 @@ namespace ShiftRight.Heim.Controllers {
 
 				var project = new Project();
 
+				model.ModelFile = dtx.Plans.Where(p => p.ID == model.Plan.ID).Select(p => p.ModelFilePath).FirstOrDefault();
+				model.ModelFile = String.IsNullOrEmpty(model.ModelFile) ? null : VirtualPathUtility.ToAbsolute(model.ModelFile);
+
 				project.ID = 0;
 				project.OwnerID = user.ID;
 				project.Created = DateTimeOffset.UtcNow;
@@ -197,6 +200,7 @@ namespace ShiftRight.Heim.Controllers {
 				project.PlanTemplateID = model.Plan.ID;
 				project.Name = model.Name.Trim();
 				project.Data = System.Web.Helpers.Json.Encode(new {
+					ModelFilePath = model.ModelFile,
 					Floors = variants.Select(fv => new {
 						fv.FloorNumber,
 						ModelFilePath = String.IsNullOrEmpty(fv.ModelFilePath)? null: VirtualPathUtility.ToAbsolute(fv.ModelFilePath),

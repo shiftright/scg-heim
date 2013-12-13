@@ -19,6 +19,8 @@ namespace ShiftRight.Heim.Controllers {
 		public IEnumerable<IGrouping<AssetType, AssetViewModel>> Assets { get; set; }
 
 		public IEnumerable<Floor> Floors { get; set; }
+
+		public Project Project { get; set; }
 	}
 
 	[Authorize]
@@ -165,6 +167,7 @@ namespace ShiftRight.Heim.Controllers {
 				}
 
 				var vm = new ExteriorViewModel {
+					Project = CurrentProject,
 					ProjectName = project.Name,
 					ProjectID = project.ID,
 					Assets = groups,

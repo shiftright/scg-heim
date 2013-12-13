@@ -43,6 +43,20 @@
 			@Html.EditorFor(model => model.Area.Usage)
 			@Html.ValidationMessageFor(model => model.Area.Usage)
 		</div>
+		
+		<div class="break"></div>
+		
+		<div class="editor-label">
+			@Html.LabelFor(model => model.ModelFile)
+			@if(Model != null && Model.ModelFilePath != null) {
+				<a class="download" href="@Href(Model.ModelFilePath)">[ Download ]</a>
+			}
+		</div>
+		<div class="editor-field">
+			@Html.HiddenFor(m => m.ModelFilePath)
+			<input type="file" name="ModelFile" />
+		</div>
+
 		<div class="break"></div>
 
 		<div class="editor-label">

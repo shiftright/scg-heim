@@ -16,8 +16,8 @@
 
 	SR.Heim.Designer = {
 		_model: {},
-		_url: '/Content/HouseLoader.unity3d',
 		_options: {
+			loaderUrl: '/Content/HouseLoader.unity3d',
 			onUnityLoaded: null
 		},
 
@@ -36,7 +36,7 @@
 			});
 
 			_u.observeProgress(_designer.onUnityProgress);
-			_u.initPlugin($(selector).get(0), _designer._url);
+			_u.initPlugin($(selector).get(0), _designer._options.loaderUrl);
 
 			return _designer;
 		},
@@ -111,6 +111,10 @@
 
 		loadHouse: function (model) {
 			return _designer.sendMessage('LoadHouse', model);
+		},
+		
+		loadAssetBundle: function (url){
+			return _designer.sendMessage("DownloadAssets", url);
 		},
 
 		setRoof: function (materialId) {

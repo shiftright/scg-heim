@@ -37,6 +37,10 @@ namespace ShiftRight.Common.Extensions {
 															Hex = new byte[]{ 0xFF, 0xD8, 0xFF },
 															Extension = ".jpg",
 														},
+														new FileSignature{
+															Hex = new byte[]{ 0x55, 0x6e, 0x69, 0x74, 0x79, 0x57, 0x65, 0x62 },
+															Extension = ".unity3d",
+														},
 													 };
 
 		/// <summary>

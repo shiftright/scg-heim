@@ -28,6 +28,8 @@ namespace ShiftRight.Heim.Models {
 		[DataType("DATETIMEOFFSET(2)")]
 		public DateTimeOffset Created { get; set; }
 		public string PreviewImageFilePath { get; set; }
+
+		public string ModelFilePath { get; set; }
 		
 		public Plan() {
 			//Data = new byte[] { };

@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using ShiftRight.Heim.Models;
 using ShiftRight.Heim.Extensions;
+using System.Data.Entity.SqlServer;
 
 namespace ShiftRight.Heim.Controllers {
 
@@ -180,12 +181,10 @@ namespace ShiftRight.Heim.Controllers {
 					.Where(fv => selectedVariants.Contains(fv.ID))
 					.Select(fv => new {
 						fv.Floor.FloorNumber,
-						ModelName = "fl_" + fv.Floor.FloorNumber,
+						ModelName = "fl_" + SqlFunctions.StringConvert((decimal?)fv.Floor.FloorNumber),
 						fv.ModelFilePath,
 						fv.Name,
-						fv.ID,
-
-						Assets = new Asset[]{ }
+						fv.ID
 					}).ToList();
 
 				var project = new Project();

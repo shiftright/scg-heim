@@ -81,7 +81,7 @@
 									document.location = "/Design/Open/" + v.ID;
 								}).error(function (err) {
 									$('.ui-dialog .ui-button-text').html('Opps! Error.');
-								}).done(function () {
+								}).complete(function () {
 									isPosting = false;
 								}, 'json');
 							}

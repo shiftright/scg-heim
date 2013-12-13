@@ -23,14 +23,6 @@
 			document.write('<script src="' + unityObjectUrl + '"><\/script>');
 	</script>
 	@Scripts.Render("~/Scripts/Engine/Designer")
-
-	<script>
-		var designer = SR.Heim.Designer.init('#designer', {
-			onUnityLoaded: function () {
-				this.loadHouse();
-			}
-		});
-	</script>
 }
 
 @section actions{

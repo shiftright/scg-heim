@@ -13,7 +13,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>ShiftRight.Heim</RootNamespace>
     <AssemblyName>ShiftRight.Heim</AssemblyName>
-    <TargetFrameworkVersion>v4.5.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
@@ -317,6 +317,7 @@
     <Content Include="Content\dotLess\E-Designer.less" />
     <Content Include="Content\dotLess\F-DataGrid.less" />
     <Content Include="Content\HouseLoader.unity3d" />
+    <None Include="Properties\PublishProfiles\WIN-SERVER-2008.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_close.png" />
     <Content Include="Images\icon_close_hit.png" />
@@ -342,6 +343,7 @@
     <Content Include="Images\signin_logo.png" />
     <Content Include="Images\site_logo.png" />
     <Content Include="Scripts\Engine\sr.heim.designer.js" />
+    <Content Include="Scripts\Engine\sr.heim.toolboxes.js" />
     <Content Include="Scripts\jquery-2.0.3.js" />
     <Content Include="Scripts\jquery-2.0.3.min.js" />
     <Content Include="Scripts\jquery-2.0.3.min.map" />
@@ -358,6 +360,7 @@
     <Content Include="Scripts\knockout-3.0.0.debug.js" />
     <Content Include="Scripts\knockout-3.0.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
+    <Content Include="Scripts\Pages\design.exterior.js" />
     <Content Include="Scripts\Pages\designer.js" />
     <Content Include="Scripts\Pages\projects.customize.js" />
     <Content Include="Scripts\underscore.config.js" />

@@ -16,7 +16,7 @@
 
 	SR.Heim.Designer = {
 		_model: {},
-		_url: 'http://localhost:5630/Content/HouseLoader.unity3d',
+		_url: '/Content/HouseLoader.unity3d',
 		_options: {
 			onUnityLoaded: null
 		},
@@ -37,7 +37,6 @@
 
 			_u.observeProgress(_designer.onUnityProgress);
 			_u.initPlugin($(selector).get(0), _designer._url);
-			_designer._bindToolBoxes();
 
 			return _designer;
 		},
@@ -64,21 +63,13 @@
 					$missingScreen.remove();
 					break;
 				case "first":
+
+					if (!!DEBUG) {
+						console.log(progress);
+						_designer.message('ready');
+					}
 					break;
 			}
-		},
-
-		_bindToolBoxes: function () {
-			$('.toolbox li').click(function () {
-				var $this = $(this);
-				var cmd = 'Set' + $this.parent().attr('data-type');
-				var args = {
-					name: '',
-					file: $this.attr('data-asset')
-				}
-
-				_designer.sendMessage(cmd, args);
-			});
 		},
 
 		sendMessage: function (funcName, args) {
@@ -102,8 +93,9 @@
 
 		/// Dispatch message from unity
 		message: function (messageName, params) {
-
-			console.log(messageName);
+			if (!!DEBUG) {
+				console.log(messageName);
+			}
 			
 			switch (messageName.toLowerCase()) {
 				case 'ready': {
@@ -121,8 +113,8 @@
 			return _designer.sendMessage('LoadHouse', model);
 		},
 
-		setRoofTile: function (floorNumber, assetName) {
-			return _designer.sendMessage('roofTile_' + floor, 'setAsset', assetName);
+		setRoof: function (materialId) {
+			return _designer.sendMessage('SetRoof', materialId);
 		},
 
 		addFurniture: function (floorNumber, assetName, position) {
@@ -140,6 +132,6 @@
 
 	_designer = SR.Heim.Designer;
 	_options = _designer._options;
-	window.$d = _designer;
+	//window.$d = _designer;
 
 })(jQuery, SR, UnityObject2);

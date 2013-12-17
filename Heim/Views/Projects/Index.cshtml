@@ -4,7 +4,7 @@
 }
 
 @section actions{
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New", "New", "Projects", null, null)
 }
 
 <table class="datagrid">
@@ -25,14 +25,16 @@
 @foreach (var item in Model.Projects) {
     <tr>
         <td class="col-actions">
-            @Html.ActionLink("Delete", "Delete", new { id=item.ID }) |
-            @Html.ActionLink("Edit", "Edit", new { id=item.ID })
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+            @*| @Html.ActionLink("Edit", "Edit", new { id = item.ID })*@
         </td>
         <td>
-            @Html.ActionLink(item.Name.Default("-").ToString(), "Details", new { id=item.ID })
+            @*@Html.ActionLink(item.Name.Default("-").ToString(), "Details", new { id=item.ID })*@
+			@item.Name.Default("-").ToString()
         </td>
         <td>
-            @Html.ActionLink(item.Created.ToLocalTime().ToString(), "Details", new { id=item.ID })
+			@item.Created.ToLocalTime().ToString("G")
+            @*@Html.ActionLink(item.Created.ToLocalTime().ToString("G"), "Details", new { id=item.ID })*@
         </td>
         <td>
             @item.Owner.Username

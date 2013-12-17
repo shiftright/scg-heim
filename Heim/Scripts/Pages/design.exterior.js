@@ -2,10 +2,9 @@
 var DEBUG = true;
 
 var designer = SR.Heim.Designer.init('#designer', {
-	loader: $currentProject.ModelFilePath,
 	onUnityLoaded: function () {
-		//designer.loadAssetBundle();
-		designer.loadHouse();
+		//designer.loadHouse();
+		designer.loadAssetBundle($currentProject.ModelFilePath);
 
 		$('.toolbox li').click(function () {
 			var $this = $(this);
@@ -15,14 +14,17 @@ var designer = SR.Heim.Designer.init('#designer', {
 			$parent.find('.selected').removeClass('selected');
 			$this.addClass('selected');
 
-			//var args = {
-			//	name: '',
-			//	file: $this.attr('data-asset')
-			//}
-
+			var mapping = JSON.parse($this.attr('data-mapping'));
+			
 			switch (type) {
 				case 'RoofTile': {
-					designer.setRoof($this.attr('data-asset'));
+					designer.setRoof(mapping.materialId);
+					break;
+				}
+
+				case 'Tile': {
+					var floor = $this.closest('.floors').attr('data-floor');
+					designer.setFloor(mapping.materialId, floor);
 					break;
 				}
 			}

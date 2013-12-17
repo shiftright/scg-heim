@@ -19,13 +19,7 @@
 
 @using(Html.BeginForm("Create", "Plans", FormMethod.Post, new { enctype = "multipart/form-data" })){
 	
-    @Html.ValidationSummary(true)
-
     <fieldset>
-
 		@Html.Partial("_CreateOrEdit", Model)
-        <p>
-            <input type="submit" value="Create" />
-        </p>
     </fieldset>
 }

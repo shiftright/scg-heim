@@ -3,11 +3,11 @@
 <ul class="list" data-type="@Model.Key">
 	@foreach(var item in Model) {
 	if(item.Selected) {
-		<li data-id="@item.ID" class="selected" data-asset="@Href(item.AssetFilePath)">
+		<li data-id="@item.ID" class="selected" data-asset="@Href(item.AssetFilePath)" data-mapping="@item.Mapping">
 			<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
 		</li>
 	} else {
-			<li data-id="@item.ID" data-asset="@Href(item.AssetFilePath)">
+			<li data-id="@item.ID" data-asset="@Href(item.AssetFilePath)" data-mapping="@item.Mapping">
 				<img src="@Href(item.PreviewFilePath)" title="@item.Name" alt="@item.Name" />
 			</li>
 		}

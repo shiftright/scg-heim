@@ -59,12 +59,16 @@
 				@Html.Partial("_Toolbox", roofTiles)
 			}
 		</div>
+		@{
+			var floorTiles = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.Tile).FirstOrDefault();
+		}
 
-		@foreach(var fl in Model.Floors) {
-			
-			<div class="toolbox tiles">
-				<span class="title">Roof tile: FL @fl.FloorNumber</span>
-				@Html.Partial("_Toolbox", roofTiles)
+		@foreach(var fl in Model.Floors.OrderByDescending(fl => fl.FloorNumber)) {
+			<div class="toolbox floors" data-floor="@fl.FloorNumber">
+				@if(floorTiles != null) {
+					<span class="title">Exterior tile: FL @fl.FloorNumber</span>
+					@Html.Partial("_Toolbox", floorTiles)
+				}
 			</div>
 		}
 

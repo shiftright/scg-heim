@@ -12,9 +12,11 @@
 
 <div class="main">
 	@using(Html.BeginForm("Edit", "Plans", FormMethod.Post, new { enctype = "multipart/form-data" })) {
-		@Html.ValidationSummary(true)
-
-		@Html.HiddenFor(model => model.ID)
+		@*@Html.ValidationSummary()*@
+		
+		if(mode == "edit" || mode == "details") {
+			@Html.HiddenFor(model => model.ID)
+		}
 	
 		<div class="editor-label">
 			@Html.LabelFor(model => model.Name)

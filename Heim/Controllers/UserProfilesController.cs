@@ -8,6 +8,8 @@ using System.Web.Mvc;
 using ShiftRight.Heim.Models;
 
 namespace ShiftRight.Heim.Controllers {
+
+	[Authorize]
 	public class UserProfilesController : Controller {
 		private HeimContext context = new HeimContext();
 

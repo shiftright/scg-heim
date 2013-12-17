@@ -20,12 +20,12 @@ namespace ShiftRight.Heim.Models {
 
 	public class Area {
 
+		[Required(ErrorMessage = "*")]
 		[DisplayName("Usage area (sqm.)")]
-		[Required(ErrorMessage = "Usage area is required")]
 		public float Usage { get; set; }
 
+		[Required(ErrorMessage = "*")]
 		[DisplayName("Land area (sqm.)")]
-		[Required(ErrorMessage = "Land area is required")]
 		public float Land { get; set; }
 	}
 	
@@ -218,19 +218,20 @@ namespace ShiftRight.Heim.Models {
 
 	public class PlanViewModel {
 
+		[Identity]
 		public int ID { get; set; }
 
 		public string PreviewImage { get; set; }
 		public string ModelFilePath { get; set; }
 
-		[Required]
+		[Required(ErrorMessage = "*")]
 		public string Name { get; set; }
 
 		public Area Area { get; set; }
 
 		public IEnumerable<Attribute> Attributes { get; set; }
 
-		[WebImageFile]
+		[WebImageFile(ErrorMessage = "*")]
 		[DisplayName("Preview image file")]
 		public HttpPostedFileBase PreviewImageFile { get; set; }
 

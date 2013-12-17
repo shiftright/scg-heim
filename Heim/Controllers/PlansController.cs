@@ -18,6 +18,7 @@ using ShiftRight.Common.Extensions;
 
 namespace ShiftRight.Heim.Controllers {
 
+	[Authorize]
 	public class PlansController : Controller {
 
 		private HeimContext context = new HeimContext();
@@ -115,9 +116,12 @@ namespace ShiftRight.Heim.Controllers {
 			using(var dtx = new HeimContext()) {
 				var planModel = dtx.Plans.Include("Floors").Single( s => s.ID == plan.ID );
 
+				//plan.Attributes = planModel.Attributes.ToList();
+
 				if(ModelState.IsValid) {
 					planModel.Updated = DateTimeOffset.UtcNow;
 					planModel.Name = plan.Name.Trim();
+					planModel.Area = plan.Area;
 					
 					IStorage storage = null;
 					string root = null;
@@ -151,7 +155,6 @@ namespace ShiftRight.Heim.Controllers {
 						}
 					}
 
-
 					context.Entry<Plan>(planModel).State = EntityState.Modified;
 					context.SaveChanges();
 
@@ -160,12 +163,13 @@ namespace ShiftRight.Heim.Controllers {
 					}
 				}
 
-				plan.Floors = planModel.Floors.Select(fl => new FloorViewModel {
-					ID = fl.ID,
-					FloorNumber = fl.FloorNumber
-				});
+				//plan.Floors = planModel.Floors.Select(fl => new FloorViewModel {
+				//	ID = fl.ID,
+				//	FloorNumber = fl.FloorNumber
+				//});
 
-				return View(plan);
+				//return View(plan);
+				return RedirectToAction("Edit", new { id = plan.ID });
 			}
 		}
 

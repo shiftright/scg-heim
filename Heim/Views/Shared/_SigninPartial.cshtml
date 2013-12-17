@@ -4,6 +4,8 @@
 
 		<ul class="menu">
 			<li>@Html.ActionLink("Home", "Home", "Projects")</li>
+			<li>@Html.ActionLink("Manage projects", "Index", "Projects")</li>
+
 			<li>@Html.ActionLink("My Account", "Manage", "Account", null, new { @class = "username", title = "Manage" })</li>
 			<li>
 				@using(Html.BeginForm("Signout", "Account", FormMethod.Post, new { id = "signoutForm" })) {

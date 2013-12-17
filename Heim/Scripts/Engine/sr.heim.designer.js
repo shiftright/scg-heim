@@ -14,6 +14,10 @@
 
 	var _options = null;
 
+	window.LogDebug = function (args) {
+		console.log(args);
+	};
+
 	SR.Heim.Designer = {
 		_model: {},
 		_options: {
@@ -81,7 +85,8 @@
 			if (_u) {
 				var uni = _u.getUnity();
 				if (uni) {
-					console.log(objectName, funcName, args);
+					if (DEBUG) { console.log(objectName, funcName, args); }
+
 					return uni.SendMessage(objectName, funcName, args);
 				} else {
 					throw "The game might not fully loaded yet";
@@ -118,7 +123,11 @@
 		},
 
 		setRoof: function (materialId) {
-			return _designer.sendMessage('SetRoof', materialId);
+			return _designer.sendMessage('ChangeRoof', +materialId);
+		},
+
+		setFloor: function (materialId, floor) {
+			return _designer.sendMessage('ChangeFloor' + floor, +materialId);
 		},
 
 		addFurniture: function (floorNumber, assetName, position) {

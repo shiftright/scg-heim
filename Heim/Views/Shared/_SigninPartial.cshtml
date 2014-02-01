@@ -7,6 +7,13 @@
 			<li>@Html.ActionLink("Manage projects", "Index", "Projects")</li>
 
 			<li>@Html.ActionLink("My Account", "Manage", "Account", null, new { @class = "username", title = "Manage" })</li>
+            @if (Roles.IsUserInRole("admin")) {
+                <li class="separator"></li>
+                <li>@Html.ActionLink("Manage plans", "Index", "Plans")</li>
+                <li>@Html.ActionLink("Manage floors", "Index", "Floors")</li>
+                <li>@Html.ActionLink("Manage materials", "Index", "Assets")</li>
+            }
+            <li class="separator"></li>
 			<li>
 				@using(Html.BeginForm("Signout", "Account", FormMethod.Post, new { id = "signoutForm" })) {
 					@Html.AntiForgeryToken()

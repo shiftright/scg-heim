@@ -14,6 +14,14 @@
 @error_background: white;
 @error_border: 1px solid red;
 
+a.undecorated {
+    text-decoration: none;
+    img {
+        border-style: none;
+        border-width: 0;
+    }
+}
+
 /* Mixins */
 .input_border_radius{
 	 border-radius: 3px;
@@ -632,47 +640,50 @@ fieldset {
 }
 
 .user-menu {
-	position: relative;
-	z-index: 9999;
-	cursor: default;
+    position: relative;
+    z-index: 9999;
+    cursor: default;
 
-	a:hover {
-		text-decoration: none;
-	}
-	
-	.menu {
-		
-		border: 1px solid #aaaaaa;
-		position: absolute;
-		right: 0;
-		box-shadow: 2px 2px 5px gray;
-		background-color: white;
-		display: none;
-		margin-top: -0.25em;
+    a:hover {
+        text-decoration: none;
+    }
 
-		a {
-			display: block;
-			padding: 5px 20px;
-			min-width: 120px;
-		}
+    .menu {
+        border: 1px solid #aaaaaa;
+        position: absolute;
+        right: 0;
+        box-shadow: 2px 2px 5px gray;
+        background-color: white;
+        display: none;
+        margin-top: -0.25em;
 
-		li {
+        a {
+            display: block;
+            padding: 5px 20px;
+            min-width: 120px;
+        }
 
-			&:hover {
-				background-color: @primary_color;
+        li {
 
-				a {
-					color: white;
-				}
-			}
-		}
-	}
+            &:hover {
+                background-color: @primary_color;
 
-	&:hover {
-		.menu {
-			display: block;
-		}
-	}
+                a {
+                    color: white;
+                }
+            }
+        }
+
+        .separator {
+            border-top: 1px solid lightgray;
+        }
+    }
+
+    &:hover {
+        .menu {
+            display: block;
+        }
+    }
 }
 
 .ui-tabs {

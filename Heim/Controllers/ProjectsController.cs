@@ -46,6 +46,7 @@ namespace ShiftRight.Heim.Controllers {
 
 		}
 
+		[Authorize]
 		public ActionResult Home() {
 
 			using(var dtx  = new HeimContext()) {

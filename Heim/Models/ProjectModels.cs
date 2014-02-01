@@ -211,7 +211,10 @@ namespace ShiftRight.Heim.Models {
 
 		public string Name {
 			get {
-				return "FL" + FloorNumber;
+				if(FloorNumber == 1) { return "1st floor"; }
+				if(FloorNumber == 2) { return "2nd floor"; }
+				if(FloorNumber == 3) { return "3rd floor"; }
+				return "" + FloorNumber + "th floor";
 			}
 		}
 	}

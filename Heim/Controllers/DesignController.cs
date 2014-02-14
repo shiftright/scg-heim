@@ -132,6 +132,7 @@ namespace ShiftRight.Heim.Controllers {
 		}
 
 		public ActionResult Exterior() {
+			ViewBag.BodyCssClass = "design-exterior";
 
 			if(CurrentProject == null) {
 				return RedirectToAction("Home", "Projects");

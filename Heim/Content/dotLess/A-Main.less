@@ -292,7 +292,8 @@ select {
 	}
 
 input[type=submit],
-input[type=button]{
+input[type=button],
+button[type=submit] {
 
 	border: 3px solid #771516;
 	min-height: 54px;
@@ -695,4 +696,125 @@ fieldset {
 		border: 1px solid #AAA;
 		padding: 2px;
 	}
+}
+
+#body {
+    position: relative;
+}
+
+body.view-maximize, body.current-walkthough {
+    .design .main {
+        width: 960px;
+
+        #designer {
+            width: auto;
+        }
+    }
+
+    .design .aside {
+        display: none;
+    }
+
+    .command-bar {
+        width: 24px;
+    }
+}
+
+.command-bar {
+    float: right;
+    width: 240px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    overflow: hidden;
+
+    button {
+        width: 24px;
+        height: 24px;
+        float: right;
+        cursor: pointer;
+        margin-left: 5px;
+        margin-bottom: 5px;
+
+        &.toggle-maximize {
+            background-color: transparent;
+            background-image: url(/Images/icon_maximize.png);
+            border: 0;
+            padding: 0;
+        }
+        &.add-window, &.remove-window, &.walkthrough {
+            background-color: white;
+            border: 1px solid gray;
+            padding: 0;
+            font-weight: bolder;
+        }
+    }
+}
+
+
+.design-exterior {
+
+    #header-lower {
+        h1 {
+            height: 40px;
+            line-height: 40px;
+        }
+
+        .user-actions a {
+            height: 40px;
+            line-height: 40px;
+        }
+    }
+
+    #main-wrapper {
+        margin-top: 8px;
+        margin-bottom: 5px;
+
+        header {
+            margin-bottom: 20px;
+        }
+
+        #designer {
+            height: 520px;
+        }
+    }
+
+    .design .aside .toolbox {
+        display: none;
+    }
+
+    &.current-exterior {
+        .toolboxes.exterior .toolbox {
+            display: block !important;
+        }
+    }
+
+    &.current-furniture, &.current-wallpaper {
+        .toolboxes.furniture .toolbox {
+            display: block !important;
+        }
+
+        .walkthrough, .add-window {
+            display: block;
+        }
+    }
+
+    &.current-wallpaper {
+        .toolboxes.wallpaper .toolbox {
+            display: block !important;
+        }
+
+        .walkthrough, .add-window {
+            display: block;
+        }
+    }
+
+    &.current-walkthough {
+        .toggle-maximize {
+            display: none;
+        }
+    }
+}
+
+.remove-window, .add-window, .walkthrough {
+    display: none;
 }

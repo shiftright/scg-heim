@@ -16,6 +16,7 @@ namespace ShiftRight.Heim.Models {
 		[Required]
 		public string Name { get; set; }
 		public Area Area { get; set; }
+		public int Price { get; set; }
 		public HashSet<FloorTemplate> Floors { get; set; }
 		public HashSet<Attribute> Attributes { get; set; }
 

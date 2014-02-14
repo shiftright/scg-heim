@@ -34,6 +34,7 @@
 	<a href="#info" class="info">@Model.ProjectName</a>
 }
 
+
 <div class="design exterior">
 	<div class="main">
 
@@ -47,8 +48,13 @@
 		</div>
 	</div>
 
-	<div class="aside toolboxes">
-
+    <div class="command-bar">
+        <button class="toggle-maximize"></button>    
+        <button class="add-window">+</button>
+        <button class="remove-window">X</button>
+        <button class="walkthrough">V</button>
+    </div>
+	<div class="aside toolboxes exterior">
 		<div class="toolbox tiles" data-tools="tiles">
 			<span class="title">Roof tile</span>
 			@{
@@ -58,6 +64,18 @@
 			@if(roofTiles != null){
 				@Html.Partial("_Toolbox", roofTiles)
 			}
+            <!-- TODO: remove me after demo -->
+            <ul class="list" data-type="roof" data-func="ChangeRoof" data-cast="int">
+		        <li data-id="0" class="selected">
+			        <img src="/Images/Textures/roof_black_slate.jpg" />
+		        </li>
+		        <li data-id="1">
+			        <img src="/Images/Textures/roof_basic.jpg" />
+		        </li>
+		        <li data-id="2">
+			        <img src="/Images/Textures/roof_dirt.jpg" />
+		        </li>
+            </ul>
 		</div>
 		@{
 			var floorTiles = Model.Assets.Where(g => g.Key == ShiftRight.Heim.Models.AssetType.Tile).FirstOrDefault();
@@ -72,6 +90,68 @@
 			</div>
 		}
 
+		<div class="toolbox tiles" data-tools="tiles">
+			<span class="title">1st Floor</span>
+            <ul class="list" data-type="roof" data-func="ChangeFloor1" data-cast="int">
+		        <li data-id="0" class="selected">
+			        <img src="/Images/Textures/wall_beige_white.jpg" />
+		        </li>
+		        <li data-id="1">
+			        <img src="/Images/Textures/wall_brick.jpg" />
+		        </li>
+		        <li data-id="2">
+			        <img src="/Images/Textures/wall_stone.jpg" />
+		        </li>
+            </ul>
+		</div>
+		<div class="toolbox tiles" data-tools="tiles">
+			<span class="title">2nd Floor</span>
+            <ul class="list" data-type="roof" data-func="ChangeFloor2" data-cast="int">
+		        <li data-id="0" class="selected">
+			        <img src="/Images/Textures/wall_beige_white.jpg" />
+		        </li>
+		        <li data-id="1">
+			        <img src="/Images/Textures/wall_brick.jpg" />
+		        </li>
+		        <li data-id="2">
+			        <img src="/Images/Textures/wall_stone.jpg" />
+		        </li>
+            </ul>
+		</div>
+	</div>
+
+	<div class="aside toolboxes furniture">
+		<div class="toolbox tiles" data-tools="tiles">
+			<span class="title">Tile</span>
+            <ul class="list" data-type="roof" data-func="SetCurrentFloorTexture">
+		        <li data-id="floor_tile" class="selected">
+			        <img src="/Images/Textures/floor_tile.jpg" />
+		        </li>
+		        <li data-id="floor_marble">
+			        <img src="/Images/Textures/floor_marble.jpg" />
+		        </li>
+		        <li data-id="floor_basketball">
+			        <img src="/Images/Textures/floor_basketball.jpg" />
+		        </li>
+            </ul>
+		</div>
+	</div>
+
+	<div class="aside toolboxes wallpaper">
+		<div class="toolbox tiles" data-tools="tiles">
+			<span class="title">Wallpaper</span>
+            <ul class="list" data-type="roof" data-func="SetCurrentWallTexture">
+		        <li data-id="wall_beige" class="selected">
+			        <img src="/Images/Textures/wall_beige.jpg" />
+		        </li>
+		        <li data-id="wall_dark">
+			        <img src="/Images/Textures/wall_dark.jpg" />
+		        </li>
+		        <li data-id="wall_gray">
+			        <img src="/Images/Textures/wall_gray.jpg" />
+		        </li>
+            </ul>
+		</div>
 	</div>
 
 	<div class="break"></div>

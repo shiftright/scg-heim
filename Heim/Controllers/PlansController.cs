@@ -39,7 +39,8 @@ namespace ShiftRight.Heim.Controllers {
 					Created = DateTimeOffset.UtcNow,
 					Updated = DateTimeOffset.UtcNow,
 					Name = plan.Name.Trim(),
-					Area = plan.Area
+					Area = plan.Area,
+					Price = plan.Price
 				};
 				context.Plans.Add(newPlan);
 				context.SaveChanges();

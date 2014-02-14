@@ -230,6 +230,10 @@
     <Compile Include="Migrations\201312131303240_Added_PlanModeilFilePath.Designer.cs">
       <DependentUpon>201312131303240_Added_PlanModeilFilePath.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201402011715467_AddPriceToPlan.cs" />
+    <Compile Include="Migrations\201402011715467_AddPriceToPlan.Designer.cs">
+      <DependentUpon>201402011715467_AddPriceToPlan.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountModels.cs" />
     <Compile Include="Models\HeimContext.cs" />
@@ -322,7 +326,9 @@
     <Content Include="Content\dotLess\D-CustomizeProject.less" />
     <Content Include="Content\dotLess\E-Designer.less" />
     <Content Include="Content\dotLess\F-DataGrid.less" />
-    <Content Include="Content\HouseLoader.unity3d" />
+    <Content Include="Content\heim.unity3d">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="Properties\PublishProfiles\WIN-SERVER-2008.pubxml" />
     <None Include="Scripts\jquery-2.0.3.intellisense.js" />
     <Content Include="Images\icon_close.png" />
@@ -475,6 +481,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201312131303240_Added_PlanModeilFilePath.resx">
       <DependentUpon>201312131303240_Added_PlanModeilFilePath.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201402011715467_AddPriceToPlan.resx">
+      <DependentUpon>201402011715467_AddPriceToPlan.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

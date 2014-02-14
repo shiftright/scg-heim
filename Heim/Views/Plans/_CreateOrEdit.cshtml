@@ -29,6 +29,16 @@
 		<div class="break"></div>
 
 		<div class="editor-label">
+			@Html.LabelFor(model => model.Price)
+		</div>
+		<div class="editor-field">
+			@Html.TextBoxFor(model => model.Price)
+			@Html.ValidationMessageFor(model => model.Price)
+		</div>
+
+		<div class="break"></div>
+
+		<div class="editor-label">
 			@Html.LabelFor(model => model.Area.Land)
 		</div>
 		<div class="editor-field">

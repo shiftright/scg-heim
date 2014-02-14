@@ -36,7 +36,8 @@
 		font-size: 18px;
 	}
 
-	input[type=submit] {
+	input[type=submit],
+    button[type=submit] {
 		background-image: url("/Images/icon_login.png");
 		background-repeat: no-repeat;
 		background-position: 7px center;
@@ -62,4 +63,26 @@
 		display: none;
 	}
 
+}
+
+
+body.account-register {
+    form label {
+        display: inline-block;
+        min-width: 150px;
+    }
+}
+
+#signin .unregister li {
+    display: inline-block;
+}
+
+body.account-signin {
+    .register-panel {
+        width: 320px;
+        margin: 0 auto;
+        clear: both;
+        margin-top: 20px;       
+        text-align: left;
+    }
 }

@@ -6,6 +6,7 @@ using System.Web.Mvc;
 using ShiftRight.Heim.Models;
 using ShiftRight.Heim.Extensions;
 using System.Data.Entity.SqlServer;
+using ShiftRight.Heim.Filters;
 
 namespace ShiftRight.Heim.Controllers {
 
@@ -14,6 +15,7 @@ namespace ShiftRight.Heim.Controllers {
 	}
 
 	[Authorize]
+	[InitializeSimpleMembership]
 	public class ProjectsController : Controller {
 
 		public Project CurrentProject {

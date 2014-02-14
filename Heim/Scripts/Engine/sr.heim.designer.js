@@ -21,7 +21,7 @@
 	SR.Heim.Designer = {
 		_model: {},
 		_options: {
-			loaderUrl: '/Content/HouseLoader.unity3d',
+			loaderUrl: '/Content/heim.unity3d',
 			onUnityLoaded: null
 		},
 
@@ -67,7 +67,6 @@
 					$missingScreen.remove();
 					break;
 				case "first":
-
 					if (!!DEBUG) {
 						console.log(progress);
 						_designer.message('ready');

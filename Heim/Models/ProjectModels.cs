@@ -230,6 +230,8 @@ namespace ShiftRight.Heim.Models {
 		[Required(ErrorMessage = "*")]
 		public string Name { get; set; }
 
+		public int Price { get; set; }
+
 		public Area Area { get; set; }
 
 		public IEnumerable<Attribute> Attributes { get; set; }

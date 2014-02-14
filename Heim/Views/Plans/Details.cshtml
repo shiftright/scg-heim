@@ -15,6 +15,9 @@
     <div class="display-label">Area</div>
     <div class="display-field">@Html.DisplayTextFor(_ => Model.Area).ToString()</div>
 
+    <div class="display-label">Price</div>
+    <div class="display-field">@Html.DisplayTextFor(_ => Model.Price).ToString()</div>
+
     <div class="display-label">Floors</div>
     <div class="display-field">@(Model.Floors == null ? "None" : Model.Floors.Count.ToString())</div>
 

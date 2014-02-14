@@ -22,6 +22,7 @@ namespace ShiftRight.Heim.Controllers {
 		// GET: /Account/Signin
 		[AllowAnonymous]
 		public ActionResult Signin(string returnUrl) {
+			ViewBag.BodyCssClass = "account-signin";
 			ViewBag.ReturnUrl = returnUrl;
 			return View();
 		}
@@ -32,6 +33,7 @@ namespace ShiftRight.Heim.Controllers {
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
 		public ActionResult Signin(SigninModel model, string returnUrl) {
+			ViewBag.BodyCssClass = "account-signin";
 			if(ModelState.IsValid && WebSecurity.Login(model.UserName, model.Password, persistCookie: model.RememberMe)) {
 				return RedirectToLocal(returnUrl);
 			}
@@ -57,6 +59,7 @@ namespace ShiftRight.Heim.Controllers {
 
 		[AllowAnonymous]
 		public ActionResult Register() {
+			ViewBag.BodyCssClass = "account-register";
 			return View();
 		}
 
@@ -67,6 +70,7 @@ namespace ShiftRight.Heim.Controllers {
 		[AllowAnonymous]
 		[ValidateAntiForgeryToken]
 		public ActionResult Register(RegisterModel model) {
+			ViewBag.BodyCssClass = "account-register";
 			if(ModelState.IsValid) {
 				// Attempt to register the user
 				try {

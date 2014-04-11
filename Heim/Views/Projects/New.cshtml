@@ -13,6 +13,7 @@
 
 <div id="plans" class="project-grid">
 	@if(Model.Plans.Count() > 0){
+    <h3>Lexus</h3>
 	<ul class="list">
 		@foreach(var item in Model.Plans){
 		<li class="project" data-id="@item.ID">
@@ -33,7 +34,57 @@
 			</a>
 		</li>
 		}
+
+        @{var pitem = Model.Plans.First();}
+        @if (string.IsNullOrEmpty(@Model.Search)) {
+            for(int i = 0; i < 7; i++) {
+		        <li class="project" data-id="1">
+			        <a href="Customize?planid=1">
+				        <img class="preview" src="@Href(pitem.PreviewImage)" alt="Lexus-XX2" />
+			
+				        <span class="data-item plan-name">
+					        <span class="label">Lexus-XX2</span>
+				        </span>
+				        <span class="data-item usage-area">
+					        <span class="label">Usage area</span>
+					        <span class="data">@pitem.Area.Usage sqm.</span>
+				        </span>
+				        <span class="data-item land-area">
+					        <span class="label">Land area</span>
+					        <span class="data">@pitem.Area.Land sqm.</span>
+				        </span>
+			        </a>
+		        </li>
+
+            }
+        }
 	</ul>
+    <h3>Smart</h3>
+    <ul class="list">
+        @{pitem = Model.Plans.First();}
+        @if (string.IsNullOrEmpty(@Model.Search)) {
+            for(int i = 0; i < 7; i++) {
+		        <li class="project" data-id="1">
+			        <a href="Customize?planid=1">
+				        <img class="preview" src="@Href(pitem.PreviewImage)" alt="Smart-XX@i" />
+			
+				        <span class="data-item plan-name">
+					        <span class="label">Smart-XX<span>@i</span></span>
+				        </span>
+				        <span class="data-item usage-area">
+					        <span class="label">Usage area</span>
+					        <span class="data">@pitem.Area.Usage sqm.</span>
+				        </span>
+				        <span class="data-item land-area">
+					        <span class="label">Land area</span>
+					        <span class="data">@pitem.Area.Land sqm.</span>
+				        </span>
+			        </a>
+		        </li>
+
+            }
+        }
+    </ul>
 	} else {
 		<p>No item matched for '@Model.Search'</p>
 	}

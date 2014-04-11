@@ -34,9 +34,13 @@
 			_designer._options = $.extend(_designer._options, options);
 
 			_u = Unity({
-				params: { disableContextMenu: true },
+			    params: {
+			        disableContextMenu: true,
+			        logoimage: "/Images/logo_large.png"
+			    },
 				enableUnityAnalytics: false,
-				enableGoogleAnalytics: false
+				enableGoogleAnalytics: false,
+                debugLevel: 1
 			});
 
 			_u.observeProgress(_designer.onUnityProgress);

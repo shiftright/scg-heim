@@ -49,7 +49,15 @@ namespace ShiftRight.Heim.Controllers {
 		[HttpPost]
 		[ValidateAntiForgeryToken]
 		public ActionResult Signout() {
+			Response.Cookies.Clear();
+			HttpCookie c = new HttpCookie("login");
+			c.Expires = DateTime.Now.AddDays(-1);
+			Response.Cookies.Add(c);
+
 			WebSecurity.Logout();
+			FormsAuthentication.SignOut();
+			Session.Clear();
+			Session.Abandon();
 
 			return Redirect(FormsAuthentication.DefaultUrl);
 		}

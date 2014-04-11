@@ -97,6 +97,7 @@ namespace ShiftRight.Heim.Controllers {
 								ID = plan.ID,
 								Name = plan.Name,
 								Area = plan.Area,
+								Price = plan.Price,
 								PreviewImage = plan.PreviewImageFilePath,
 								ModelFilePath = plan.ModelFilePath,
 								Attributes = plan.Attributes,
@@ -123,6 +124,7 @@ namespace ShiftRight.Heim.Controllers {
 					planModel.Updated = DateTimeOffset.UtcNow;
 					planModel.Name = plan.Name.Trim();
 					planModel.Area = plan.Area;
+					planModel.Price = plan.Price;
 					
 					IStorage storage = null;
 					string root = null;
@@ -164,12 +166,6 @@ namespace ShiftRight.Heim.Controllers {
 					}
 				}
 
-				//plan.Floors = planModel.Floors.Select(fl => new FloorViewModel {
-				//	ID = fl.ID,
-				//	FloorNumber = fl.FloorNumber
-				//});
-
-				//return View(plan);
 				return RedirectToAction("Edit", new { id = plan.ID });
 			}
 		}

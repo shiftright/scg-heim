@@ -22,15 +22,17 @@ namespace ShiftRight.Heim.Extensions {
 							controller.Session["current_user"] = user;
 							return user;
 						}
+
 						controller.Response.Cookies.Clear();
-
-						FormsAuthentication.SignOut();
-
 						HttpCookie c = new HttpCookie("login");
 						c.Expires = DateTime.Now.AddDays(-1);
 						controller.Response.Cookies.Add(c);
 
+						WebMatrix.WebData.WebSecurity.Logout();
+						FormsAuthentication.SignOut();
 						controller.Session.Clear();
+						controller.Session.Abandon();
+
 						controller.Response.Redirect("Home/Index", true);
 					}
 				}
